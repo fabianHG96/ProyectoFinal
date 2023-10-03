@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Ev1Controller;
+use App\Http\Controllers\FlexController;
+use App\Http\Controllers\HomeController;
+use App\Models\Categoria;
+use App\Models\Producto;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +20,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/home',[FlexController::class,'index'])->name('home');
+Route::get('/menu',[FlexController::class,'list'])->name('menu');
+Route::get('/menu2',[FlexController::class,'list2'])->name('menu2');
+Route::get('/logout',[FlexController::class,'logout'])->name('logout');
+
+Route::group(['prefix'=> 'login'],function(){
+Route::get('/',[FlexController::class,'login'])->name('login');
+Route::post('/',[FlexController::class,'attemptlogin'])->name('login.attempt');
+
+});
+
+Route::group(['prefix'=> 'register'],function(){
+    Route::get('/',[FlexController::class,'register'])->name('register');
+    Route::post('/',[FlexController::class,'storageAccount'])->name('register.attempt');
+
+});
+Route::get('/home2', [FlexController::class, 'index2'])->name('home2')->middleware('auth');
 Route::get('/', function () {
+
     return view('welcome');
 });
