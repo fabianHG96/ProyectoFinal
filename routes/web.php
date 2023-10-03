@@ -7,6 +7,8 @@ use App\Http\Controllers\FlexController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdenDeCompraController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\ProveedorController;
 use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\User;
@@ -64,3 +66,15 @@ Route::group(['prefix'=> 'ordendecompra'],function(){
 
 //otras rutas
 
+
+//Persona
+Route::get('/persona/create',[PersonaController::class,'Create'])->name('CreatePersona');
+Route::get('/persona/update',[PersonaController::class,'Update'])->name('UpdatePersona');
+Route::get('/persona/list',[PersonaController::class,'list'])->name('ListPersona');
+Route::get('/persona/details',[PersonaController::class,'details'])->name('DetailsPersona');
+
+//proveedor
+Route::get('/proveedor/create',[ProveedorController::class,'Create'])->name('CreateProveedor');
+Route::get('/proveedor/update',[ProveedorController::class,'Update'])->name('UpdateProveedor');
+Route::get('/proveedor/list',[ProveedorController::class,'list'])->name('ListProveedor');
+Route::get('/proveedor/details',[ProveedorController::class,'details'])->name('DetailsProveedor');

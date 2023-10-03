@@ -59,9 +59,4 @@ class FlexController extends Controller
         return redirect()->route('home');
     }
 
-
-
-
-
-
 }
