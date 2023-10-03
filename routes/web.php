@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ev1Controller;
 use App\Http\Controllers\FlexController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrdenDeCompraController;
+use App\Http\Controllers\ProductosController;
 use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\User;
@@ -21,6 +23,7 @@ use App\Models\User;
 */
 
 Route::get('/home',[FlexController::class,'index'])->name('home');
+
 Route::get('/menu',[FlexController::class,'list'])->name('menu');
 Route::get('/menu2',[FlexController::class,'list2'])->name('menu2');
 Route::get('/logout',[FlexController::class,'logout'])->name('logout');
@@ -41,3 +44,23 @@ Route::get('/', function () {
 
     return view('welcome');
 });
+
+
+//productos
+Route::group(['prefix'=> 'producto'],function(){
+Route::get('/create',[ProductosController::class,'Create'])->name('CreateProductos');
+Route::get('/update',[ProductosController::class,'Update'])->name('UpdateProductos');
+Route::get('/list',[ProductosController::class,'List'])->name('ListProductos');
+Route::get('/details',[ProductosController::class,'Details'])->name('DetailsProductos');
+});
+//orden de compra
+Route::group(['prefix'=> 'ordendecompra'],function(){
+    Route::get('/create',[OrdenDeCompraController::class,'Create'])->name('CreateOrdenDeCompra');
+    Route::get('/update',[OrdenDeCompraController::class,'Update'])->name('UpdateOrdenDeCompra');
+    Route::get('/list',[OrdenDeCompraController::class,'List'])->name('ListOrdenDeCompra');
+    Route::get('/details',[OrdenDeCompraController::class,'Details'])->name('DetailsOrdenDeCompra');
+});
+
+
+//otras rutas
+
