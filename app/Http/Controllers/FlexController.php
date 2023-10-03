@@ -59,4 +59,8 @@ class FlexController extends Controller
         return redirect()->route('home');
     }
 
+    function Manager(){
+        return View('vistas.manager.usuarios');
+     }
+
 }

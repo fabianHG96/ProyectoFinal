@@ -1,7 +1,7 @@
-@extends('layouts.persona.list')
-@section('persona.list')
+@extends('layouts.gestor.list')
+@section('gestor.list')
 <div class="container">
-    <h1>Listar Personas</h1>
+    <h1>Listar gestor</h1>
     <table>
         @csrf
         <thead>
@@ -19,8 +19,8 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Aquí puedes generar dinámicamente filas de datos con información de personas -->
-            <!-- Ejemplo de una fila de datos (puedes repetir para cada persona) -->
+            <!-- Aquí puedes generar dinámicamente filas de datos con información de gestors -->
+            <!-- Ejemplo de una fila de datos (puedes repetir para cada gestor) -->
             <tr>
                 <td>Nombres</td>
                 <td>Apellido Paterno</td>
@@ -34,6 +34,6 @@
                 <td>Término</td>
             </tr>
             <!-- Fin del ejemplo -->
-            @yield('persona.list')
+            @yield('gestor.list')
         </tbody>
     </table>

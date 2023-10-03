@@ -8,7 +8,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-left" >
                         <li class="nav-item"><a class="nav-link text-dark" href="{{route('home')}}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" href="{{route('menu')}}">Menu</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="{{route('ListOrdenDeCompra')}}">orden de compra test</a></li>
                     </ul>
                     <ul class="navbar-nav ms-auto ">
                         <li class="nav-item "><a class="nav-link text-dark" href="{{route('register')}}">Crear cuenta</a></li>

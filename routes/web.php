@@ -64,7 +64,8 @@ Route::group(['prefix'=> 'ordendecompra'],function(){
 });
 
 
-//otras rutas
+//Gestor de usuarios
+Route::get('/manager/usuarios',[FlexController::class,'Manager'])->name('Usuarios');
 
 
 //Persona
