@@ -1,7 +1,7 @@
 @extends('layouts.ordendecompra.create')
 @section('ordendecompra.create')
 
-<h1>Crear ordendecompra</h1>
+<h1>Crear orden de compra</h1>
 <form action="/guardar_persona" method="POST">
     @csrf <!-- Esto es para protección CSRF en Laravel, asegúrate de incluirlo -->
 
