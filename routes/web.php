@@ -68,6 +68,17 @@ Route::group(['prefix'=> 'ordendecompra'],function(){
 //Gestor de usuarios
 Route::get('/manager/usuarios',[FlexController::class,'Manager'])->name('Usuarios');
 
+//Respaldo facturas
+Route::get('/respaldo/facturas',[FlexController::class,'RespaldoFacturas'])->name('RespaldoFacturas');
+
+//Seguimiento financiero clientes
+Route::get('/seguimiento/clientes',[FlexController::class,'SeguimientoClientes'])->name('SeguimientoClientes');
+
+//Seguimiento financiero productos
+Route::get('/seguimiento/productos',[FlexController::class,'SeguimientoProductos'])->name('SeguimientoProductos');
+
+//Seguimiento financiero proveedores
+Route::get('/seguimiento/proveedores',[FlexController::class,'SeguimientoProveedores'])->name('SeguimientoProveedores');
 
 //Persona
 Route::get('/persona/create',[PersonaController::class,'Create'])->name('CreatePersona');
