@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BodegaController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ev1Controller;
@@ -79,3 +80,9 @@ Route::get('/proveedor/create',[ProveedorController::class,'Create'])->name('Cre
 Route::get('/proveedor/update',[ProveedorController::class,'Update'])->name('UpdateProveedor');
 Route::get('/proveedor/list',[ProveedorController::class,'list'])->name('ListProveedor');
 Route::get('/proveedor/details',[ProveedorController::class,'details'])->name('DetailsProveedor');
+
+//bodega
+    Route::get('/bodega/create',[BodegaController::class,'Create'])->name('CreateBodega');
+    Route::get('/bodega/update',[BodegaController::class,'Update'])->name('UpdateBodega');
+    Route::get('/bodega/list',[BodegaController::class,'list'])->name('ListBodega');
+    Route::get('/bodega/details',[BodegaController::class,'details'])->name('DetailsBodega');
