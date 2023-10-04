@@ -63,4 +63,20 @@ class FlexController extends Controller
         return View('vistas.manager.usuarios');
      }
 
+     function RespaldoFacturas(){
+      return View('vistas.respaldofactura.respaldofactura');
+   }
+
+   function SeguimientoClientes(){
+      return View('vistas.seguimientoclientes.seguimientoclientes');
+   }
+
+   function SeguimientoProductos(){
+      return View('vistas.seguimientoproductos.seguimientoproductos');
+   }
+
+   function SeguimientoProveedores(){
+      return View('vistas.seguimientoproveedores.seguimientoproveedores');
+   }
+
 }
