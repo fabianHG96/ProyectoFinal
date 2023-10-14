@@ -14,7 +14,7 @@ class FlexController extends Controller
     public function index(){
         $authenticated_user = Auth::user();
 
-    return view('admin.index2')->with([
+    return view('admin.home')->with([
         'user' => $authenticated_user,
     ]);
     }
