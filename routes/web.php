@@ -70,19 +70,25 @@ Route::get('/manager/usuarios',[FlexController::class,'Manager'])->name('Usuario
 
 
 //Persona
-Route::get('/persona/create',[PersonaController::class,'Create'])->name('CreatePersona');
-Route::get('/persona/update',[PersonaController::class,'Update'])->name('UpdatePersona');
-Route::get('/persona/list',[PersonaController::class,'list'])->name('ListPersona');
-Route::get('/persona/details',[PersonaController::class,'details'])->name('DetailsPersona');
+Route::group(['prefix'=> 'persona'],function(){
+Route::get('/create',[PersonaController::class,'Create'])->name('CreatePersona');
+Route::get('/update',[PersonaController::class,'Update'])->name('UpdatePersona');
+Route::get('/list',[PersonaController::class,'list'])->name('ListPersona');
+Route::get('/details',[PersonaController::class,'details'])->name('DetailsPersona');
+});
 
 //proveedor
-Route::get('/proveedor/create',[ProveedorController::class,'Create'])->name('CreateProveedor');
-Route::get('/proveedor/update',[ProveedorController::class,'Update'])->name('UpdateProveedor');
-Route::get('/proveedor/list',[ProveedorController::class,'list'])->name('ListProveedor');
-Route::get('/proveedor/details',[ProveedorController::class,'details'])->name('DetailsProveedor');
+Route::group(['prefix'=> 'proveedor'],function(){
+Route::get('/create',[ProveedorController::class,'Create'])->name('CreateProveedor');
+Route::get('/update',[ProveedorController::class,'Update'])->name('UpdateProveedor');
+Route::get('/list',[ProveedorController::class,'list'])->name('ListProveedor');
+Route::get('/details',[ProveedorController::class,'details'])->name('DetailsProveedor');
+});
 
 //bodega
-    Route::get('/bodega/create',[BodegaController::class,'Create'])->name('CreateBodega');
-    Route::get('/bodega/update',[BodegaController::class,'Update'])->name('UpdateBodega');
-    Route::get('/bodega/list',[BodegaController::class,'list'])->name('ListBodega');
-    Route::get('/bodega/details',[BodegaController::class,'details'])->name('DetailsBodega');
+Route::group(['prefix'=> 'bodega'],function(){
+    Route::get('/create',[BodegaController::class,'Create'])->name('CreateBodega');
+    Route::get('/update',[BodegaController::class,'Update'])->name('UpdateBodega');
+    Route::get('/list',[BodegaController::class,'list'])->name('ListBodega');
+    Route::get('/details',[BodegaController::class,'details'])->name('DetailsBodega');
+});
