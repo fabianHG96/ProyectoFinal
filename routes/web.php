@@ -42,7 +42,7 @@ Route::group(['prefix'=> 'register'],function(){
     Route::post('/',[FlexController::class,'storageAccount'])->name('register.attempt');
 
 });
-Route::get('/home2', [FlexController::class, 'index2'])->name('home2')->middleware('auth');
+Route::get('/home2', [FlexController::class, 'index'])->name('home2')->middleware('auth');
 Route::get('/', function () {
 
     return view('welcome');

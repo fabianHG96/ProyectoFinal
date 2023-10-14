@@ -2,7 +2,7 @@
 
 @section('persona.create')
     <div class="container">
-        <h1>Crear nueva Persona</h1>
+        <h1>Crear nuevo empleado</h1>
         <form >
             @csrf
 
@@ -29,6 +29,10 @@
             <div class="form-group">
                 <label for="fecha_contratacioin">fecha contratacioin:</label>
                 <input type="date" id="fecha_contratacion" name="fecha_contratacion" required="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="salario">Cargo:</label>
+                <input type="text" id="salario" name="salario" value="" class="form-control">
             </div>
             <div class="form-group">
                 <label for="salario">Salario:</label>
