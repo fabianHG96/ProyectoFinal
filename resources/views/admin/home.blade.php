@@ -1,5 +1,5 @@
-@extends('layouts.home2')
-@section('home')
+@extends('layouts.main')
+@section('main-content')
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
