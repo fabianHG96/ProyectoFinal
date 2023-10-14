@@ -1,5 +1,5 @@
-@extends('layouts.persona.details')
-@section('persona.details')
+@extends('layouts.main')
+@section('main-content')
 <div class="container">
     @csrf
     <div class="container">

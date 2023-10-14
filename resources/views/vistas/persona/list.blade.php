@@ -1,27 +1,33 @@
-@extends('layouts.persona.list')
-@section('persona.list')
+@extends('layouts.main')
+@section('main-content')
 <div class="container">
-    <h1>Listar Personas</h1>
-    <table>
-        @csrf
-        <thead>
-            <tr>
-                <th>Nombres</th>
-                <th>Apellido Paterno</th>
-                <th>Apellido Materno</th>
-                <th>RUT</th>
-                <th>Fecha de Contratación</th>
-                <th>Salario</th>
-                <th>Estado Laboral</th>
-                <th>Dirección</th>
-                <th>Inicio</th>
-                <th>Término</th>
-            </tr>
+<head>
+<div class="col-md-9">
+    <div class="">
+        <h1 class="align-self-end">Personas</h1>
+
+        <a class="btn btn-primary align-self-end" href="create">Nueva persona</a>
+    </div>
+</head>
+
+<body>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Nombres</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>RUT</th>
+            <th>Fecha de Contratación</th>
+            <th>Salario</th>
+            <th>Estado Laboral</th>
+            <th>Dirección</th>
+            <th>Inicio</th>
+            <th>Término</th>
+        </tr>
         </thead>
-        <tbody>
-            <!-- Aquí puedes generar dinámicamente filas de datos con información de personas -->
-            <!-- Ejemplo de una fila de datos (puedes repetir para cada persona) -->
-            <tr>
+           <tbody>
+               <tr>
                 <td>Nombres</td>
                 <td>Apellido Paterno</td>
                 <td>Apellido Materno</td>
@@ -32,13 +38,12 @@
                 <td>Dirección</td>
                 <td>Inicio</td>
                 <td>Término</td>
-            </tr>
-            <!-- Fin del ejemplo -->
-            @yield('persona.list')
-        </tbody>
+               </tr>
+           </tbody>
     </table>
 </div>
+</div>
+</div>
+</body>
 @endsection
-
-
 
