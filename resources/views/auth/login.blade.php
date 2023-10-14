@@ -1,5 +1,5 @@
-@extends('layouts.inicio')
-@section('login')
+@extends('layouts.auth')
+@section('main-content')
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="#!">Bienvenido</a>

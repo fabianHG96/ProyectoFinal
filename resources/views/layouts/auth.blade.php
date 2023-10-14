@@ -22,6 +22,6 @@
 </head>
 
 <body class="bg-gradient-primary"  style="background:url(https://www.xtrafondos.com/descargar.php?id=7943&resolucion=2560x1440)">
-    @yield('login')
+    @yield('main-content')
 </body>
 </html>
