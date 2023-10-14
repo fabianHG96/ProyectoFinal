@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BodegaController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
@@ -25,30 +26,20 @@ use App\Models\User;
 |
 */
 
+
+
+Route::group(['prefix' => '/login'], function(){
+    Route::get('/', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/', [AuthController::class, 'attemptLogin'])->name('login.attempt');
+});
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::group(['prefix' => '/register'], function(){
+    Route::get('/', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/', [AuthController::class, 'storeAccount'])->name('register.store');
+});
+
 Route::get('/home',[FlexController::class,'index'])->name('home');
-
-Route::get('/menu',[FlexController::class,'list'])->name('menu');
-Route::get('/menu2',[FlexController::class,'list2'])->name('menu2');
-Route::get('/logout',[FlexController::class,'logout'])->name('logout');
-
-Route::group(['prefix'=> 'login'],function(){
-Route::get('/',[FlexController::class,'login'])->name('login');
-Route::post('/',[FlexController::class,'attemptlogin'])->name('login.attempt');
-
-});
-
-Route::group(['prefix'=> 'register'],function(){
-    Route::get('/',[FlexController::class,'register'])->name('register');
-    Route::post('/',[FlexController::class,'storageAccount'])->name('register.attempt');
-
-});
-Route::get('/home2', [FlexController::class, 'index'])->name('home2')->middleware('auth');
-Route::get('/', function () {
-
-    return view('welcome');
-});
-
-
 //productos
 Route::group(['prefix'=> 'producto'],function(){
 Route::get('/create',[ProductosController::class,'Create'])->name('CreateProductos');

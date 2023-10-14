@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-left" >
                 <li class="nav-item"><a class="nav-link text-dark" href="{{route('home')}}">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="{{route('menu')}}">Menu</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="">Menu</a></li>
             </ul>
         </div>
         </div>
