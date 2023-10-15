@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('empleados', function (Blueprint $table) {
+        Schema::create('Empleados', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('surname');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('cargo');
             $table->string('salario');
             $table->string('estado_laboral');
-            $table->date('Finicio');
+            $table->string('horario');
             $table->date('Ftermino')->nullable();
             $table->timestamps();
         });

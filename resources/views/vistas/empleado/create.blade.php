@@ -8,7 +8,7 @@
         </div>
         <hr />
     </section>
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('register.empleado') }}">
         @csrf
         <div class="row mt-4">
             <div class="col-md-6">
@@ -61,8 +61,8 @@
                     </select>
                 </div>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Fecha de Inicio</span>
-                    <input type="date" class="form-control" name="Finicio" id="Finicio">
+                    <span class="input-group-text">Horario</span>
+                    <input type="text" class="form-control" name="horario" id="horario">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Fecha de Finalizacion</span>
