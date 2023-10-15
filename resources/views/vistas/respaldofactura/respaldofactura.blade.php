@@ -1,5 +1,6 @@
-@extends('layouts.respaldo.factura')
-@section('respaldo.factura')
+<title>Respaldo Factura</title>
+@extends('layouts.main')
+@section('main-content')
 
 
 <H1> Almacena tu factura</H1>
