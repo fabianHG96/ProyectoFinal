@@ -15,15 +15,15 @@
                 <label for="names"><strong>Datos del Empleado</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombres</span>
-                    <input type="text" class="form-control" name="name" id="name">
+                    <input type="text" class="form-control" name="nombre" id="nombre">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Apellido Paterno</span>
-                    <input type="text" class="form-control" name="surname" id="surname">
+                    <input type="text" class="form-control" name="apellido_p" id="apellido_p">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Apellido Materno</span>
-                    <input type="text" class="form-control" name="lastname" id="lastname">
+                    <input type="text" class="form-control" name="apellido_m" id="apellido_m">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">RUT</span>
