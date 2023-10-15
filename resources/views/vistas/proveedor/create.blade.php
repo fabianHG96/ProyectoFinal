@@ -45,6 +45,10 @@
                     <span class="input-group-text">Correo Electrónico</span>
                     <input type="text" class="form-control" name="email" id="email">
                 </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Rubro</span>
+                    <input type="text" class="form-control" name="rubro" id="rubro">
+                </div>
         </div>
         <div class="d-flex justify-content-end mt-4">
             <input type="submit" value="Guardar" class="btn btn-primary">
