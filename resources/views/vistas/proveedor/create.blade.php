@@ -14,59 +14,36 @@
             <div class="col-md-6">
                 <label for="names"><strong>Datos del Proveedor</strong></label>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Nombres</span>
+                    <span class="input-group-text">Nombre del Proveedor</span>
                     <input type="text" class="form-control" name="name" id="name">
-                </div>
-                <div class="input-group mt-2">
-                    <span class="input-group-text">Apellido Paterno</span>
-                    <input type="text" class="form-control" name="surname" id="surname">
-                </div>
-                <div class="input-group mt-2">
-                    <span class="input-group-text">Apellido Materno</span>
-                    <input type="text" class="form-control" name="lastname" id="lastname">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">RUT</span>
                     <input type="text" class="form-control" name="rut" id="rut">
                 </div>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Email</span>
-                    <input type="text" class="form-control" name="email" id="email" >
+                    <span class="input-group-text">Pais</span>
+                    <input type="text" class="form-control" name="pais" id="pais">
                 </div>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Direccion</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion" >
+                    <span class="input-group-text">Region</span>
+                    <input type="text" class="form-control" name="region" id="region">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <label for="patent"><strong>Datos del trabajo</strong></label>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Fecha de contratacion</span>
-                    <input type="date" class="form-control" name="Fcontratacion" id="Fcontratacion">
+                    <span class="input-group-text">Dirección</span>
+                    <input type="text" class="form-control" name="direccion" id="direccion" >
                 </div>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Cargo</span>
-                    <input type="text" class="form-control" name="cargo" id="cargo">
+                    <span class="input-group-text">Número de Contacto</span>
+                    <input type="text" class="form-control" name="Ncontacto" id="Ncontacto" >
                 </div>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Salario</span>
-                    <input type="text" class="form-control" name="salario" id="salario">
-                </div>
-                <div class="input-group mt-2">
-                    <span class="input-group-text">Estado Laboral</span>
-                <select id="estado_laboral" name="estado_laboral" class="form-control">
-                    <option value="activo">Activo</option>slot
-                    <option value="inactivo">Inactivo</option>slot
-                    </select>
-                </div>
-                <div class="input-group mt-2">
-                    <span class="input-group-text">Fecha de Inicio</span>
-                    <input type="date" class="form-control" name="Finicio" id="Finicio">
-                </div>
-                <div class="input-group mt-2">
-                    <span class="input-group-text">Fecha de Finalizacion</span>
-                    <input type="date" class="form-control" name="Ftermino" id="Ftermino">
+                    <span class="input-group-text">Correo Electrónico</span>
+                    <input type="text" class="form-control" name="email" id="email">
                 </div>
         </div>
         <div class="d-flex justify-content-end mt-4">
