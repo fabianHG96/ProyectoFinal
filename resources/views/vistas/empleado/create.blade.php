@@ -3,7 +3,7 @@
 <div class="container">
     <section>
         <div class="header-and-button d-flex justify-content-between align-items-center">
-            <h1 class="header">Nueva persona</h1>
+            <h1 class="header">Nuevp Empleado</h1>
         </div>
         <hr />
     </section>

@@ -62,11 +62,11 @@ Route::get('/manager/usuarios',[FlexController::class,'Manager'])->name('Usuario
 
 
 //Persona
-Route::group(['prefix'=> 'persona'],function(){
-Route::get('/create',[EmpleadosController::class,'Create'])->name('CreatePersona');
-Route::get('/update',[EmpleadosController::class,'Update'])->name('UpdatePersona');
-Route::get('/list',[EmpleadosController::class,'list'])->name('ListPersona');
-Route::get('/details',[EmpleadosController::class,'details'])->name('DetailsPersona');
+Route::group(['prefix'=> 'empleado'],function(){
+Route::get('/create',[EmpleadosController::class,'Create'])->name('CreateEmpleado');
+Route::get('/update',[EmpleadosController::class,'Update'])->name('UpdateEmpleado');
+Route::get('/list',[EmpleadosController::class,'list'])->name('ListEmpleado');
+Route::get('/details',[EmpleadosController::class,'details'])->name('DetailsEmpleado');
 });
 
 //proveedor
