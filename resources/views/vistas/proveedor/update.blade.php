@@ -1,40 +1,86 @@
-@extends('layouts.proveedor.update')
+<title>Actualizar un proveedor</title>
+@extends('layouts.main')
+@section('main-content')
+<div class="container">
+    <section>
+        <div class="header-and-button d-flex justify-content-between align-items-center">
+            <h1 class="header">Actualizar un proveedor</h1>
+        </div>
+        <hr />
+    </section>
+    <form method="POST" action="">
+        @csrf
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <label for="names"><strong>Datos del Proveedor</strong></label>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Nombres</span>
+                    <input type="text" class="form-control" name="name" id="name">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Apellido Paterno</span>
+                    <input type="text" class="form-control" name="surname" id="surname">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Apellido Materno</span>
+                    <input type="text" class="form-control" name="lastname" id="lastname">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">RUT</span>
+                    <input type="text" class="form-control" name="rut" id="rut">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Email</span>
+                    <input type="text" class="form-control" name="email" id="email" >
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Direccion</span>
+                    <input type="text" class="form-control" name="direccion" id="direccion" >
+                </div>
+            </div>
 
-@section('proveedor.update')
-    <div class="container">
-        <h1>Actualizar Proveedor</h1>
-        <form >
-            @csrf
-
-            <div class="form-group">
-                <label for="nombres">Nombres:</label>
-                <input type="text" id="nombres" name="nombres" value="" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="apellido_paterno">Apellido Paterno:</label>
-                <input type="text" id="apellido_paterno" name="apellido_paterno" value="" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="apellido_materno">Apellido Materno:</label>
-                <input type="text" id="apellido_materno" name="apellido_materno" value="" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="rut">RUT:</label>
-                <input type="text" id="rut" name="rut" value="" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" value="" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="numero_contacto">Número de Contacto:</label>
-                <input type="text" id="numero_contacto" name="numero_contacto" value="" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="correo_electronico">Correo Electrónico:</label>
-                <input type="email" id="correo_electronico" name="correo_electronico" value="" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
-        </form>
+            <div class="col-md-6">
+                <label for="patent"><strong>Datos del trabajo</strong></label>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Fecha de contratacion</span>
+                    <input type="date" class="form-control" name="Fcontratacion" id="Fcontratacion">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Cargo</span>
+                    <input type="text" class="form-control" name="cargo" id="cargo">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Salario</span>
+                    <input type="text" class="form-control" name="salario" id="salario">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Estado Laboral</span>
+                <select id="estado_laboral" name="estado_laboral" class="form-control">
+                    <option value="activo">Activo</option>slot
+                    <option value="inactivo">Inactivo</option>slot
+                    </select>
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Fecha de Inicio</span>
+                    <input type="date" class="form-control" name="Finicio" id="Finicio">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Fecha de Finalizacion</span>
+                    <input type="date" class="form-control" name="Ftermino" id="Ftermino">
+                </div>
+        </div>
+        <div class="d-flex justify-content-end mt-4">
+            <input type="submit" value="Actualizar" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
+@endif
 @endsection

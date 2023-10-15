@@ -1,3 +1,4 @@
+<title>Crear un proveedor</title>
 @extends('layouts.main')
 @section('main-content')
 <div class="container">
