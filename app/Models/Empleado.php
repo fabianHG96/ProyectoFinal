@@ -11,9 +11,9 @@ class Empleado extends Model
     protected $table = 'empleados';
 
     protected $fillable = [
-        'name',
-        'surname',
-        'lastname',
+        'nombre',
+        'apellido_p',
+        'apellido_m',
         'rut',
         'email',
         'direccion',

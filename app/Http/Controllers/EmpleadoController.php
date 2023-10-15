@@ -15,9 +15,9 @@ function ShowNewEmpleado(){
     function CreateNewEmpleado(Request $request){
 
         $request->validate([
-            'name' => 'required',
-            'surname' => 'required',
-            'lastname' => 'required',
+            'nombre' => 'required',
+            'apellido_p' => 'required',
+            'apellido_m' => 'required',
             'rut' => 'required|unique:empleados',
             'email' => 'required|email|unique:empleados',
             'direccion' => 'required',
@@ -29,9 +29,9 @@ function ShowNewEmpleado(){
             'Ftermino' => 'nullable|date',
         ]);
         Empleado::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'lastname' => $request->lastname,
+            'nombre' => $request->nombre,
+            'apellido_p' => $request->apellido_p,
+            'apellido_m' => $request->apellido_m,
             'rut' => $request->rut,
             'email' => $request->email,
             'direccion' => $request->direccion,

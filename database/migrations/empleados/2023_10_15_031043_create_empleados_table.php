@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('Empleados', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('surname');
-            $table->string('lastname');
+            $table->string('nombre');
+            $table->string('apellido_p');
+            $table->string('apellido_m');
             $table->string('rut')->unique(); // Agregamos 'unique' a la columna 'rut'
             $table->string('email')->unique(); // Agregamos 'unique' a la columna 'email'
             $table->string('direccion');
