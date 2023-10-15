@@ -2,7 +2,7 @@
 @extends('layouts.main')
 @section('main-content')
 
-<h1>Crear ordendecompra</h1>
+<h1>Crear orden de compra</h1>
 <form action="/guardar_persona" method="POST">
     @csrf
     <div class="row mt-4">
