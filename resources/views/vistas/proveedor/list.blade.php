@@ -21,6 +21,7 @@
                 <th>Dirección</th>
                 <th>Número de Contacto</th>
                 <th>Correo Electrónico</th>
+                <th>Rubro</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +35,7 @@
                 <td>Dirección Proveedor</td>
                 <td>Número de Contacto Proveedor</td>
                 <td>Correo Electrónico Proveedor</td>
+                <td>Rubro</td>
             </tr>
             <!-- Fin del ejemplo -->
         </tbody>
