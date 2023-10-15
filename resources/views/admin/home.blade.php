@@ -1,5 +1,5 @@
-@extends('layouts.home2')
-@section('home')
+@extends('layouts.main')
+@section('main-content')
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
@@ -7,8 +7,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-left" >
-                        <li class="nav-item"><a class="nav-link text-dark" href="{{route('home2')}}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" href="{{route('menu2')}}">Menu</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="{{route('home')}}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="">Menu</a></li>
                     </ul>
 
                 </div>

@@ -1,27 +1,43 @@
-@extends('layouts.bodega.create')
-@section('bodega.create')
+<title>Actualizar Bodega</title>
+@extends('layouts.main')
+@section('main-content')
 <div class="container">
-    <h1>Actualizar bodega</h1>
-    <form action="#" method="POST">
+    <section>
+        <div class="header-and-button d-flex justify-content-between align-items-center">
+            <h1 class="header">Actualizar bodega</h1>
+        </div>
+        <hr />
+    </section>
+    <form method="POST" action="">
         @csrf
-        <div class="form-group">
-            <label for="direccion">Direccion:</label>
-            <input type="text" id="direccion" name="direccion" value="" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="capacidad">Capacidad:</label>
-            <input type="number" id="capacidad" name="capacidad" value="" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" value="" class="form-control">
-        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <label for="names"><strong>Datos de la bodega</strong></label>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Direccion</span>
+                    <input type="text" class="form-control" name="direccion" id="direccion">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Capacidad</span>
+                    <input type="text" class="form-control" name="capacidad" id="capacidad">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Stock</span>
+                    <input type="text" class="form-control" name="stock" id="stock">
+                </div>
 
-
-            </form>
-        <!-- Botón de Actualización -->
-        <input type="submit" value="Actualizar">
+        <div class="d-flex justify-content-end mt-4">
+            <input type="submit" value="Actualizar" class="btn btn-primary">
+        </div>
     </form>
 </div>
-
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection

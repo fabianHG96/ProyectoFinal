@@ -1,5 +1,6 @@
-@extends('layouts.bodega.details')
-@section('bodega.details')
+<title>Detalle de la Bodega</title>
+@extends('layouts.main')
+@section('main-content')
 
     <div class="container">
         <h1>Detalles de la Bodega</h1>

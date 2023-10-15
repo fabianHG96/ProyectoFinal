@@ -1,10 +1,10 @@
-<title>Actualizar un proveedor</title>
+<title>Actualizar una Persona</title>
 @extends('layouts.main')
 @section('main-content')
 <div class="container">
     <section>
         <div class="header-and-button d-flex justify-content-between align-items-center">
-            <h1 class="header">Actualizar un proveedor</h1>
+            <h1 class="header">Actualizar una Persona</h1>
         </div>
         <hr />
     </section>
@@ -12,7 +12,7 @@
         @csrf
         <div class="row mt-4">
             <div class="col-md-6">
-                <label for="names"><strong>Datos del Proveedor</strong></label>
+                <label for="names"><strong>Datos de la Persona</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombres</span>
                     <input type="text" class="form-control" name="name" id="name">

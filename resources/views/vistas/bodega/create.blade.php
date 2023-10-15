@@ -1,22 +1,43 @@
-@extends('layouts.bodega.create')
-@section('bodega.create')
+<title>Nueva Bodega</title>
+@extends('layouts.main')
+@section('main-content')
 <div class="container">
-<h1>Crear proveedor</h1>
-<form action="/guardar_proveedor" method="POST">
-    @csrf <!-- Esto es para protección CSRF en Laravel, asegúrate de incluirlo -->
+    <section>
+        <div class="header-and-button d-flex justify-content-between align-items-center">
+            <h1 class="header">Nueva bodega</h1>
+        </div>
+        <hr />
+    </section>
+    <form method="POST" action="">
+        @csrf
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <label for="names"><strong>Datos de la bodega</strong></label>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Direccion</span>
+                    <input type="text" class="form-control" name="direccion" id="direccion">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Capacidad</span>
+                    <input type="text" class="form-control" name="capacidad" id="capacidad">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Stock</span>
+                    <input type="text" class="form-control" name="stock" id="stock">
+                </div>
 
-    <label for="Direccion">Direccion:</label>
-    <input type="text" id="Direccion" name="Direccion" required><br>
-
-    <label for="Capacidad">Capacidad:</label>
-    <input type="text" id="Capacidad" name="Capacidad" required><br>
-
-    <label for="Stock">Stock:</label>
-    <input type="text" id="Stock" name="Stock" required><br>
-</form>
-
-        <input type="submit" value="Guardar">
+        <div class="d-flex justify-content-end mt-4">
+            <input type="submit" value="Guardar" class="btn btn-primary">
+        </div>
     </form>
 </div>
-
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection

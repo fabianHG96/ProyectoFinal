@@ -1,5 +1,5 @@
-@extends('layouts.registrar')
-@section('register')
+@extends('layouts.auth')
+@section('main-content')
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="#!">Bienvenido</a>
@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-left" >
                 <li class="nav-item"><a class="nav-link text-dark" href="{{route('home')}}">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="{{route('menu')}}">Menu</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="">Menu</a></li>
             </ul>
         </div>
             <ul class="navbar-nav ms-auto">
@@ -18,7 +18,7 @@
     </div>
 </nav>
 
-<form action="{{ route('register.attempt') }}" method="POST" >
+<form action="{{ route('register.store') }}" method="POST" >
 @csrf
 <div class="container">
 
@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user"
-                                            id="apellidos" placeholder="Ingrese apellido ..." name="apellidos">
+                                            id="apellidos" placeholder="Ingrese apellido ..." name="surname">
                                     </div>
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user"

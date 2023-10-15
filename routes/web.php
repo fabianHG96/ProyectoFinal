@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BodegaController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\EmpleadosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ev1Controller;
 use App\Http\Controllers\FlexController;
@@ -25,30 +28,20 @@ use App\Models\User;
 |
 */
 
+
+
+Route::group(['prefix' => '/login'], function(){
+    Route::get('/', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/', [AuthController::class, 'attemptLogin'])->name('login.attempt');
+});
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::group(['prefix' => '/register'], function(){
+    Route::get('/', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/', [AuthController::class, 'storeAccount'])->name('register.store');
+});
+
 Route::get('/home',[FlexController::class,'index'])->name('home');
-
-Route::get('/menu',[FlexController::class,'list'])->name('menu');
-Route::get('/menu2',[FlexController::class,'list2'])->name('menu2');
-Route::get('/logout',[FlexController::class,'logout'])->name('logout');
-
-Route::group(['prefix'=> 'login'],function(){
-Route::get('/',[FlexController::class,'login'])->name('login');
-Route::post('/',[FlexController::class,'attemptlogin'])->name('login.attempt');
-
-});
-
-Route::group(['prefix'=> 'register'],function(){
-    Route::get('/',[FlexController::class,'register'])->name('register');
-    Route::post('/',[FlexController::class,'storageAccount'])->name('register.attempt');
-
-});
-Route::get('/home2', [FlexController::class, 'index2'])->name('home2')->middleware('auth');
-Route::get('/', function () {
-
-    return view('welcome');
-});
-
-
 //productos
 Route::group(['prefix'=> 'producto'],function(){
 Route::get('/create',[ProductosController::class,'Create'])->name('CreateProductos');
@@ -81,19 +74,26 @@ Route::get('/seguimiento/productos',[FlexController::class,'SeguimientoProductos
 Route::get('/seguimiento/proveedores',[FlexController::class,'SeguimientoProveedores'])->name('SeguimientoProveedores');
 
 //Persona
-Route::get('/persona/create',[PersonaController::class,'Create'])->name('CreatePersona');
-Route::get('/persona/update',[PersonaController::class,'Update'])->name('UpdatePersona');
-Route::get('/persona/list',[PersonaController::class,'list'])->name('ListPersona');
-Route::get('/persona/details',[PersonaController::class,'details'])->name('DetailsPersona');
+Route::group(['prefix'=> 'empleado'],function(){
+Route::get('/create',[EmpleadoController::class,'ShowNewEmpleado'])->name('CreateEmpleado');
+Route::post('/create', [EmpleadoController::class, 'CreateNewEmpleado'])->name('register.empleado')->middleware('auth');
+Route::get('/update',[EmpleadoController::class,'Update'])->name('UpdateEmpleado');
+Route::get('/list',[EmpleadoController::class,'list'])->name('ListEmpleado');
+Route::get('/details',[EmpleadoController::class,'details'])->name('DetailsEmpleado');
+});
 
 //proveedor
-Route::get('/proveedor/create',[ProveedorController::class,'Create'])->name('CreateProveedor');
-Route::get('/proveedor/update',[ProveedorController::class,'Update'])->name('UpdateProveedor');
-Route::get('/proveedor/list',[ProveedorController::class,'list'])->name('ListProveedor');
-Route::get('/proveedor/details',[ProveedorController::class,'details'])->name('DetailsProveedor');
+Route::group(['prefix'=> 'proveedor'],function(){
+Route::get('/create',[ProveedorController::class,'Create'])->name('CreateProveedor');
+Route::get('/update',[ProveedorController::class,'Update'])->name('UpdateProveedor');
+Route::get('/list',[ProveedorController::class,'list'])->name('ListProveedor');
+Route::get('/details',[ProveedorController::class,'details'])->name('DetailsProveedor');
+});
 
 //bodega
-    Route::get('/bodega/create',[BodegaController::class,'Create'])->name('CreateBodega');
-    Route::get('/bodega/update',[BodegaController::class,'Update'])->name('UpdateBodega');
-    Route::get('/bodega/list',[BodegaController::class,'list'])->name('ListBodega');
-    Route::get('/bodega/details',[BodegaController::class,'details'])->name('DetailsBodega');
+Route::group(['prefix'=> 'bodega'],function(){
+    Route::get('/create',[BodegaController::class,'Create'])->name('CreateBodega');
+    Route::get('/update',[BodegaController::class,'Update'])->name('UpdateBodega');
+    Route::get('/list',[BodegaController::class,'list'])->name('ListBodega');
+    Route::get('/details',[BodegaController::class,'details'])->name('DetailsBodega');
+});

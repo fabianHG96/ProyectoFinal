@@ -1,43 +1,86 @@
-@extends('layouts.proveedor.create')
-@section('proveedor.create')
-    <h1>Crear proveedor</h1>
-    <form action="/guardar_proveedor" method="POST">
-        @csrf <!-- Esto es para protección CSRF en Laravel, asegúrate de incluirlo -->
+<title>Crear un proveedor</title>
+@extends('layouts.main')
+@section('main-content')
+<div class="container">
+    <section>
+        <div class="header-and-button d-flex justify-content-between align-items-center">
+            <h1 class="header">Crear un proveedor</h1>
+        </div>
+        <hr />
+    </section>
+    <form method="POST" action="">
+        @csrf
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <label for="names"><strong>Datos del Proveedor</strong></label>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Nombres</span>
+                    <input type="text" class="form-control" name="name" id="name">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Apellido Paterno</span>
+                    <input type="text" class="form-control" name="surname" id="surname">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Apellido Materno</span>
+                    <input type="text" class="form-control" name="lastname" id="lastname">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">RUT</span>
+                    <input type="text" class="form-control" name="rut" id="rut">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Email</span>
+                    <input type="text" class="form-control" name="email" id="email" >
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Direccion</span>
+                    <input type="text" class="form-control" name="direccion" id="direccion" >
+                </div>
+            </div>
 
-        <label for="nombres">Nombres:</label>
-        <input type="text" id="nombres" name="nombres" required><br>
-
-        <label for="apellido_paterno">Apellido Paterno:</label>
-        <input type="text" id="apellido_paterno" name="apellido_paterno" required><br>
-
-        <label for="apellido_materno">Apellido Materno:</label>
-        <input type="text" id="apellido_materno" name="apellido_materno" required><br>
-
-        <label for="rut">RUT:</label>
-        <input type="text" id="rut" name="rut" required><br>
-
-        <label for="fecha_contratacion">Fecha de Contratación:</label>
-        <input type="date" id="fecha_contratacion" name="fecha_contratacion" required><br>
-
-        <label for="salario">Salario:</label>
-        <input type="number" id="salario" name="salario" required><br>
-
-        <label for="estado_laboral">Estado Laboral:</label>
-        <select id="estado_laboral" name="estado_laboral">
-            <option value="activo">Activo</option>
-            <option value="inactivo">Inactivo</option>
-        </select><br>
-
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" required><br>
-
-        <label for="inicio">Fecha de Inicio:</label>
-        <input type="date" id="inicio" name="inicio" required><br>
-
-        <label for="termino">Fecha de Término:</label>
-        <input type="date" id="termino" name="termino" required><br>
-
-        <input type="submit" value="Guardar">
+            <div class="col-md-6">
+                <label for="patent"><strong>Datos del trabajo</strong></label>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Fecha de contratacion</span>
+                    <input type="date" class="form-control" name="Fcontratacion" id="Fcontratacion">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Cargo</span>
+                    <input type="text" class="form-control" name="cargo" id="cargo">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Salario</span>
+                    <input type="text" class="form-control" name="salario" id="salario">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Estado Laboral</span>
+                <select id="estado_laboral" name="estado_laboral" class="form-control">
+                    <option value="activo">Activo</option>slot
+                    <option value="inactivo">Inactivo</option>slot
+                    </select>
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Fecha de Inicio</span>
+                    <input type="date" class="form-control" name="Finicio" id="Finicio">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Fecha de Finalizacion</span>
+                    <input type="date" class="form-control" name="Ftermino" id="Ftermino">
+                </div>
+        </div>
+        <div class="d-flex justify-content-end mt-4">
+            <input type="submit" value="Guardar" class="btn btn-primary">
+        </div>
     </form>
-
+</div>
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection
