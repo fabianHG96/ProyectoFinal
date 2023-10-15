@@ -8,22 +8,22 @@
         </div>
         <hr />
     </section>
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('register.empleado') }}">
         @csrf
         <div class="row mt-4">
             <div class="col-md-6">
                 <label for="names"><strong>Datos del Empleado</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombres</span>
-                    <input type="text" class="form-control" name="name" id="name">
+                    <input type="text" class="form-control" name="nombre" id="nombre">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Apellido Paterno</span>
-                    <input type="text" class="form-control" name="surname" id="surname">
+                    <input type="text" class="form-control" name="apellido_p" id="apellido_p">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Apellido Materno</span>
-                    <input type="text" class="form-control" name="lastname" id="lastname">
+                    <input type="text" class="form-control" name="apellido_m" id="apellido_m">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">RUT</span>
@@ -61,8 +61,8 @@
                     </select>
                 </div>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Fecha de Inicio</span>
-                    <input type="date" class="form-control" name="Finicio" id="Finicio">
+                    <span class="input-group-text">Horario</span>
+                    <input type="text" class="form-control" name="horario" id="horario">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Fecha de Finalizacion</span>

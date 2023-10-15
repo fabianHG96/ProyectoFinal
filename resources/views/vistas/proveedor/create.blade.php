@@ -15,7 +15,7 @@
                 <label for="names"><strong>Datos del Proveedor</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre del Proveedor</span>
-                    <input type="text" class="form-control" name="name" id="name">
+                    <input type="text" class="form-control" name="nombre" id="nombre">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">RUT</span>
@@ -38,8 +38,8 @@
                     <input type="text" class="form-control" name="direccion" id="direccion" >
                 </div>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Número de Contacto</span>
-                    <input type="text" class="form-control" name="Ncontacto" id="Ncontacto" >
+                    <span class="input-group-text">Telefono</span>
+                    <input type="text" class="form-control" name="telefono" id="telefono" >
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Correo Electrónico</span>

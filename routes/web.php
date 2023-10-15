@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BodegaController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpleadosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ev1Controller;
@@ -60,13 +61,25 @@ Route::group(['prefix'=> 'ordendecompra'],function(){
 //Gestor de usuarios
 Route::get('/manager/usuarios',[FlexController::class,'Manager'])->name('Usuarios');
 
+//Respaldo facturas
+Route::get('/respaldo/facturas',[FlexController::class,'RespaldoFacturas'])->name('RespaldoFacturas');
+
+//Seguimiento financiero clientes
+Route::get('/seguimiento/clientes',[FlexController::class,'SeguimientoClientes'])->name('SeguimientoClientes');
+
+//Seguimiento financiero productos
+Route::get('/seguimiento/productos',[FlexController::class,'SeguimientoProductos'])->name('SeguimientoProductos');
+
+//Seguimiento financiero proveedores
+Route::get('/seguimiento/proveedores',[FlexController::class,'SeguimientoProveedores'])->name('SeguimientoProveedores');
 
 //Persona
 Route::group(['prefix'=> 'empleado'],function(){
-Route::get('/create',[EmpleadosController::class,'Create'])->name('CreateEmpleado');
-Route::get('/update',[EmpleadosController::class,'Update'])->name('UpdateEmpleado');
-Route::get('/list',[EmpleadosController::class,'list'])->name('ListEmpleado');
-Route::get('/details',[EmpleadosController::class,'details'])->name('DetailsEmpleado');
+Route::get('/create',[EmpleadoController::class,'ShowNewEmpleado'])->name('CreateEmpleado');
+Route::post('/create', [EmpleadoController::class, 'CreateNewEmpleado'])->name('register.empleado')->middleware('auth');
+Route::get('/update',[EmpleadoController::class,'Update'])->name('UpdateEmpleado');
+Route::get('/list',[EmpleadoController::class,'list'])->name('ListEmpleado');
+Route::get('/details',[EmpleadoController::class,'details'])->name('DetailsEmpleado');
 });
 
 //proveedor
