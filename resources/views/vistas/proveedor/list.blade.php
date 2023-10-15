@@ -14,10 +14,10 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Nombres</th>
-                <th>Apellido Paterno</th>
-                <th>Apellido Materno</th>
-                <th>RUT</th>
+                <th>Nombre Proveedor</th>
+                <th>Rut</th>
+                <th>Pais</th>
+                <th>Region</th>
                 <th>Dirección</th>
                 <th>Número de Contacto</th>
                 <th>Correo Electrónico</th>
@@ -28,9 +28,9 @@
             <!-- Ejemplo de fila de datos (puedes repetir para cada proveedor) -->
             <tr>
                 <td>Nombre Proveedor</td>
-                <td>Apellido Paterno Proveedor</td>
-                <td>Apellido Materno Proveedor</td>
-                <td>RUT Proveedor</td>
+                <td>Rut</td>
+                <td>Pais</td>
+                <td>Region</td>
                 <td>Dirección Proveedor</td>
                 <td>Número de Contacto Proveedor</td>
                 <td>Correo Electrónico Proveedor</td>
