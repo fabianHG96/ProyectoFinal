@@ -1,12 +1,13 @@
+<title>Lista Empleados</title>
 @extends('layouts.main')
 @section('main-content')
 <div class="container">
 <head>
 <div class="col-md-9">
     <div class="">
-        <h1 class="align-self-end">Personas</h1>
+        <h1 class="align-self-end">Empleados</h1>
 
-        <a class="btn btn-primary align-self-end" href="create">Nueva persona</a>
+        <a class="btn btn-primary align-self-end" href="create">Nuevo Empleado</a>
     </div>
 </head>
 

@@ -45,8 +45,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListEmpleado') }}"> // cambiar este despues
-                                Clientes
+                            <a class="nav-link" href="{{ route('ListEmpleado') }}">
+                                Empleados
                             </a>
                         </li>
                     </ul>

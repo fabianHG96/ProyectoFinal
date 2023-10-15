@@ -18,10 +18,9 @@ class FlexController extends Controller
         'user' => $authenticated_user,
     ]);
     }
-
-
     function Manager(){
-        return View('vistas.manager.usuarios');
+        $usuarios = User::all();
+        return view('vistas.manager.usuarios', compact('user'));
      }
 
 
