@@ -45,7 +45,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListPersona') }}">
+                            <a class="nav-link" href="{{ route('ListEmpleado') }}"> // cambiar este despues
                                 Clientes
                             </a>
                         </li>
