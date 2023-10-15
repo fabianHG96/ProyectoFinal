@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BodegaController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\EmpleadosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ev1Controller;
 use App\Http\Controllers\FlexController;
@@ -62,10 +63,10 @@ Route::get('/manager/usuarios',[FlexController::class,'Manager'])->name('Usuario
 
 //Persona
 Route::group(['prefix'=> 'persona'],function(){
-Route::get('/create',[PersonaController::class,'Create'])->name('CreatePersona');
-Route::get('/update',[PersonaController::class,'Update'])->name('UpdatePersona');
-Route::get('/list',[PersonaController::class,'list'])->name('ListPersona');
-Route::get('/details',[PersonaController::class,'details'])->name('DetailsPersona');
+Route::get('/create',[EmpleadosController::class,'Create'])->name('CreatePersona');
+Route::get('/update',[EmpleadosController::class,'Update'])->name('UpdatePersona');
+Route::get('/list',[EmpleadosController::class,'list'])->name('ListPersona');
+Route::get('/details',[EmpleadosController::class,'details'])->name('DetailsPersona');
 });
 
 //proveedor
