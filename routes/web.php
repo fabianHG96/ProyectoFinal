@@ -92,6 +92,24 @@ Route::group(['prefix'=> 'Vendedor'],function(){
     Route::get('/details',[VendedorController::class,'details'])->name('DetailsVendedor');
     });
 
+//Empresa
+Route::group(['prefix'=> 'Empresa'],function(){
+    Route::get('/create',[EmpresaController::class,'ShowNewEmpresa'])->name('CreateEmpresa');
+    Route::post('/create', [EmpresaController::class, 'CreateNewEmpresa'])->name('register.Empresa')->middleware('auth');
+    Route::get('/update',[EmpresaController::class,'Update'])->name('UpdateEmpresa');
+    Route::get('/list',[EmpresaController::class,'list'])->name('ListEmpresa');
+    Route::get('/details',[EmpresaController::class,'details'])->name('DetailsEmpresa');
+    });
+
+//ClienteEmpresa
+Route::group(['prefix'=> 'ClienteEmpresa'],function(){
+    Route::get('/create',[ClienteEmpresaController::class,'ShowNewClienteEmpresa'])->name('CreateClienteEmpresa');
+    Route::post('/create', [ClienteEmpresaController::class, 'CreateNewClienteEmpresa'])->name('register.ClienteEmpresa')->middleware('auth');
+    Route::get('/update',[ClienteEmpresaController::class,'Update'])->name('UpdateClienteEmpresa');
+    Route::get('/list',[ClienteEmpresaController::class,'list'])->name('ListClienteEmpresa');
+    Route::get('/details',[ClienteEmpresaController::class,'details'])->name('DetailsClienteEmpresa');
+    });
+
 //proveedor
 Route::group(['prefix'=> 'proveedor'],function(){
 Route::get('/create',[ProveedorController::class,'ShowNewProveedor'])->name('CreateProveedor');
