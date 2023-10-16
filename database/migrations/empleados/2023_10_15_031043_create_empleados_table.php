@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('apellido_p');
             $table->string('apellido_m');
             $table->string('rut')->unique(); // Agregamos 'unique' a la columna 'rut'
-            $table->string('email')->unique(); // Agregamos 'unique' a la columna 'email'
+            $table->string('email')->unique();
+            $table->string('telefono'); // Agregamos 'unique' a la columna 'email'
             $table->string('direccion');
             $table->date('Fcontratacion');
             $table->string('cargo');

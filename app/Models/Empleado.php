@@ -16,6 +16,7 @@ class Empleado extends Model
         'apellido_m',
         'rut',
         'email',
+        'telefono',
         'direccion',
         'Fcontratacion',
         'cargo',

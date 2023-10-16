@@ -15,18 +15,19 @@ function ShowNewEmpleado(){
     function CreateNewEmpleado(Request $request){
 
         $request->validate([
-            'nombre' => 'required',
-            'apellido_p' => 'required',
-            'apellido_m' => 'required',
+            'nombre' => 'required:empleados',
+            'apellido_p' => 'required:empleados',
+            'apellido_m' => 'required:empleados',
             'rut' => 'required|unique:empleados',
             'email' => 'required|email|unique:empleados',
-            'direccion' => 'required',
-            'Fcontratacion' => 'required|date',
-            'cargo' => 'required',
-            'salario' => 'required',
-            'estado_laboral' => 'required',
-            'horario' => 'required',
-            'Ftermino' => 'nullable|date',
+            'telefono' => 'required|email|unique:empleados',
+            'direccion' => 'required:empleados',
+            'Fcontratacion' => 'required|date:empleados',
+            'cargo' => 'required:empleados',
+            'salario' => 'required:empleados',
+            'estado_laboral' => 'required:empleados',
+            'horario' => 'required:empleados',
+            'Ftermino' => 'nullable|date:empleados',
         ]);
         Empleado::create([
             'nombre' => $request->nombre,
@@ -34,6 +35,7 @@ function ShowNewEmpleado(){
             'apellido_m' => $request->apellido_m,
             'rut' => $request->rut,
             'email' => $request->email,
+            'telefono' => $request->telefono,
             'direccion' => $request->direccion,
             'Fcontratacion' => $request->Fcontratacion,
             'cargo' => $request->cargo,
