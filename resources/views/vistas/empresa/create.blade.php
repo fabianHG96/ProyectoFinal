@@ -8,7 +8,7 @@
         </div>
         <hr />
     </section>
-    <form method="POST" action="{{ route('register.empresa') }}">
+    <form method="POST" action="{{ route('register.Empresa') }}">
         @csrf
         <div class="row mt-4">
             <div class="col-md-6">

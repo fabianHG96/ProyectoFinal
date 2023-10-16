@@ -30,6 +30,7 @@
         <input type="submit" value="Guardar" class="btn btn-primary">
     </div>
 </form>
+
 </div>
 @if($errors->any())
 <div class="alert alert-danger">
