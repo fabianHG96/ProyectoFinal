@@ -15,23 +15,17 @@
     <table class="table">
     <thead>
         <tr>
-            <th>Proveedor</th>
-            <th>Empleado</th>
-            <th>Fecha de Solicitud </th>
-            <th>Detalle del Producto</th>
+            <th>Fecha Solicitud</th>
+            <th>Detalles</th>
             <th>Estado</th>
-            <th>Empresa</th>
             <th>Total</th>
         </tr>
         </thead>
            <tbody>
                <tr>
-                <td>Proveedor</td>
-                <td>Empleado</td>
-                <td>Fecha de Solicitud </td>
-                <td>Detalle del Producto</td>
+                <td>Fecha Solicitud</td>
+                <td>Detalles</td>
                 <td>Estado</td>
-                <td>Empresa</td>
                 <td>Total</td>
                </tr>
            </tbody>
