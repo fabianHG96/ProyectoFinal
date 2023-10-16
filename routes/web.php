@@ -84,7 +84,8 @@ Route::get('/details',[EmpleadoController::class,'details'])->name('DetailsEmple
 
 //proveedor
 Route::group(['prefix'=> 'proveedor'],function(){
-Route::get('/create',[ProveedorController::class,'Create'])->name('CreateProveedor');
+Route::get('/create',[ProveedorController::class,'ShowNewProveedor'])->name('CreateProveedor');
+Route::post('/create', [ProveedorController::class, 'createNewProveedor'])->name('register.proveedor')->middleware('auth');
 Route::get('/update',[ProveedorController::class,'Update'])->name('UpdateProveedor');
 Route::get('/list',[ProveedorController::class,'list'])->name('ListProveedor');
 Route::get('/details',[ProveedorController::class,'details'])->name('DetailsProveedor');
