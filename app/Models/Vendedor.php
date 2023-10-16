@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Vendedor extends Model
 {
     use HasFactory;
-    protected $table = 'vendedores'; // Nombre de la tabla en la base de datos
+    protected $table = 'vendedor';
 
     protected $fillable = [
         'nombre',
         'apellido',
         'rut',
-        'correo',
+        'direccion',
+        'email',
         'telefono',
-        'estadolaboral',
+        'estado_laboral',
     ];
 }
