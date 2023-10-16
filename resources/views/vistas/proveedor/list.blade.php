@@ -19,7 +19,7 @@
                 <th>Pais</th>
                 <th>Region</th>
                 <th>Dirección</th>
-                <th>Número de Contacto</th>
+                <th>telefono</th>
                 <th>Correo Electrónico</th>
                 <th>Rubro</th>
             </tr>
@@ -33,7 +33,7 @@
                 <td>Pais</td>
                 <td>Region</td>
                 <td>Dirección Proveedor</td>
-                <td>Número de Contacto Proveedor</td>
+                <td>telefono Proveedor</td>
                 <td>Correo Electrónico Proveedor</td>
                 <td>Rubro</td>
             </tr>

@@ -13,6 +13,7 @@ use App\Http\Controllers\OrdenDeCompraController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\VendedorController;
 use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\User;
@@ -81,6 +82,15 @@ Route::get('/update',[EmpleadoController::class,'Update'])->name('UpdateEmpleado
 Route::get('/list',[EmpleadoController::class,'list'])->name('ListEmpleado');
 Route::get('/details',[EmpleadoController::class,'details'])->name('DetailsEmpleado');
 });
+
+//Vendedor
+Route::group(['prefix'=> 'Vendedor'],function(){
+    Route::get('/create',[VendedorController::class,'ShowNewVendedor'])->name('CreateVendedor');
+    Route::post('/create', [VendedorController::class, 'CreateNewVendedor'])->name('register.Vendedor')->middleware('auth');
+    Route::get('/update',[VendedorController::class,'Update'])->name('UpdateVendedor');
+    Route::get('/list',[VendedorController::class,'list'])->name('ListVendedor');
+    Route::get('/details',[VendedorController::class,'details'])->name('DetailsVendedor');
+    });
 
 //proveedor
 Route::group(['prefix'=> 'proveedor'],function(){
