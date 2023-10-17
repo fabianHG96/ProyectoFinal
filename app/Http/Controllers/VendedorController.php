@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vendedor;
+use Illuminate\Support\Facades\DB;
 
 
 class VendedorController extends Controller
@@ -44,4 +45,20 @@ class VendedorController extends Controller
         return view('vistas.vendedor.list', ['mostrarvendedor' => $vendedor]);
     }
     function Details(){return View('vistas.vendedor.details');}
+
+    public function delete($id) {
+        $vendedor = Vendedor::find($id);
+
+        if (!$vendedor) {
+            return redirect()->route('ListVendedor')->with('error', 'El vendedor no existe.');
+        }
+
+        // Usar DB::transaction para asegurarse de que El operación sea exitosa
+        DB::transaction(function () use ($vendedor) {
+            // Eliminar El vendedor de forma suave
+            $vendedor->delete();
+        });
+
+        return redirect()->route('ListVendedor')->with('success', 'El vendedor ha sido eliminada de forma suave.');
+    }
 }

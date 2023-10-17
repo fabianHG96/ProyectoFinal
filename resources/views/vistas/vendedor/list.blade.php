@@ -22,6 +22,7 @@
             <th>Correo</th>
             <th>telefono</th>
             <th>Estado laboral</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -34,6 +35,13 @@
                <td>{{ $vendedor->email }}</td>
                <td>{{ $vendedor->telefono }}</td>
                <td>{{ $vendedor->estado_laboral }}</td>
+               <td>
+                <form action="{{ route('eliminarVendedor', $vendedor->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </td>
             </tr>
             @endforeach
         </tbody>

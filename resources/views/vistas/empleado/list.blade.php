@@ -25,6 +25,7 @@
             <th>Dirección</th>
             <th>Inicio</th>
             <th>Término</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -51,7 +52,13 @@
                         {{ $empleado->Ftermino }}
                     @endif
                 </td>
-
+                <td>
+                    <form action="{{ route('eliminarEmpleado', $empleado->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

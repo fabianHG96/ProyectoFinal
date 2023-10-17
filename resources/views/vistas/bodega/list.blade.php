@@ -14,7 +14,8 @@
             <tr>
                 <th>Direccion</th>
                 <th>Capacidad</th>
-                <th>Stock</th
+                <th>Stock</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,13 @@
                <td>{{ $bodega->direccion }}</td>
                <td>{{ $bodega->capacidad }}</td>
                <td>{{ $bodega->stock }}</td>
+               <td>
+                <form action="{{ route('eliminarBodega', $bodega->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </td>
             </tr>
             @endforeach
         </tbody>

@@ -76,6 +76,7 @@ Route::post('/create', [EmpleadoController::class, 'CreateNewEmpleado'])->name('
 Route::get('/update',[EmpleadoController::class,'Update'])->name('UpdateEmpleado');
 Route::get('/list',[EmpleadoController::class,'list'])->name('ListEmpleado');
 Route::get('/details',[EmpleadoController::class,'details'])->name('DetailsEmpleado');
+Route::delete('/eliminarEmpleado/{id}', [EmpleadoController::class, 'delete'])->name('eliminarEmpleado')->middleware('auth');
 });
 
 //Vendedor
@@ -85,6 +86,7 @@ Route::group(['prefix'=> 'vendedor'],function(){
     Route::get('/update',[VendedorController::class,'Update'])->name('UpdateVendedor');
     Route::get('/list',[VendedorController::class,'list'])->name('ListVendedor');
     Route::get('/details',[VendedorController::class,'details'])->name('DetailsVendedor');
+    Route::delete('/eliminarVendedor/{id}', [VendedorController::class, 'delete'])->name('eliminarVendedor')->middleware('auth');
     });
 
 //Empresa
@@ -94,6 +96,8 @@ Route::group(['prefix'=> 'empresa'],function(){
     Route::get('/update',[EmpresaController::class,'Update'])->name('UpdateEmpresa');
     Route::get('/list',[EmpresaController::class,'list'])->name('ListEmpresa');
     Route::get('/details',[EmpresaController::class,'details'])->name('DetailsEmpresa');
+    Route::delete('/eliminarEmpresa/{id}', [EmpresaController::class, 'delete'])->name('eliminarEmpresa')->middleware('auth');
+
     });
 
 //ClienteEmpresa
@@ -103,7 +107,8 @@ Route::group(['prefix'=> 'clienteEmpresa'],function(){
     Route::get('/update',[ClienteEmpresaController::class,'Update'])->name('UpdateClienteEmpresa');
     Route::get('/list',[ClienteEmpresaController::class,'list'])->name('ListClienteEmpresa');
     Route::get('/details',[ClienteEmpresaController::class,'details'])->name('DetailsClienteEmpresa');
-    });
+    Route::delete('/eliminarClienteEmpresa/{id}', [ClienteEmpresaController::class, 'delete'])->name('eliminarClienteEmpresa')->middleware('auth');
+});
 
 //proveedor
 Route::group(['prefix'=> 'proveedor'],function(){
@@ -112,6 +117,7 @@ Route::post('/create', [ProveedorController::class, 'createNewProveedor'])->name
 Route::get('/update',[ProveedorController::class,'Update'])->name('UpdateProveedor');
 Route::get('/list',[ProveedorController::class,'list'])->name('ListProveedor');
 Route::get('/details',[ProveedorController::class,'details'])->name('DetailsProveedor');
+Route::delete('/eliminarProveedor/{id}', [ProveedorController::class, 'delete'])->name('eliminarProveedor')->middleware('auth');
 });
 
 //bodega
@@ -121,6 +127,7 @@ Route::group(['prefix'=> 'bodega'],function(){
     Route::get('/update',[BodegaController::class,'Update'])->name('UpdateBodega');
     Route::get('/list',[BodegaController::class,'list'])->name('ListBodega');
     Route::get('/details',[BodegaController::class,'details'])->name('DetailsBodega');
+    Route::delete('/eliminarBodega/{id}', [BodegaController::class, 'delete'])->name('eliminarBodega')->middleware('auth');
 });
 
 //Categoria

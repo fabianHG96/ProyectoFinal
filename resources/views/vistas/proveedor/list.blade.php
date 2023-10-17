@@ -22,6 +22,7 @@
                 <th>telefono</th>
                 <th>Correo Electrónico</th>
                 <th>Rubro</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,13 @@
                 <td>{{ $proveedor->telefono }}</td>
                 <td>{{ $proveedor->email }}</td>
                 <td>{{ $proveedor->rubro }}</td>
+                <td>
+                    <form action="{{ route('eliminarProveedor', $proveedor->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

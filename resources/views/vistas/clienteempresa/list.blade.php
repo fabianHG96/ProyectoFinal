@@ -22,6 +22,7 @@
             <th>Direccion</th>
             <th>Telefono</th>
             <th>Email</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -34,10 +35,16 @@
                 <td>{{ $cliente_empresa->direccion }}</td>
                 <td>{{ $cliente_empresa->telefono }}</td>
                 <td>{{ $cliente_empresa->email }}</td>
+                <td>
+                    <form action="{{ route('eliminarClienteEmpresa', $cliente_empresa->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
-
     </table>
 </div>
 </div>

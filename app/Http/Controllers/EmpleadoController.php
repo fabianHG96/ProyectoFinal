@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Empleado;
+use Illuminate\Support\Facades\DB;
 
 class EmpleadoController extends Controller
 {
@@ -56,4 +57,20 @@ function ShowNewEmpleado(){
         return view('vistas.empleado.list', ['mostrarempleado' => $empleado]);
     }
     function Details(){return View('vistas.empleado.details');}
+
+    public function delete($id) {
+        $empleado = Empleado::find($id);
+
+        if (!$empleado) {
+            return redirect()->route('ListEmpleado')->with('error', 'La empleado no existe.');
+        }
+
+        // Usar DB::transaction para asegurarse de que la operación sea exitosa
+        DB::transaction(function () use ($empleado) {
+            // Eliminar la empleado de forma suave
+            $empleado->delete();
+        });
+
+        return redirect()->route('ListEmpleado')->with('success', 'La empleado ha sido eliminada de forma suave.');
+    }
 }

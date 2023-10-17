@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ClienteEmpresa;
+use Illuminate\Support\Facades\DB;
 
 class ClienteEmpresaController extends Controller
 {
@@ -49,5 +50,21 @@ class ClienteEmpresaController extends Controller
     public function details()
     {
         return view('vistas.clienteempresa.details');
+    }
+
+    public function delete($id) {
+        $clienteempresa = ClienteEmpresa::find($id);
+
+        if (!$clienteempresa) {
+            return redirect()->route('ListClienteEmpresa')->with('error', 'El cliente de la empresa no existe.');
+        }
+
+        // Usar DB::transaction para asegurarse de que El operación sea exitosa
+        DB::transaction(function () use ($clienteempresa) {
+            // Eliminar El clienteempresa de forma suave
+            $clienteempresa->delete();
+        });
+
+        return redirect()->route('ListClienteEmpresa')->with('success', 'El cliente de la empresa ha sido eliminada de forma suave.');
     }
 }
