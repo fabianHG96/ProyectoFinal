@@ -18,5 +18,13 @@ class Vendedor extends Model
         'email',
         'telefono',
         'estado_laboral',
+        'proveedor_id',
     ];
+
+    public function ordenesDeCompra() {
+        return $this->hasMany(OrdenDeCompra::class);
+    }
+    public function proveedor() {
+        return $this->belongsTo(Proveedor::class, 'proveedor_id');
+    }
 }

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('vendedor', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('proveedor_id');
             $table->string('nombre');
             $table->string('apellido');
             $table->string('rut')->unique();
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('telefono');
             $table->string('estado_laboral');
+            $table->foreign('proveedor_id')->references('id')->on('proveedor')->onDelete('cascade');
             $table->timestamps();
         });
     }

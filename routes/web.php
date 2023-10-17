@@ -47,11 +47,13 @@ Route::get('/details',[ProductosController::class,'Details'])->name('DetailsProd
 });
 //orden de compra
 Route::group(['prefix'=> 'ordendecompra'],function(){
-    Route::get('/create',[OrdenDeCompraController::class,'Create'])->name('CreateOrdenDeCompra');
+    Route::get('/create',[OrdenDeCompraController::class,'ShowNewOrden'])->name('CreateOrdenDeCompra');
+    Route::post('/create', [OrdenDeCompraController::class, 'CreateNewOrden'])->name('register.Orden')->middleware('auth');
     Route::get('/update',[OrdenDeCompraController::class,'Update'])->name('UpdateOrdenDeCompra');
     Route::get('/list',[OrdenDeCompraController::class,'List'])->name('ListOrdenDeCompra');
     Route::get('/details',[OrdenDeCompraController::class,'Details'])->name('DetailsOrdenDeCompra');
 });
+Route::get('/obtener-vendedores/{proveedorId}', [OrdenCompraController::class,'getVendedores']);
 
 
 //Gestor de usuarios

@@ -20,4 +20,8 @@ class Proveedor extends Model
         'email',
         'rubro',
     ];
+
+    public function vendedores() {
+        return $this->hasMany(Vendedor::class);
+    }
 }

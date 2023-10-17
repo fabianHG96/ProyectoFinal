@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vendedor;
+
+use App\Models\Proveedor;
+
 use Illuminate\Support\Facades\DB;
+
 
 
 class VendedorController extends Controller
 {
     public function showNewVendedor()
     {
-        return view('vistas.vendedor.create');
+        $proveedores = Proveedor::all();
+        return view('vistas.vendedor.create',['proveedores' => $proveedores]);
     }
 
     public function createNewVendedor(Request $request)
@@ -24,7 +29,15 @@ class VendedorController extends Controller
             'email' => 'required|email|unique:vendedor',
             'telefono' => 'required',
             'estado_laboral' => 'required',
+
+
         ]);
+
+
+        // Verificar si se seleccionó un proveedor en el formulario
+        if ($request->has('proveedor_id')) {
+            $data['proveedor_id'] = $request->proveedor_id;
+        }
 
         Vendedor::create([
             'nombre' => $request->nombre,
@@ -34,6 +47,8 @@ class VendedorController extends Controller
             'email' => $request->email,
             'telefono' => $request->telefono,
             'estado_laboral' => $request->estado_laboral,
+            'proveedor_id' => $data['proveedor_id'],
+
         ]);
 
         return redirect()->route('ListVendedor')->with('success', 'Vendedor creado exitosamente');
