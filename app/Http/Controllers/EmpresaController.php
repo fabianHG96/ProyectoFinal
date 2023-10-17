@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Empresa;
+use Illuminate\Support\Facades\DB;
 
 class EmpresaController extends Controller
 {
@@ -46,13 +47,29 @@ class EmpresaController extends Controller
         return view('vistas.empresa.update');
     }
 
-    public function list()
-    {
-        return view('vistas.empresa.list');
+    public function list(){
+        $empresa = Empresa::all();
+        return view('vistas.empresa.list', ['mostrarempresa' => $empresa]);
     }
 
     public function details()
     {
         return view('vistas.empresa.list');
+    }
+
+    public function delete($id) {
+        $empresa = Empresa::find($id);
+
+        if (!$empresa) {
+            return redirect()->route('ListEmpresa')->with('error', 'La empresa no existe.');
+        }
+
+        // Usar DB::transaction para asegurarse de que la operación sea exitosa
+        DB::transaction(function () use ($empresa) {
+            // Eliminar la empresa de forma suave
+            $empresa->delete();
+        });
+
+        return redirect()->route('ListEmpresa')->with('success', 'La empresa ha sido eliminada de forma suave.');
     }
 }

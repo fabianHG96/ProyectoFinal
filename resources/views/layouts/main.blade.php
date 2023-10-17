@@ -46,13 +46,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListEmpleado') }}">
-                                Empleados
+                            <a class="nav-link" href="{{ route('ListVendedor') }}">
+                                Vendedores
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListVendedor') }}">
-                                Vendedores
+                            <a class="nav-link" href="{{ route('ListClienteEmpresa') }}">
+                                Cliente Empresa
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('ListEmpresa') }}">
+                                Empresas
                             </a>
                         </li>
                     </ul>

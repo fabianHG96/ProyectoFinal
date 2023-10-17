@@ -14,18 +14,25 @@
             <tr>
                 <th>Direccion</th>
                 <th>Capacidad</th>
-                <th>Stock</th
+                <th>Stock</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Aquí puedes incluir dinámicamente filas de datos de proveedores -->
-            <!-- Ejemplo de fila de datos (puedes repetir para cada proveedor) -->
+            @foreach($mostrarbodega->sortBy('id') as $bodega)
             <tr>
-                <td>Direccion</td>
-                <td>Capacidad</td>
-                <td>Stock</td>
+               <td>{{ $bodega->direccion }}</td>
+               <td>{{ $bodega->capacidad }}</td>
+               <td>{{ $bodega->stock }}</td>
+               <td>
+                <form action="{{ route('eliminarBodega', $bodega->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </td>
             </tr>
-            <!-- Fin del ejemplo -->
+            @endforeach
         </tbody>
     </table>
 </div>

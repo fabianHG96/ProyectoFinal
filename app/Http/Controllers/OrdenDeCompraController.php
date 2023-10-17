@@ -57,4 +57,5 @@ class OrdenDeCompraController extends Controller
      function Details(){
         return View('vistas.ordendecompra.details');
      }
+
 }

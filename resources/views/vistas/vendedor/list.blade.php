@@ -18,21 +18,33 @@
             <th>Nombres</th>
             <th>Apellido</th>
             <th>RUT</th>
+            <th>direccion</th>
             <th>Correo</th>
             <th>telefono</th>
             <th>Estado laboral</th>
+            <th>Acciones</th>
         </tr>
         </thead>
-           <tbody>
-               <tr>
-                <td>Nombres</td>
-                <td>Apellido</td>
-                <td>RUT</td>
-                <td>Correo</td>
-                <td>telefono</td>
-                <td>Estado laboral</td>
-               </tr>
-           </tbody>
+        <tbody>
+            @foreach($mostrarvendedor->sortBy('id') as $vendedor)
+            <tr>
+               <td>{{ $vendedor->nombre }}</td>
+               <td>{{ $vendedor->apellido }}</td>
+               <td>{{ $vendedor->rut }}</td>
+               <td>{{ $vendedor->direccion }}</td>
+               <td>{{ $vendedor->email }}</td>
+               <td>{{ $vendedor->telefono }}</td>
+               <td>{{ $vendedor->estado_laboral }}</td>
+               <td>
+                <form action="{{ route('eliminarVendedor', $vendedor->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
 </div>
 </div>
