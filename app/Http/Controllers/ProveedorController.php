@@ -37,6 +37,9 @@ class ProveedorController extends Controller
         return redirect()->route('ListProveedor')->with('success', 'Proveedor creado exitosamente');
     }
     function Update(){return View('vistas.proveedor.update');}
-    function List(){return View('vistas.proveedor.list');}
+    public function list(){
+        $proveedor = Proveedor::all();
+        return view('vistas.proveedor.list', ['mostrarproveedor' => $proveedor]);
+    }
     function Details(){return View('vistas.proveedor.details');}
 }

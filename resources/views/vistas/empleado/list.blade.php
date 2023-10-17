@@ -27,20 +27,34 @@
             <th>Término</th>
         </tr>
         </thead>
-           <tbody>
-               <tr>
-                <td>Nombres</td>
-                <td>Apellido Paterno</td>
-                <td>Apellido Materno</td>
-                <td>RUT</td>
-                <td>Fecha de Contratación</td>
-                <td>Salario</td>
-                <td>Estado Laboral</td>
-                <td>Dirección</td>
-                <td>Inicio</td>
-                <td>Término</td>
-               </tr>
-           </tbody>
+        <tbody>
+            @foreach($mostrarempleado as $empleado)
+            <tr>
+                <td>{{ $empleado->nombre }}</td>
+                <td>{{ $empleado->apellido_p }}</td>
+                <td>{{ $empleado->apellido_m }}</td>
+                <td>{{ $empleado->rut }}</td>
+                <td>{{ $empleado->Fcontratacion }}</td>
+                <td>
+                    @if ($empleado->salario !== null)
+                        ${{ $empleado->salario }}
+                    @endif
+                </td>
+
+                <td>{{ $empleado->estado_laboral }}</td>
+                <td>{{ $empleado->direccion }}</td>
+                <td>{{ $empleado->Fcontratacion }}</td>
+                <td>
+                    @if ($empleado->Ftermino === null)
+                        Aún Activo
+                    @else
+                        {{ $empleado->Ftermino }}
+                    @endif
+                </td>
+
+            </tr>
+            @endforeach
+        </tbody>
     </table>
 </div>
 </div>

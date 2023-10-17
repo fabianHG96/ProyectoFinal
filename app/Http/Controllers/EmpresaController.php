@@ -46,9 +46,9 @@ class EmpresaController extends Controller
         return view('vistas.empresa.update');
     }
 
-    public function list()
-    {
-        return view('vistas.empresa.list');
+    public function list(){
+        $empresa = Empresa::all();
+        return view('vistas.empresa.list', ['mostrarempresa' => $empresa]);
     }
 
     public function details()

@@ -25,19 +25,18 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Aquí puedes incluir dinámicamente filas de datos de proveedores -->
-            <!-- Ejemplo de fila de datos (puedes repetir para cada proveedor) -->
+            @foreach($mostrarproveedor as $proveedor)
             <tr>
-                <td>Nombre Proveedor</td>
-                <td>Rut</td>
-                <td>Pais</td>
-                <td>Region</td>
-                <td>Dirección Proveedor</td>
-                <td>telefono Proveedor</td>
-                <td>Correo Electrónico Proveedor</td>
-                <td>Rubro</td>
+                <td>{{ $proveedor->nombre }}</td>
+                <td>{{ $proveedor->rut }}</td>
+                <td>{{ $proveedor->pais }}</td>
+                <td>{{ $proveedor->region }}</td>
+                <td>{{ $proveedor->direccion }}</td>
+                <td>{{ $proveedor->telefono }}</td>
+                <td>{{ $proveedor->email }}</td>
+                <td>{{ $proveedor->rubro }}</td>
             </tr>
-            <!-- Fin del ejemplo -->
+            @endforeach
         </tbody>
     </table>
 </div>

@@ -24,17 +24,20 @@
             <th>Email</th>
         </tr>
         </thead>
-           <tbody>
-               <tr>
-                <td>Nombre empresa</td>
-                <td>RUT empresa</td>
-                <td>Pais</td>
-                <td>Region</td>
-                <td>Direccion</td>
-                <td>Telefono</td>
-                <td>Email</td>
-               </tr>
-           </tbody>
+        <tbody>
+            @foreach($mostrarcliente_empresas->sortBy('id') as $cliente_empresa)
+            <tr>
+                <td>{{ $cliente_empresa->nombre }}</td>
+                <td>{{ $cliente_empresa->rut }}</td>
+                <td>{{ $cliente_empresa->pais }}</td>
+                <td>{{ $cliente_empresa->region }}</td>
+                <td>{{ $cliente_empresa->direccion }}</td>
+                <td>{{ $cliente_empresa->telefono }}</td>
+                <td>{{ $cliente_empresa->email }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+
     </table>
 </div>
 </div>

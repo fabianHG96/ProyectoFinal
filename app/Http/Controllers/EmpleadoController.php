@@ -51,6 +51,9 @@ function ShowNewEmpleado(){
 
 
     function Update(){return View('vistas.empleado.update');}
-    function List(){return View('vistas.empleado.list');}
+    public function list(){
+        $empleado = Empleado::all();
+        return view('vistas.empleado.list', ['mostrarempleado' => $empleado]);
+    }
     function Details(){return View('vistas.empleado.details');}
 }

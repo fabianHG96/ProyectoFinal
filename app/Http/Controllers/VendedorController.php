@@ -39,6 +39,9 @@ class VendedorController extends Controller
     }
 
     function Update(){return View('vistas.vendedor.update');}
-    function List(){return View('vistas.vendedor.list');}
+    public function list(){
+        $vendedor = Vendedor::all();
+        return view('vistas.vendedor.list', ['mostrarvendedor' => $vendedor]);
+    }
     function Details(){return View('vistas.vendedor.details');}
 }

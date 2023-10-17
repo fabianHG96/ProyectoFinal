@@ -41,9 +41,9 @@ class ClienteEmpresaController extends Controller
         return view('vistas.clienteempresa.update');
     }
 
-    public function list()
-    {
-        return view('vistas.clienteempresa.list');
+    public function list(){
+        $clienteempresa = Clienteempresa::all();
+        return view('vistas.clienteempresa.list', ['mostrarcliente_empresas' => $clienteempresa]);
     }
 
     public function details()

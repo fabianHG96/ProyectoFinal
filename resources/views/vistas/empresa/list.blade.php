@@ -26,16 +26,18 @@
         </tr>
         </thead>
            <tbody>
-               <tr>
-                <td>Nombre empresa</td>
-                <td>RUT empresa</td>
-                <td>Pais</td>
-                <td>Region</td>
-                <td>Rubro</td>
-                <td>Fecha de la Fundacion</td>
-                <td>email</td>
-                <td>telefono</td>
-               </tr>
+            @foreach ($mostrarempresa as $empresa)
+            <tr>
+                <td>{{ $empresa->nombre }}</td>
+                <td>{{ $empresa->rut }}</td>
+                <td>{{ $empresa->pais }}</td>
+                <td>{{ $empresa->region }}</td>
+                <td>{{ $empresa->rubro }}</td>
+                <td>{{ $empresa->Ffundacion }}</td>
+                <td>{{ $empresa->email }}</td>
+                <td>{{ $empresa->telefono }}</td>
+            </tr>
+        @endforeach
            </tbody>
     </table>
 </div>

@@ -69,7 +69,7 @@ Route::get('/seguimiento/productos',[FlexController::class,'SeguimientoProductos
 //Seguimiento financiero proveedores
 Route::get('/seguimiento/proveedores',[FlexController::class,'SeguimientoProveedores'])->name('SeguimientoProveedores');
 
-//Persona
+//Empleado
 Route::group(['prefix'=> 'empleado'],function(){
 Route::get('/create',[EmpleadoController::class,'ShowNewEmpleado'])->name('CreateEmpleado');
 Route::post('/create', [EmpleadoController::class, 'CreateNewEmpleado'])->name('register.empleado')->middleware('auth');
@@ -123,6 +123,7 @@ Route::group(['prefix'=> 'bodega'],function(){
     Route::get('/details',[BodegaController::class,'details'])->name('DetailsBodega');
 });
 
+//Categoria
 Route::group(['prefix'=> 'categoria'],function(){
     Route::get('/create',[CategoriaController::class,'ShowNewCategoria'])->name('CreateCategoria');
     Route::post('/create', [CategoriaController::class, 'CreateNewCategoria'])->name('register.Categoria')->middleware('auth');

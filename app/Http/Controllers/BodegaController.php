@@ -29,6 +29,9 @@ class BodegaController extends Controller
         return redirect()->route('ListBodega')->with('success', 'Bodega creada exitosamente');
     }
     function Update(){return View('vistas.bodega.update');}
-    function List(){return View('vistas.bodega.list');}
+    public function list(){
+        $bodega = Bodega::all();
+        return view('vistas.bodega.list', ['mostrarbodega' => $bodega]);
+    }
     function Details(){return View('vistas.bodega.details');}
 }
