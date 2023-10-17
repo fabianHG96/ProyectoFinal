@@ -12,6 +12,16 @@
         @csrf
         <div class="row mt-4">
             <div class="col-md-6">
+                <div class="form-group">
+                    <label for="proveedor_id">Proveedor</label>
+                    <select name="proveedor_id" class="form-control">
+                        <option value="">Seleccionar un proveedor</option>
+                        @foreach ($proveedores as $proveedor)
+                            <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <label for="names"><strong>Datos del Vendedor</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombres</span>
