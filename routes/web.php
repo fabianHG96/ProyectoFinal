@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BodegaController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteEmpresaController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\EmpleadoController;
@@ -129,4 +130,12 @@ Route::group(['prefix'=> 'bodega'],function(){
     Route::get('/update',[BodegaController::class,'Update'])->name('UpdateBodega');
     Route::get('/list',[BodegaController::class,'list'])->name('ListBodega');
     Route::get('/details',[BodegaController::class,'details'])->name('DetailsBodega');
+});
+
+Route::group(['prefix'=> 'categoria'],function(){
+    Route::get('/create',[CategoriaController::class,'ShowNewCategoria'])->name('CreateCategoria');
+    Route::post('/create', [CategoriaController::class, 'CreateNewCategoria'])->name('register.Categoria')->middleware('auth');
+    Route::get('/update',[CategoriaController::class,'Update'])->name('UpdateCategoria');
+    Route::get('/list',[CategoriaController::class,'list'])->name('ListCategoria');
+    Route::get('/details',[CategoriaController::class,'details'])->name('DetailsCategoria');
 });
