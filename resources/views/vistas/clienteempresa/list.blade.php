@@ -22,19 +22,29 @@
             <th>Direccion</th>
             <th>Telefono</th>
             <th>Email</th>
+            <th>Acciones</th>
         </tr>
         </thead>
-           <tbody>
-               <tr>
-                <td>Nombre empresa</td>
-                <td>RUT empresa</td>
-                <td>Pais</td>
-                <td>Region</td>
-                <td>Direccion</td>
-                <td>Telefono</td>
-                <td>Email</td>
-               </tr>
-           </tbody>
+        <tbody>
+            @foreach($mostrarcliente_empresas->sortBy('id') as $cliente_empresa)
+            <tr>
+                <td>{{ $cliente_empresa->nombre }}</td>
+                <td>{{ $cliente_empresa->rut }}</td>
+                <td>{{ $cliente_empresa->pais }}</td>
+                <td>{{ $cliente_empresa->region }}</td>
+                <td>{{ $cliente_empresa->direccion }}</td>
+                <td>{{ $cliente_empresa->telefono }}</td>
+                <td>{{ $cliente_empresa->email }}</td>
+                <td>
+                    <form action="{{ route('eliminarClienteEmpresa', $cliente_empresa->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
 </div>
 </div>

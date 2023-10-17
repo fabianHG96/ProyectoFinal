@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proveedor;
+use Illuminate\Support\Facades\DB;
 
 class ProveedorController extends Controller
 {
@@ -37,6 +38,25 @@ class ProveedorController extends Controller
         return redirect()->route('ListProveedor')->with('success', 'Proveedor creado exitosamente');
     }
     function Update(){return View('vistas.proveedor.update');}
-    function List(){return View('vistas.proveedor.list');}
+    public function list(){
+        $proveedor = Proveedor::all();
+        return view('vistas.proveedor.list', ['mostrarproveedor' => $proveedor]);
+    }
     function Details(){return View('vistas.proveedor.details');}
+
+    public function delete($id) {
+        $proveedor = Proveedor::find($id);
+
+        if (!$proveedor) {
+            return redirect()->route('ListProveedor')->with('error', 'La proveedor no existe.');
+        }
+
+        // Usar DB::transaction para asegurarse de que la operación sea exitosa
+        DB::transaction(function () use ($proveedor) {
+            // Eliminar la proveedor de forma suave
+            $proveedor->delete();
+        });
+
+        return redirect()->route('ListProveedor')->with('success', 'La proveedor ha sido eliminada de forma suave.');
+    }
 }

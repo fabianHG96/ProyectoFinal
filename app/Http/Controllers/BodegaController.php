@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bodega;
+use Illuminate\Support\Facades\DB;
 
 class BodegaController extends Controller
 {
@@ -29,6 +30,25 @@ class BodegaController extends Controller
         return redirect()->route('ListBodega')->with('success', 'Bodega creada exitosamente');
     }
     function Update(){return View('vistas.bodega.update');}
-    function List(){return View('vistas.bodega.list');}
+    public function list(){
+        $bodega = Bodega::all();
+        return view('vistas.bodega.list', ['mostrarbodega' => $bodega]);
+    }
     function Details(){return View('vistas.bodega.details');}
+
+    public function delete($id) {
+        $bodega = Bodega::find($id);
+
+        if (!$bodega) {
+            return redirect()->route('ListBodega')->with('error', 'La bodega no existe.');
+        }
+
+        // Usar DB::transaction para asegurarse de que la operación sea exitosa
+        DB::transaction(function () use ($bodega) {
+            // Eliminar la bodega de forma suave
+            $bodega->delete();
+        });
+
+        return redirect()->route('ListBodega')->with('success', 'La bodega ha sido eliminada de forma suave.');
+    }
 }
