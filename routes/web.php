@@ -4,23 +4,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BodegaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteEmpresaController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\EmpleadoController;
-use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\EmpresaController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Ev1Controller;
 use App\Http\Controllers\FlexController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrdenDeCompraController;
 use App\Http\Controllers\ProductosController;
-use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\VendedorController;
-use App\Models\Categoria;
-use App\Models\ClienteEmpresa;
-use App\Models\Producto;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
