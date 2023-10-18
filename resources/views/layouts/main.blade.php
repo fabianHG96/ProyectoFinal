@@ -31,42 +31,42 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">
-                                Dashboard
+                                <i class="fa-solid fa-house"></i> Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListOrdenDeCompra') }}">
-                                Orden de Compra
+                                <i class="fa-solid fa-file-invoice-dollar"></i> Orden de Compra
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListEmpleado') }}">
-                                Trabajadores
+                                <i class="fa-solid fa-helmet-safety"></i> Empleados
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListProveedor') }}">
-                                Proveedores
+                                <i class="fa-solid fa-hand-holding"></i> Proveedores
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListBodega') }}">
-                                Bodega
+                                <i class="fa-solid fa-warehouse"></i> Bodega
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListVendedor') }}">
-                                Vendedores
+                                <i class="fa-regular fa-handshake"></i> Vendedores
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListClienteEmpresa') }}">
-                                Cliente Empresa
+                                <i class="fa-solid fa-users"></i> Cliente Empresa
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListEmpresa') }}">
-                                Empresas
+                                <i class="fa-solid fa-building"></i> Empresas
                             </a>
                         </li>
                     </ul>

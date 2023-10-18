@@ -4,8 +4,8 @@
         <header class="masthead text-center text-light bg-dark" style="padding-top: 130px">
             <div class="masthead-content" display="flex" >
                 <div class="container px-5">
-                    <h1 class="masthead-heading mb-0 text-primary text-danger">Coffe Time</h1>
-                    <h3 class="masthead-subheading mb-0">Cafeteria Chilena</h3>
+                    <h1 class="masthead-heading mb-0 text-primary text-danger">Integral Flex</h1>
+                    <h3 class="masthead-subheading mb-0">Fleximaq SPA</h3>
                     <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Saber mas...</a>
 
                 </div>
@@ -25,7 +25,7 @@
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
                             <h2 class="display-4">Nuestra mision.</h2>
-                            <p>En nuestra cafetería, nos enorgullece ofrecer una atención al cliente excepcional. Nuestro personal amable y capacitado siempre está listo para hacer que tu visita sea especial. Tu satisfacción es nuestra prioridad número uno.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut arcu vel nulla tempus tempus ut sit amet tortor. Phasellus tempus a nibh eu malesuada. Praesent interdum pulvinar vulputate. Vestibulum finibus justo mi, ut lacinia enim vehicula vel. Cras in sapien convallis, vulputate leo nec, dignissim velit. Nunc id nunc vitae risus sagittis malesuada ut id est. Integer volutpat dui felis, et fringilla enim laoreet id. In mattis mollis leo id mattis.</p>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                     <div class="col-lg-6">
                         <div class="p-5">
                             <h2 class="display-4">Nuestra Vision.</h2>
-                            <p>En nuestra cafetería, no solo nos enorgullece ofrecer un excelente servicio al cliente, sino que también nos esforzamos por mantener precios bajos y accesibles. Creemos que todos merecen disfrutar de una taza de café de calidad y deliciosa comida sin que esto signifique gastar una fortuna. Nuestro compromiso es brindar una experiencia placentera y asequible para todos nuestros clientes.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut arcu vel nulla tempus tempus ut sit amet tortor. Phasellus tempus a nibh eu malesuada. Praesent interdum pulvinar vulputate. Vestibulum finibus justo mi, ut lacinia enim vehicula vel. Cras in sapien convallis, vulputate leo nec, dignissim velit. Nunc id nunc vitae risus sagittis malesuada ut id est. Integer volutpat dui felis, et fringilla enim laoreet id. In mattis mollis leo id mattis.</p>
                         </div>
                     </div>
                 </div>
@@ -56,8 +56,8 @@
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
-                            <h2 class="display-4">Paga como tu quieras</h2>
-                            <p>En nuestra cafetería, ofrecemos la flexibilidad que necesitas en tus opciones de pago. Puedes pagar de la forma que más te convenga, ya sea con efectivo, tarjeta de crédito o débito, aplicaciones de pago móvil o cualquier otra forma que prefieras.</p>
+                            <h2 class="display-4">Nuestros Valores.</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut arcu vel nulla tempus tempus ut sit amet tortor. Phasellus tempus a nibh eu malesuada. Praesent interdum pulvinar vulputate. Vestibulum finibus justo mi, ut lacinia enim vehicula vel. Cras in sapien convallis, vulputate leo nec, dignissim velit. Nunc id nunc vitae risus sagittis malesuada ut id est. Integer volutpat dui felis, et fringilla enim laoreet id. In mattis mollis leo id mattis.</p>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-black">
-            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Your Website 2023</p></div>
+            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Integral Flex 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -5,9 +5,9 @@
 <head>
 <div class="col-md-9">
     <div class="">
-        <h1 class="align-self-end">Empleados</h1>
+        <h1 class="align-self-end">Cliente Empresa</h1>
 
-        <a class="btn btn-primary align-self-end" href="create">Nuevo Empleado</a>
+        <a class="btn btn-primary align-self-end" href="create">Nuevo Cliente Empresa</a>
     </div>
 </head>
 

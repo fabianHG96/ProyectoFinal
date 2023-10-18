@@ -28,7 +28,7 @@
                     @foreach ($mostrarordenes as $ordendecompra )
                         <td>{{ $ordendecompra->proveedor_id }}</td>
                         <td>{{ $ordendecompra->id }}</td>
-                        <td>Completado</td> //TODO
+                        <td>Completado</td> {{-- TODO --}}
                         <td>{{ $ordendecompra->fecha_solicitud }}</td>
                         <td>{{ $ordendecompra->fecha_termino }}</td>
                         <td>
