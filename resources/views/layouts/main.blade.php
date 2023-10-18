@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +11,17 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     @stack('css')
 </head>
+
 <body>
     <div class="d-flex justify-content-between align-items-center border p-2">
         <label for="nombres"><strong>IntegralFlex</strong></label>
+        @if (Auth::check())
+            <a class="navbar-brand">Bienvenido {{ Auth::user()->name }}</a>
+        @else
+            <script>
+                window.location = "{{ route('login') }}";
+            </script>
+        @endif
         <a class="btn btn-outline-primary" href="{{ route('logout') }}">Cerrar Sesión</a>
     </div>
     <div class="container-fluid">
@@ -21,7 +30,7 @@
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('home')}}">
+                            <a class="nav-link" href="{{ route('home') }}">
                                 Dashboard
                             </a>
                         </li>
@@ -82,4 +91,5 @@
         </div>
     </div>
 </body>
+
 </html>
