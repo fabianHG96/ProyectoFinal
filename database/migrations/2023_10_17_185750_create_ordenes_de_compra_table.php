@@ -18,9 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('proveedor_id');
             $table->unsignedBigInteger('vendedor_id');
             $table->string('nombre_producto');
+            //$table->string('estado');
             $table->integer('cantidad');
-            $table->decimal('monto', 10, 2);
-            $table->decimal('total', 10, 2);
+            $table->decimal('monto', 10, 0);
+            $table->decimal('total', 10, 0);
             $table->timestamps();
         });
     }

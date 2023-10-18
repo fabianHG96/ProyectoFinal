@@ -21,6 +21,7 @@ class VendedorSeeder extends Seeder
             'email' => 'Al.Larra@gmail.com',
             'telefono' => '+569119546',
             'estado_laboral' => 'Empresario',
+            'proveedor_id' => '2'
         ]);
     }
 }

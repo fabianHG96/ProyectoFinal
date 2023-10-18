@@ -19,6 +19,7 @@ class OrdenDeCompra extends Model
         'cantidad',
         'monto',
         'total',
+        //'estado',
     ];
 
 

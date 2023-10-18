@@ -23,6 +23,7 @@
             <th>Salario</th>
             <th>Estado Laboral</th>
             <th>Dirección</th>
+            <th>Cargo</th>
             <th>Inicio</th>
             <th>Término</th>
             <th>Acciones</th>
@@ -44,6 +45,7 @@
 
                 <td>{{ $empleado->estado_laboral }}</td>
                 <td>{{ $empleado->direccion }}</td>
+                <td>{{ $empleado->cargo }}</td>
                 <td>{{ $empleado->Fcontratacion }}</td>
                 <td>
                     @if ($empleado->Ftermino === null)
