@@ -22,6 +22,7 @@ class VendedorController extends Controller
     public function createNewVendedor(Request $request)
     {
         $request->validate([
+            'proveedor_id' => 'required',
             'nombre' => 'required',
             'apellido' => 'required',
             'rut' => 'required|unique:vendedor',
@@ -29,8 +30,6 @@ class VendedorController extends Controller
             'email' => 'required|email|unique:vendedor',
             'telefono' => 'required',
             'estado_laboral' => 'required',
-
-
         ]);
 
 

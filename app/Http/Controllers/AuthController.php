@@ -44,8 +44,9 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
 
         ]);
-        Auth::login($user);
-        return redirect()->route('home');
+        // Auth::login($user);
+        session()->flash('message', 'Usuario creado satisfactoriamente');
+        return redirect()->route('login');
     }
 
     public function logout(){
