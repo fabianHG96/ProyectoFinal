@@ -15,7 +15,7 @@ class EmpresaSeeder extends Seeder
     {
         Empresa::create([
             'nombre' => 'Empresa1',
-            'rut' => '12345678-9',
+            'rut' => '12345678-8',
             'pais' => 'País1',
             'region' => 'Región1',
             'direccion' => 'Dirección1',

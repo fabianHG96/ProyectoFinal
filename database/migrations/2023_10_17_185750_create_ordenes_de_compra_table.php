@@ -17,11 +17,15 @@ return new class extends Migration
             $table->date('fecha_termino');
             $table->unsignedBigInteger('proveedor_id');
             $table->unsignedBigInteger('vendedor_id');
+            $table->unsignedBigInteger('empleado_id');
             $table->string('nombre_producto');
-            //$table->string('estado');
+            $table->string('estado')->default('activo');
             $table->integer('cantidad');
             $table->decimal('monto', 10, 0);
             $table->decimal('total', 10, 0);
+            $table->foreign('proveedor_id')->references('id')->on('proveedor');
+            $table->foreign('vendedor_id')->references('id')->on('vendedor');
+            $table->foreign('empleado_id')->references('id')->on('empleados');
             $table->timestamps();
         });
     }

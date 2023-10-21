@@ -14,5 +14,13 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    protected $fillable = ['name', 'surname', 'email', 'password', 'remember_token'];
+    protected $fillable = ['empresa_id','name', 'surname', 'email', 'password', 'remember_token'];
+
+
+
+    public function empresa() {
+        return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
+
+
 }

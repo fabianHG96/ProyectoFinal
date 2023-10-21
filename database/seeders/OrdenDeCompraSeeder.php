@@ -18,6 +18,7 @@ class OrdenDeCompraSeeder extends Seeder
         'fecha_termino' => '2023-01-15',
         'proveedor_id' => '2',
         'vendedor_id' => '1',
+        'empleado_id' => '1',
         'nombre_producto' => 'Placa Metalica',
         'cantidad' => '10',
         'monto' => '20000',

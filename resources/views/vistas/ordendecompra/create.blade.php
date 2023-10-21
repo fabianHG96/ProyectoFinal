@@ -72,6 +72,10 @@
             <div class="input-group mt-2">
                 <span class="input-group-text">Nombre producto</span>
                 <input type="text" class="form-control" name="nitem" id="nitem">
+                        <!-- debe ser un select -->
+                <span class="input-group-text">Estado</span>
+                <input type="text" class="form-control" name="estado" id="estado">
+
                 <span class="input-group-text">cantidad</span>
                 <input type="int" class="form-control" name="cantidad" id="cantidad">
                 <span class="input-group-text">monto</span>

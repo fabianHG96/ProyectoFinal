@@ -14,6 +14,7 @@ class BodegaSeeder extends Seeder
     public function run(): void
     {
         Bodega::create([
+            'empresa_id' => '1',
             'direccion' => 'Avenida Nueva Vista 747',
             'capacidad' => 1000,
             'stock' => 30,

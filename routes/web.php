@@ -9,6 +9,7 @@ use App\Http\Controllers\EmpresaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlexController;
 use App\Http\Controllers\OrdenDeCompraController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\VendedorController;
@@ -41,10 +42,11 @@ Route::group(['prefix' => '/register'], function(){
 Route::get('/home',[FlexController::class,'index'])->name('home');
 //productos
 Route::group(['prefix'=> 'producto'],function(){
-Route::get('/create',[ProductosController::class,'Create'])->name('CreateProductos');
-Route::get('/update',[ProductosController::class,'Update'])->name('UpdateProductos');
-Route::get('/list',[ProductosController::class,'List'])->name('ListProductos');
-Route::get('/details',[ProductosController::class,'Details'])->name('DetailsProductos');
+Route::get('/create',[ProductoController::class,'Create'])->name('CreateProductos');
+ Route::post('/create', [ProductoController::class, 'CreateNewProducto'])->name('register.Orden')->middleware('auth');
+Route::get('/update',[ProductoController::class,'Update'])->name('UpdateProductos');
+Route::get('/list',[ProductoController::class,'List'])->name('ListProductos');
+Route::get('/details',[ProductoController::class,'Details'])->name('DetailsProductos');
 });
 //orden de compra
 Route::group(['prefix'=> 'ordendecompra'],function(){

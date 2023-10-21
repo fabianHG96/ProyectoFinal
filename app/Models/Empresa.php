@@ -23,5 +23,16 @@ class Empresa extends Model
         'telefono'
     ];
 
-
+    public function bodega() {
+        return $this->hasMany(Bodega::class);
+    }
+    public function empleado() {
+        return $this->hasMany(Empleado::class);
+    }
+    public function clienteEmpresa() {
+        return $this->hasMany(ClienteEmpresa::class);
+    }
+    public function usuarios() {
+        return $this->hasMany(User::class);
+    }
 }
