@@ -5,6 +5,7 @@ use App\Models\Proveedor;
 use App\Models\Vendedor;
 use App\Models\OrdenDeCompra;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class OrdenDeCompraController extends Controller
@@ -51,10 +52,26 @@ class OrdenDeCompraController extends Controller
         return View('vistas.ordendecompra.update');
      }
      function List(){
-        return View('vistas.ordendecompra.list');
+        $ordendecompra = OrdenDeCompra::all();
+        return View('vistas.ordendecompra.list', ['mostrarordenes' => $ordendecompra]);
      }
      function Details(){
         return View('vistas.ordendecompra.details');
      }
 
+     public function delete($id) {
+        $ordendecompra = OrdenDeCompra::find($id);
+
+        if (!$ordendecompra) {
+            return redirect()->route('ListOrdenDeCompra')->with('error', 'La Orden De Compra no existe.');
+        }
+
+        // Usar DB::transaction para asegurarse de que la operación sea exitosa
+        DB::transaction(function () use ($ordendecompra) {
+            // Eliminar la empresa de forma suave
+            $ordendecompra->delete();
+        });
+
+        return redirect()->route('ListOrdenDeCompra')->with('success', 'Orden De Compra ha sido eliminada de forma suave.');
+    }
 }

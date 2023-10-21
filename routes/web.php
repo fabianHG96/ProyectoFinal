@@ -12,6 +12,7 @@ use App\Http\Controllers\OrdenDeCompraController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\VendedorController;
+use App\Models\OrdenDeCompra;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::group(['prefix'=> 'ordendecompra'],function(){
     Route::get('/update',[OrdenDeCompraController::class,'Update'])->name('UpdateOrdenDeCompra');
     Route::get('/list',[OrdenDeCompraController::class,'List'])->name('ListOrdenDeCompra');
     Route::get('/details',[OrdenDeCompraController::class,'Details'])->name('DetailsOrdenDeCompra');
+    Route::delete('/deleteOrdenDeCompra/{id}', [OrdenDeCompraController::class, 'delete'])->name('EliminarOrdenDeCompra');
 });
 Route::get('/obtener-vendedores/{proveedorId}', [OrdenCompraController::class,'getVendedores']);
 

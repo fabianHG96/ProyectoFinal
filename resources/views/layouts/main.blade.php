@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +11,17 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     @stack('css')
 </head>
+
 <body>
     <div class="d-flex justify-content-between align-items-center border p-2">
         <label for="nombres"><strong>IntegralFlex</strong></label>
+        @if (Auth::check())
+            <a class="navbar-brand">Bienvenido {{ Auth::user()->name }}</a>
+        @else
+            <script>
+                window.location = "{{ route('login') }}";
+            </script>
+        @endif
         <a class="btn btn-outline-primary" href="{{ route('logout') }}">Cerrar Sesión</a>
     </div>
     <div class="container-fluid">
@@ -21,43 +30,43 @@
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('home')}}">
-                                Dashboard
+                            <a class="nav-link" href="{{ route('home') }}">
+                                <i class="fa-solid fa-house"></i> Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListOrdenDeCompra') }}">
-                                Orden de Compra
+                                <i class="fa-solid fa-file-invoice-dollar"></i> Orden de Compra
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListEmpleado') }}">
-                                Trabajadores
+                                <i class="fa-solid fa-helmet-safety"></i> Empleados
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListProveedor') }}">
-                                Proveedores
+                                <i class="fa-solid fa-hand-holding"></i> Proveedores
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListBodega') }}">
-                                Bodega
+                                <i class="fa-solid fa-warehouse"></i> Bodega
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListVendedor') }}">
-                                Vendedores
+                                <i class="fa-regular fa-handshake"></i> Vendedores
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListClienteEmpresa') }}">
-                                Cliente Empresa
+                                <i class="fa-solid fa-users"></i> Cliente Empresa
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListEmpresa') }}">
-                                Empresas
+                                <i class="fa-solid fa-building"></i> Empresas
                             </a>
                         </li>
                     </ul>
@@ -82,4 +91,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -20,7 +20,8 @@ class VendedorSeeder extends Seeder
             'direccion' => 'Gonzales baesa 12',
             'email' => 'Al.Larra@gmail.com',
             'telefono' => '+569119546',
-            'estado_laboral' => 'Empresario',
+            'estado_laboral' => 'Activo',
+            'proveedor_id' => '2'
         ]);
     }
 }
