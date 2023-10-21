@@ -14,6 +14,7 @@ class Cliente_EmpresaSeeder extends Seeder
     public function run(): void
     {
         ClienteEmpresa::create([
+            'empresa_id' => '1',
             'nombre' => 'Juan Pérez',
             'rut' => '12345678-9',
             'pais' => 'Chile',
@@ -24,6 +25,7 @@ class Cliente_EmpresaSeeder extends Seeder
         ]);
 
         ClienteEmpresa::create([
+            'empresa_id' => '3',
             'nombre' => 'María González',
             'rut' => '98765432-1',
             'pais' => 'Argentina',
@@ -34,6 +36,7 @@ class Cliente_EmpresaSeeder extends Seeder
         ]);
 
         ClienteEmpresa::create([
+            'empresa_id' => '2',
             'nombre' => 'Carlos Rodríguez',
             'rut' => '55555555-5',
             'pais' => 'México',

@@ -14,6 +14,8 @@ class EmpleadoSeeder extends Seeder
     public function run(): void
     {
         Empleado::create([
+            'empresa_id' => '1',
+            'bodega_id' => '1',
             'nombre' => 'Juan',
             'apellido_p' => 'Monte',
             'apellido_m' => 'Torres',

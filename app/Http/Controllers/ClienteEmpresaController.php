@@ -16,6 +16,7 @@ class ClienteEmpresaController extends Controller
     public function createNewClienteEmpresa(Request $request)
     {
         $request->validate([
+            'empresa_id' => 'required|exists:empresa,id',
             'nombre' => 'required',
             'rut' => 'required|unique:cliente_empresas',
             'pais' => 'required',
@@ -26,6 +27,7 @@ class ClienteEmpresaController extends Controller
         ]);
 
         ClienteEmpresa::create([
+            'empresa_id' => $request->empresa_id,
             'nombre' => $request->nombre,
             'rut' => $request->rut,
             'pais' => $request->pais,

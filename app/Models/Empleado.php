@@ -11,6 +11,8 @@ class Empleado extends Model
     protected $table = 'empleados';
 
     protected $fillable = [
+        'empresa_id',
+        'bodega_id',
         'nombre',
         'apellido_p',
         'apellido_m',
@@ -25,4 +27,17 @@ class Empleado extends Model
         'horario',
         'Ftermino',
     ];
+
+
+    public function ordendecompra() {
+        return $this->hasMany(OrdenDeCompra::class);
+    }
+
+
+    public function empresa() {
+        return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
+    public function bodega() {
+        return $this->belongsTo(Bodega::class, 'bodega_id');
+    }
 }

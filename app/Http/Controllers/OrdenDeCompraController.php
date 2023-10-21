@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Proveedor;
 use App\Models\Vendedor;
+use App\Models\Empleado;
 use App\Models\OrdenDeCompra;
 
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ class OrdenDeCompraController extends Controller
     function ShowNewOrden(){
         $proveedores = Proveedor::all();
         $vendedores = Vendedor::all(); // Inicialmente, la lista de vendedores estará vacía
+        $proveedores = Empleado::all();
         return View('vistas.ordendecompra.create', compact('vendedores', 'proveedores'));
 
      }
@@ -23,7 +25,9 @@ class OrdenDeCompraController extends Controller
             'ftermino' => 'required|date',
             'proveedor_id' => 'required|exists:proveedor,id',
             'vendedor_id' => 'required|exists:vendedor,id',
+            'empleado_id' => 'required|exists:empleado,id',
             'nitem' => 'required',
+            'estado' => 'required',
             'cantidad' => 'required',
             'monto' => 'required',
             'total' => 'required',
@@ -34,7 +38,9 @@ class OrdenDeCompraController extends Controller
             'fecha_termino' => $request->ftermino,
             'proveedor_id' => $request->proveedor_id,
             'vendedor_id' => $request->vendedor_id,
+            'empleado_id' => $request->empleado_id,
             'nombre_producto' => $request->nitem,
+            'estado' => $request->estado,
             'cantidad' => $request->cantidad,
             'monto' => $request->monto,
             'total' => $request->total,

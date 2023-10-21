@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cliente_empresas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('empresa_id');
             $table->string('nombre')->unique;
             $table->string('rut')->unique(); // Agregar restricción 'unique' al campo 'rut'
             $table->string('pais');
@@ -20,13 +21,12 @@ return new class extends Migration
             $table->string('direccion');
             $table->string('email')->unique(); // Agregar restricción 'unique' al campo 'email'
             $table->string('telefono')->unique;
+            $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('cliente_empresas');

@@ -9,5 +9,19 @@ class Bodega extends Model
 {
     use HasFactory;
     protected $table = 'bodegas'; // Asegúrate de que coincida con el nombre de la tabla en la base de datos
-    protected $fillable = ['direccion', 'capacidad', 'stock'];
+    protected $fillable = ['empresa_id','direccion', 'capacidad', 'stock'];
+
+
+
+    public function productos() {
+        return $this->hasMany(Producto::class);
+    }
+    public function empleado() {
+        return $this->hasMany(Empleado::class);
+    }
+
+    public function empresa() {
+        return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
+
 }

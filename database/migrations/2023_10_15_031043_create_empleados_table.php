@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('Empleados', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('empresa_id');
+            $table->unsignedBigInteger('bodega_id');
             $table->string('nombre');
             $table->string('apellido_p');
             $table->string('apellido_m');
@@ -26,6 +28,8 @@ return new class extends Migration
             $table->string('estado_laboral');
             $table->string('horario');
             $table->date('Ftermino')->nullable();
+            $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->foreign('bodega_id')->references('id')->on('bodegas');
             $table->timestamps();
         });
     }

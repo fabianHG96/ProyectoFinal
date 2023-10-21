@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('bodegas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('empresa_id');
             $table->string('direccion');
             $table->integer('capacidad');
             $table->integer('stock');
+            $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->timestamps();
         });
     }

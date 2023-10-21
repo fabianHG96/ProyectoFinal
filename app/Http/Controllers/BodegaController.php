@@ -16,12 +16,14 @@ class BodegaController extends Controller
     public function createNewBodega(Request $request)
     {
         $request->validate([
+            'empresa_id' => 'required|exists:empresa,id',
             'direccion' => 'required',
             'capacidad' => 'required',
             'stock' => 'required',
         ]);
 
         Bodega::create([
+            'empresa_id' => $request->empresa_id,
             'direccion' => $request->direccion,
             'capacidad' => $request->capacidad,
             'stock' => $request->stock,
