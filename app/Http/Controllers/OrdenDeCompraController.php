@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Proveedor;
 use App\Models\Vendedor;
 use App\Models\OrdenDeCompra;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
