@@ -1,5 +1,5 @@
-@extends('layouts.seguimiento.proveedores')
-@section('seguimiento.proveedores')
+@extends('layouts.seguimiento')
+@section('main-content')
 <div class="container">
     <h1>Seguimiento financiero proproveedoresductos</h1>
     <table>
@@ -24,7 +24,7 @@
                 <td>Ganancia</td>
             </tr>
             <!-- Fin del ejemplo -->
-            @yield('seguimiento.proveedores')
+            @yield('main-content')
         </tbody>
     </table>
 </div>

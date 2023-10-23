@@ -1,5 +1,5 @@
-@extends('layouts.manager.usuarios')
-@section('usuario.manager')
+@extends('layouts.seguimiento')
+@section('main-content')
 <div class="container">
     <h1>Administar usuarios</h1>
     <table class="table">

@@ -19,8 +19,24 @@ class FlexController extends Controller
     ]);
     }
     function Manager(){
-        $usuarios = User::all();
-        return view('vistas.manager.usuarios', compact('user'));
+        $authenticated_user = Auth::user();
+        return view('vistas.manager.usuarios')->with(['user' => $authenticated_user,]);
+     }
+     function RespaldoFacturas(){
+        $authenticated_user = Auth::user();
+        return view('vistas.rFactura.respaldo')->with(['user' => $authenticated_user,]);
+     }
+     function SeguimientoClientes(){
+        $authenticated_user = Auth::user();
+        return view('vistas.sClientes.seguimiento')->with(['user' => $authenticated_user,]);
+     }
+     function SeguimientoProductos(){
+        $authenticated_user = Auth::user();
+        return view('vistas.sProductos.seguimiento')->with(['user' => $authenticated_user,]);
+     }
+     function SeguimientoProveedores(){
+        $authenticated_user = Auth::user();
+        return view('vistas.sProveedores.seguimiento')->with(['user' => $authenticated_user,]);
      }
 
 
