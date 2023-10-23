@@ -1,5 +1,5 @@
 <title>Lista Seguimiento De Productos</title>
-@extends('layouts.seguimiento')
+@extends('layouts.main')
 @section('main-content')
 <div class="container">
 <head>

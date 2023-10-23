@@ -1,5 +1,5 @@
 <title>Lista Respaldos Facturas</title>
-@extends('layouts.seguimiento')
+@extends('layouts.main')
 @section('main-content')
 <div class="container">
 <head>

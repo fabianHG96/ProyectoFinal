@@ -1,10 +1,20 @@
-@extends('layouts.seguimiento')
+<title>Lista de Usuarios</title>
+@extends('layouts.main')
 @section('main-content')
 <div class="container">
-    <h1>Administar usuarios</h1>
+<head>
+<div class="col-md-9">
+    <div class="">
+        <h1 class="align-self-end">Administar usuarios</h1>
+
+        <a class="btn btn-primary align-self-end" href="create">Nuevo Administar usuarios</a>
+    </div>
+</head>
+
+<body>
     <table class="table">
-        <thead>
-            <tr>
+    <thead>
+        <tr>
                 <th>Nombres</th>
                 <th>Apellido Paterno</th>
                 <th>Apellido Materno</th>
