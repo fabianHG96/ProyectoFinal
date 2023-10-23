@@ -1,11 +1,20 @@
-@extends('layouts.seguimiento')
+<title>Lista Seguimiento De Proveedores</title>
+@extends('layouts.main')
 @section('main-content')
 <div class="container">
-    <h1>Seguimiento financiero proproveedoresductos</h1>
-    <table>
-        @csrf
-        <thead>
-            <tr>
+<head>
+<div class="col-md-9">
+    <div class="">
+        <h1 class="align-self-end">Seguimiento financiero proveedores</h1>
+
+        <a class="btn btn-primary align-self-end" href="create">Nuevo Seguimiento financiero proveedores</a>
+    </div>
+</head>
+
+<body>
+    <table class="table">
+    <thead>
+        <tr>
                 <th>Proveedor</th>
                 <th>Total Ventas</th>
                 <th>Total Compra</th>
