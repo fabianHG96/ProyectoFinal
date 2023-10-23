@@ -1,11 +1,20 @@
-@extends('layouts.seguimiento.productos')
-@section('seguimiento.productos')
+<title>Lista Respaldos Facturas</title>
+@extends('layouts.seguimiento')
+@section('main-content')
 <div class="container">
-    <h1>Seguimiento financiero productos</h1>
-    <table>
-        @csrf
-        <thead>
-            <tr>
+<head>
+<div class="col-md-9">
+    <div class="">
+        <h1 class="align-self-end">Respaldos Facturas</h1>
+
+        <a class="btn btn-primary align-self-end" href="create">Nuevo Respaldos Facturas</a>
+    </div>
+</head>
+
+<body>
+    <table class="table">
+    <thead>
+        <tr>
                 <th>Producto</th>
                 <th>Total Ventas</th>
                 <th>Total Compra</th>
@@ -24,7 +33,7 @@
                 <td>Ganancia</td>
             </tr>
             <!-- Fin del ejemplo -->
-            @yield('seguimiento.productos')
+            @yield('main-content')
         </tbody>
     </table>
 </div>

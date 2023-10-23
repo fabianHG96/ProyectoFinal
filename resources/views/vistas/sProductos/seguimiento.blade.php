@@ -1,12 +1,21 @@
-@extends('layouts.seguimiento.clientes')
-@section('seguimiento.clientes')
+<title>Lista Seguimiento De Productos</title>
+@extends('layouts.seguimiento')
+@section('main-content')
 <div class="container">
-    <h1>Seguimiento financiero clientes</h1>
-    <table>
-        @csrf
-        <thead>
-            <tr>
-                <th>Cliente</th>
+<head>
+<div class="col-md-9">
+    <div class="">
+        <h1 class="align-self-end">Seguimiento De Productos</h1>
+
+        <a class="btn btn-primary align-self-end" href="create">Nuevo Seguimiento De Productos</a>
+    </div>
+</head>
+
+<body>
+    <table class="table">
+    <thead>
+        <tr>
+                <th>Producto</th>
                 <th>Total Ventas</th>
                 <th>Total Compra</th>
                 <th>Mes/semana</th>
@@ -17,14 +26,14 @@
             <!-- Aquí puedes generar dinámicamente filas de datos con información de personas -->
             <!-- Ejemplo de una fila de datos (puedes repetir para cada persona) -->
             <tr>
-                <td>Cliente</td>
+                <td>Producto</td>
                 <td>Total Ventas</td>
                 <td>Total Compra</td>
                 <td>Mes/semana</td>
                 <td>Ganancia</td>
             </tr>
             <!-- Fin del ejemplo -->
-            @yield('seguimiento.clientes')
+            @yield('main-content')
         </tbody>
     </table>
 </div>
