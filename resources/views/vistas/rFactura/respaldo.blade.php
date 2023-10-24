@@ -32,6 +32,12 @@
                 <td>Mes/semana</td>
                 <td>Ganancia</td>
             </tr>
+            <form action="{{ route('subirFactura') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="archivo_pdf">
+                <button type="submit">Subir PDF</button>
+            </form>
+
             <!-- Fin del ejemplo -->
             @yield('main-content')
         </tbody>
