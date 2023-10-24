@@ -19,6 +19,7 @@ class OrdenDeCompraSeeder extends Seeder
         'proveedor_id' => '2',
         'vendedor_id' => '1',
         'empleado_id' => '1',
+        'producto_id' => '1',
         'nombre_producto' => 'Placa Metalica',
         'cantidad' => '10',
         'monto' => '20000',

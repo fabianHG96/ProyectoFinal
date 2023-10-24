@@ -9,7 +9,7 @@ use App\Models\Factura;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-
+use TCPDF;
 class FlexController extends Controller
 {
     public function index(){
@@ -58,8 +58,46 @@ class FlexController extends Controller
         return back()->with('error', 'No se subió ningún archivo PDF.');
     }
 
+    public function descargarPdf($id = null)
+    {
+        if ($id) {
+        // Descargar el PDF
+        $factura = Factura::find($id);
+
+            if (!$factura) {
+            return redirect()->back()->with('error', 'Factura no encontrada.');
+            }
+
+            $pdfContent = $factura->pdf_contenido;
+
+        return response($pdfContent, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="nombre_archivo.pdf"',
+        ]);
+        } else {
+        // Mostrar la vista
+        return view('vistas.rFactura.list');
+        }
+    }
+
+        public function listFactura(){
+        $factura = Factura::all();
+        return view('vistas.rFactura.list', ['mostrarfactura' => $factura]);
+        }
 
 
+
+        public function leerContenidoPDF($id) {
+            $factura = Factura::find($id);
+
+            if (!$factura) {
+                return redirect()->back()->with('error', 'Factura no encontrada.');
+            }
+
+            $pdfContent = $factura->pdf_contenido;
+
+            return view('vistas.rFactura.pdf_view', ['pdfContent' => $pdfContent]);
+        }
 
 
      function SeguimientoClientes(){

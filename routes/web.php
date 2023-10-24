@@ -65,8 +65,12 @@ Route::get('/manager/usuarios',[FlexController::class,'Manager'])->name('Usuario
 
 //Respaldo facturas
 Route::group(['prefix'=> 'respaldo'],function(){
+Route::get('/list',[FlexController::class,'listFactura'])->name('listFactura');
 Route::get('/facturas',[FlexController::class,'RespaldoFacturas'])->name('RespaldoFacturas');
 Route::post('/facturas', [FlexController::class,'subirFactura'])->name('subirFactura');
+
+Route::get('descargar-pdf/{id}', [FlexController::class, 'descargarPdf'])->name('descargar.pdf');
+Route::get('leer-pdf/{id}', [FlexController::class, 'leerContenidoPDF'])->name('leer.pdf');
 });
 //Seguimiento financiero clientes
 Route::get('/seguimiento/clientes',[FlexController::class,'SeguimientoClientes'])->name('SeguimientoClientes');
