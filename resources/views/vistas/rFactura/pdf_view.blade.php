@@ -1,4 +1,3 @@
-@extends('layouts.main')
 
 @section('main-content')
 <div class="container">
@@ -11,24 +10,17 @@
 
     <!-- Mostrar mensaje de éxito si existe -->
 
-
     <table class="table">
         <tbody>
-            <!-- Ejemplo de una fila de datos (puedes repetir para cada factura) -->
-            @foreach ($mostrarfactura as $factura)
-                <tr>
-                    <td>
-                        @if ($factura->pdf_contenido)
-                            <iframe src="data:application/pdf;base64,{{ base64_encode($factura->pdf_contenido) }}"
-                                    style="width: 100%; height: 500px;"
-                                    frameborder="0">
-                            </iframe>
-                        @else
-                            <p>PDF no encontrado</p>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
+            <tr>
+                <td>
+                    @if ($pdfContent)
+                    <iframe src="data:application/pdf;base64,{{ base64_encode($pdfContent) }}" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+                    @else
+                        <p>PDF no encontrado</p>
+                    @endif
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

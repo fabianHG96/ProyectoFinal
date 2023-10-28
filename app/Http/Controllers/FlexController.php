@@ -23,6 +23,8 @@ class FlexController extends Controller
         $authenticated_user = Auth::user();
         return view('vistas.manager.usuarios')->with(['user' => $authenticated_user,]);
      }
+
+
      function RespaldoFacturas(){
         $authenticated_user = Auth::user();
         return view('vistas.rFactura.respaldo')->with(['user' => $authenticated_user,]);
@@ -39,46 +41,47 @@ class FlexController extends Controller
 
         if ($request->hasFile('archivo_pdf')) {
             $archivo = $request->file('archivo_pdf');
-            $nombreArchivo = time() . '_' . $archivo->getClientOriginalName();
 
-            // Almacena el archivo en la carpeta 'pdfs' en el almacenamiento local
-            $archivo->storeAs('pdfs', $nombreArchivo);
+            // Lee el contenido binario del archivo PDF
+            $pdfContenido = file_get_contents($archivo->getRealPath());
 
             // Crea una instancia del modelo Factura
             $factura = new Factura();
-            $factura->pdf_contenido = $nombreArchivo;
+            $factura->pdf_contenido = $pdfContenido;
 
             // Guarda la instancia de Factura en la base de datos
-            $factura->save();
+            try {
+                $factura->save();
+            } catch (\Exception $e) {
+                // Imprimir la excepción
+                dd($e);
 
-            return view('vistas.rFactura.respaldo')
-                ->with('success', 'PDF subido exitosamente.');
-        }
+                // También puedes registrar la excepción en los registros de Laravel
+                // logger()->error($e);
 
+                return back()->with('error', 'Error al guardar la factura: ' . $e->getMessage());
+            }
         return back()->with('error', 'No se subió ningún archivo PDF.');
     }
 
-    public function descargarPdf($id = null)
-    {
-        if ($id) {
-        // Descargar el PDF
+    }
+        function descargarPdf($id = null){
         $factura = Factura::find($id);
 
-            if (!$factura) {
-            return redirect()->back()->with('error', 'Factura no encontrada.');
+         if (!$factura) {
+        return redirect()->back()->with('error', 'Factura no encontrada.');
             }
 
-            $pdfContent = $factura->pdf_contenido;
+        $pdfContent = $factura->pdf_contenido;
+        $nombreArchivo = $factura->nombre_archivo;
 
-        return response($pdfContent, 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'attachment; filename="nombre_archivo.pdf"',
+            return response()->stream(function () use ($pdfContent) {
+            echo $pdfContent;
+         }, 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => "attachment; filename=\"$nombreArchivo\"",
         ]);
-        } else {
-        // Mostrar la vista
-        return view('vistas.rFactura.list');
         }
-    }
 
         public function listFactura(){
         $factura = Factura::all();
@@ -87,7 +90,7 @@ class FlexController extends Controller
 
 
 
-        public function leerContenidoPDF($id) {
+        function leerContenidoPDF($id) {
             $factura = Factura::find($id);
 
             if (!$factura) {
@@ -96,7 +99,10 @@ class FlexController extends Controller
 
             $pdfContent = $factura->pdf_contenido;
 
-            return view('vistas.rFactura.pdf_view', ['pdfContent' => $pdfContent]);
+            // Convierte el contenido binario a base64 para mostrarlo en la vista
+            $pdfContentBase64 = base64_encode($pdfContent);
+
+            return view('vistas.rFactura.pdf_view', ['pdfContent' => $pdfContentBase64]);
         }
 
 

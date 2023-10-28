@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
             $table->integer('numero_factura')->nullable();
+            $table->string('nombre_archivo')->nullable();
             $table->date('fecha_emision')->nullable();
             $table->string('nombre_empresa')->nullable();
             $table->string('rut')->nullable();
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->decimal('iva', 10, 2)->nullable();
             $table->decimal('impuesto_adicional', 10, 2)->nullable();
             $table->decimal('total', 10, 2)->nullable();
-            $table->binary('pdf_contenido')->nullable();
+            $table->binary('pdf_contenido', 4294967295)->nullable();
             $table->timestamps();
         });
     }

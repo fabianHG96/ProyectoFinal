@@ -33,7 +33,7 @@
             @foreach ($mostrarfactura as $factura)
                 <tr>
                     <td>
-                        {{ $factura->pdf_contenido }}
+                        {{ $factura->nombre_archivo }}
                     </td>
                     <td>
                         <a href="{{ route('descargar.pdf', ['id' => $factura->id]) }}" class="btn btn-primary">
