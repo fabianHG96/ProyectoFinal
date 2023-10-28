@@ -12,6 +12,7 @@ class Factura extends Model
 
     protected $fillable = [
         'numero_factura',
+        'nombre_archivo',
         'fecha_emision',
         'nombre_empresa',
         'rut',
