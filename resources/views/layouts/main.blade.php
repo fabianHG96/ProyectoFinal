@@ -7,14 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>IntegralFlex</title>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <script src="http://localhost/ProyectoFinal/public/js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     @stack('css')
+
 </head>
 
-<body>
+<!-- CAMBIO DE TEMA DE CLARO A OSCURO-->
+<body data-bs-theme="light">
     <div class="d-flex justify-content-between align-items-center border p-2">
         <label for="nombres"><strong>IntegralFlex</strong></label>
+<!-- Botón y estructura -->
+<button onclick="cambiarTema()" class="btn btn-outline-primary">
+    <i id="ICON" class="fa-regular fa-moon"></i>
+    <span id="modoTexto">Modo Oscuro</span>
+</button>
+
+
+
         @if (Auth::check())
             <a class="navbar-brand">Bienvenido {{ Auth::user()->name }}</a>
         @else
@@ -24,6 +35,7 @@
         @endif
         <a class="btn btn-outline-primary" href="{{ route('logout') }}">Cerrar Sesión</a>
     </div>
+
     <div class="container-fluid">
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -97,11 +109,11 @@
                     });
                     </script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-                <script src="{{ asset('js/scripts.js') }}"></script>
+                 <script src="http://localhost/ProyectoFinal/public/js/scripts.js"></script>
+                 <script src="http://localhost/ProyectoFinal/public/js/scripts.js"></script>
                 @stack('js')
             </main>
         </div>
     </div>
 </body>
-
 </html>
