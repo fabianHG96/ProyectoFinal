@@ -66,7 +66,6 @@ Route::get('/manager/usuarios',[FlexController::class,'Manager'])->name('Usuario
 //Respaldo facturas
 Route::group(['prefix'=> 'respaldo'],function(){
 Route::get('/list',[FlexController::class,'listFactura'])->name('listFactura')->middleware('auth');
-Route::get('/facturas',[FlexController::class,'RespaldoFacturas'])->name('RespaldoFacturas');
 Route::post('/facturas', [FlexController::class,'subirFactura'])->name('subirFactura')->middleware('auth');
 
 Route::get('descargar-pdf/{id}', [FlexController::class, 'descargarPdf'])->name('descargar.pdf')->middleware('auth');

@@ -10,7 +10,7 @@
 
     <!-- Mostrar mensaje de éxito si existe -->
 
-    <table class="table">
+
         <tbody>
             <tr>
                 <td>
@@ -22,6 +22,5 @@
                 </td>
             </tr>
         </tbody>
-    </table>
 </div>
 @endsection

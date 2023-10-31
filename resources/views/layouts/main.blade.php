@@ -77,7 +77,7 @@
                                 <li><a class="dropdown-item" href="{{ route('SeguimientoClientes') }}">SeguimientoClientes</a></li>
                                 <li><a class="dropdown-item" href="{{ route('SeguimientoProductos') }}">SeguimientoProductos</a></li>
                                 <li><a class="dropdown-item" href="{{ route('SeguimientoProveedores') }}">SeguimientoProveedores</a></li>
-                                <li><a class="dropdown-item" href="{{ route('RespaldoFacturas') }}">RespaldoFacturas</a></li>
+                                <li><a class="dropdown-item" href="{{ route('listFactura') }}">RespaldoFacturas</a></li>
                                 <li><a class="dropdown-item" href="{{ route('Usuarios') }}">Usuarios</a></li>
                             </ul>
                         </li>
@@ -96,7 +96,8 @@
                         });
                     });
                     </script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+                   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
                 <script src="{{ asset('js/scripts.js') }}"></script>
                 @stack('js')
             </main>

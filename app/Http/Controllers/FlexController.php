@@ -25,17 +25,11 @@ class FlexController extends Controller
      }
 
 
-     function RespaldoFacturas(){
-        $authenticated_user = Auth::user();
-        return view('vistas.rFactura.respaldo')->with(['user' => $authenticated_user,]);
-     }
-
-
-
 
      public function subirFactura(Request $request)
     {
         $request->validate([
+            'nombre_archivo' => 'required', // Valida el campo 'nombre_archivo'
             'archivo_pdf' => 'required|mimes:pdf',
         ]);
 
@@ -47,24 +41,30 @@ class FlexController extends Controller
 
             // Crea una instancia del modelo Factura
             $factura = new Factura();
+            $factura->nombre_archivo = $request->input('nombre_archivo'); // Captura el nombre desde el formulario
             $factura->pdf_contenido = $pdfContenido;
 
             // Guarda la instancia de Factura en la base de datos
-            try {
-                $factura->save();
-            } catch (\Exception $e) {
+                try {
+                    $factura->save();
+                    return back()->with('success', 'Factura subida correctamente');
+                } catch (\Exception $e) {
                 // Imprimir la excepción
-                dd($e);
+                 dd($e);
 
                 // También puedes registrar la excepción en los registros de Laravel
                 // logger()->error($e);
 
-                return back()->with('error', 'Error al guardar la factura: ' . $e->getMessage());
+                    return back()->with('error', 'Error al guardar la factura: ' . $e->getMessage());
+                }
             }
-        return back()->with('error', 'No se subió ningún archivo PDF.');
-    }
 
-    }
+            return back()->with('error', 'No se subió ningún archivo PDF.');
+        }
+
+
+
+
         function descargarPdf($id = null){
         $factura = Factura::find($id);
 
