@@ -1,7 +1,27 @@
-/*!
-* Start Bootstrap - One Page Wonder v6.0.6 (https://startbootstrap.com/theme/one-page-wonder)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-one-page-wonder/blob/master/LICENSE)
-*/
-// This file is intentionally blank
-// Use this file to add JavaScript to your project
+// scripts.js
+
+const temaOscuro = () => {
+    document.body.setAttribute("data-bs-theme", "dark");
+    document.querySelector("#ICON").classList.remove("fa-moon");
+    document.querySelector("#ICON").classList.add("fa-sun");
+    document.querySelector("#modoTexto").innerText = "Modo Claro";
+    document.querySelector("#modoTexto").style.color = "#ffffff"; // Cambia el color del texto a blanco
+}
+
+const temaClaro = () => {
+    document.body.setAttribute("data-bs-theme", "light");
+    document.querySelector("#ICON").classList.remove("fa-sun");
+    document.querySelector("#ICON").classList.add("fa-moon");
+    document.querySelector("#modoTexto").innerText = "Modo Oscuro";
+    document.querySelector("#modoTexto").style.color = "#000000"; // Cambia el color del texto a negro
+}
+
+
+const cambiarTema = () => {
+    if (document.body.getAttribute("data-bs-theme") === "light") {
+        temaOscuro();
+    } else {
+        temaClaro();
+    }
+}
+
