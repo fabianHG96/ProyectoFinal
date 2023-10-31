@@ -5,7 +5,9 @@
     <h1 class="align-self-end">Respaldos Facturas</h1>
     <div class="col-md-9">
         <div class="">
-            <a class="btn btn-primary align-self-end" href="facturas">Nuevo Respaldos Facturas</a>
+            <button class="btn btn-primary align-self-end" data-toggle="modal" data-target="#subirFacturaModal">
+                Subir factura
+            </button>
         </div>
     </div>
 
@@ -15,11 +17,6 @@
             {{ session('success') }}
         </div>
     @endif
-    <form action="{{ route('subirFactura') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="archivo_pdf">
-        <button type="submit">Subir PDF</button>
-    </form>
 
     <table class="table">
         <thead>
@@ -49,6 +46,33 @@
             @endforeach
         </tbody>
     </table>
+</div>
 
+<!-- Modal para subir facturas -->
+<div class="modal fade" id="subirFacturaModal" tabindex="-1" role="dialog" aria-labelledby="subirFacturaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="subirFacturaModalLabel">Subir Factura</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('subirFactura') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="nombre_archivo">Nombre del archivo:</label>
+                        <input type="text" name="nombre_archivo" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="archivo_pdf">Seleccionar archivo PDF:</label>
+                        <input type="file" name="archivo_pdf" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subir PDF</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
