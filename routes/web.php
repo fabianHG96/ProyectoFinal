@@ -61,7 +61,7 @@ Route::get('/obtener-vendedores/{proveedorId}', [OrdenCompraController::class,'g
 
 
 //Gestor de usuarios
-Route::get('/manager/usuarios',[FlexController::class,'Manager'])->name('Usuarios');
+Route::get('/manager/usuarios',[FlexController::class,'listUsers'])->name('Usuarios')->middleware('auth');
 
 //Respaldo facturas
 Route::group(['prefix'=> 'respaldo'],function(){

@@ -1,5 +1,4 @@
 @extends('layouts.main')
-
 @section('main-content')
 <div class="container">
     <h1 class="align-self-end">Respaldos Facturas</h1>
@@ -23,6 +22,7 @@
             <tr>
                 <th>Archivo PDF</th>
                 <th>Descargar</th>
+                <th>Ver PDF</th>
             </tr>
         </thead>
         <tbody>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group">
                         <label for="archivo_pdf">Seleccionar archivo PDF:</label>
-                        <input type="file" name="archivo_pdf" class="form-control" required>
+                        <input type="file" name="archivo_pdf" class="form-control" accept=".pdf" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Subir PDF</button>
                 </form>
@@ -75,4 +75,8 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+
 @endsection
