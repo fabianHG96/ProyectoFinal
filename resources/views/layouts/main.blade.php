@@ -83,7 +83,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-building fa fa-exchange"></i> Seguimientos
+                                <i class="fa-solid fa-chart-line"></i> Seguimientos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{{ route('SeguimientoClientes') }}">SeguimientoClientes</a></li>
@@ -92,6 +92,11 @@
                                 <li><a class="dropdown-item" href="{{ route('listFactura') }}">RespaldoFacturas</a></li>
                                 <li><a class="dropdown-item" href="{{ route('Usuarios') }}">Usuarios</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('register')}}">
+                                <i class="fa-solid fa-user-plus"></i> Crear Nuevo Usuario
+                            </a>
                         </li>
                     </ul>
                 </div>

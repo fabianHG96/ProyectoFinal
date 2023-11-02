@@ -22,7 +22,8 @@ class AuthController extends Controller
             $user = Auth::user();
             return redirect()->route('home')->with('user', $user);
         }else{
-            return redirect()->back()->withErrors(['error' => 'Credenciales incorrectas']);
+            session()->flash('error', 'Email o contraseña incorrectos');
+            return redirect()->back();
         }
     }
 
@@ -46,7 +47,7 @@ class AuthController extends Controller
         ]);
         // Auth::login($user);
         session()->flash('message', 'Usuario creado satisfactoriamente');
-        return redirect()->route('login');
+        return redirect()->route('register');
     }
 
     public function logout(){
