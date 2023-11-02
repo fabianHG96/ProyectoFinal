@@ -1,26 +1,23 @@
-
+@extends('layouts.main')
 @section('main-content')
 <div class="container">
-    <h1 class="align-self-end">Respaldos Facturas</h1>
+    <h1>Respaldos Facturas</h1>
     <div class="col-md-9">
         <div class="">
-            <a class="btn btn-primary align-self-end" href="facturas">Nuevo Respaldos Facturas</a>
+            <a class="btn btn-primary" href="{{ url('facturas') }}">Nuevo Respaldos Facturas</a>
         </div>
     </div>
 
-    <!-- Mostrar mensaje de éxito si existe -->
+    <object data="{{ $pdfPath }}" type="application/pdf" width="100%" height="500">
+        <embed src="{{ $pdfPath }}" type="application/pdf" />
+    </object>
 
 
-        <tbody>
-            <tr>
-                <td>
-                    @if ($pdfContent)
-                    <iframe src="data:application/pdf;base64,{{ base64_encode($pdfContent) }}" style="width: 100%; height: 500px;" frameborder="0"></iframe>
-                    @else
-                        <p>PDF no encontrado</p>
-                    @endif
-                </td>
-            </tr>
-        </tbody>
 </div>
+<!-- No olvides cargar tus scripts al final del documento HTML para una mejor optimización -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+
 @endsection
