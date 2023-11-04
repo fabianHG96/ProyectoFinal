@@ -7,6 +7,12 @@
         {{ session('message') }}
     </div>
 @endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="container">
 
     <!-- Outer Row -->
@@ -38,9 +44,6 @@
                                         Iniciar sesion
                                     </button>
                                 </form>
-                                <div class="text-center">
-                                    <a class="small" href="{{route('register')}}">¡Crea una cuenta!</a>
-                                </div>
                             </div>
                         </div>
                     </div>

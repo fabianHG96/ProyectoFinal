@@ -25,7 +25,7 @@
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
                             <h2 class="display-4">Nuestra mision.</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut arcu vel nulla tempus tempus ut sit amet tortor. Phasellus tempus a nibh eu malesuada. Praesent interdum pulvinar vulputate. Vestibulum finibus justo mi, ut lacinia enim vehicula vel. Cras in sapien convallis, vulputate leo nec, dignissim velit. Nunc id nunc vitae risus sagittis malesuada ut id est. Integer volutpat dui felis, et fringilla enim laoreet id. In mattis mollis leo id mattis.</p>
+                            <p>En Integral Flex, nuestra misión es proporcionar a las empresas una solución integral para gestionar sus ventas, usuarios, documentación y procesos esenciales. Nos esforzamos por ofrecer una plataforma fácil de usar y personalizable que se adapte a las necesidades de cada organización. Nuestro objetivo es ayudar a las empresas a mejorar su eficiencia y productividad al simplificar sus procesos internos. Nos enorgullece trabajar con Fleximaq SPA y esperamos seguir colaborando con ellos para mejorar aún más nuestro sistema.</p>
                         </div>
                     </div>
                 </div>

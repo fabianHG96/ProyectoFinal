@@ -1,5 +1,5 @@
+<title>Lista de Archivos</title>
 @extends('layouts.main')
-
 @section('main-content')
 <div class="container">
     <h1 class="align-self-end">Respaldos Facturas</h1>
@@ -22,5 +22,8 @@
         <button type="submit">Subir PDF</button>
     </form>
 </div>
-@endsection
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
 
+@endsection

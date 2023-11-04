@@ -1,23 +1,12 @@
-@extends('layouts.auth')
+@extends('layouts.main')
 @section('main-content')
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand">Bienvenido</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-left" >
-            </ul>
-        </div>
-            <ul class="navbar-nav ms-auto">
-
-                <li class="nav-item "><a class="nav-link text-dark" href="{{route('login')}}">Iniciar sesion</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
 <form action="{{ route('register.store') }}" method="POST" >
 @csrf
+@if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+@endif
 <div class="container">
 
     <!-- Outer Row -->
