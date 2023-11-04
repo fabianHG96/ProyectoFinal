@@ -10,6 +10,7 @@
     </section>
     <form method="POST" action="{{ route('register.empleado') }}">
         @csrf
+        <input type="hidden" name="empresa_id" value="1">
         <div class="row mt-4">
             <div class="col-md-6">
                 <label for="names"><strong>Datos del Empleado</strong></label>
@@ -34,6 +35,10 @@
                     <input type="text" class="form-control" name="email" id="email" >
                 </div>
                 <div class="input-group mt-2">
+                    <span class="input-group-text">Telefono</span>
+                    <input type="text" class="form-control" name="telefono" id="telefono" >
+                </div>
+                <div class="input-group mt-2">
                     <span class="input-group-text">Direccion</span>
                     <input type="text" class="form-control" name="direccion" id="direccion" >
                 </div>
@@ -44,10 +49,6 @@
                 <div class="input-group mt-2">
                     <span class="input-group-text">Fecha de contratacion</span>
                     <input type="date" class="form-control" name="Fcontratacion" id="Fcontratacion">
-                </div>
-                <div class="input-group mt-2">
-                    <span class="input-group-text">Cargo</span>
-                    <input type="text" class="form-control" name="cargo" id="cargo">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Salario</span>
@@ -68,6 +69,16 @@
                     <span class="input-group-text">Fecha de Finalizacion</span>
                     <input type="date" class="form-control" name="Ftermino" id="Ftermino">
                 </div>
+                <div class="input-group mt-2">
+                    <label for="cargo_id" class="input-group-text">Seleccionar cargo</label>
+                    <select class="form-select" name="cargo_id" id="cargo_id">
+                        @foreach($cargos as $cargo)
+                            <option value="{{ $cargo->id }}">{{ $cargo->cargo }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+
         </div>
         <div class="d-flex justify-content-end mt-4">
             <input type="submit" value="Guardar" class="btn btn-primary">

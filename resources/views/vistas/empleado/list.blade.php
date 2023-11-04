@@ -26,7 +26,8 @@
             <th>Cargo</th>
             <th>Inicio</th>
             <th>Término</th>
-            <th>Acciones</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -45,7 +46,7 @@
 
                 <td>{{ $empleado->estado_laboral }}</td>
                 <td>{{ $empleado->direccion }}</td>
-                <td>{{ $empleado->cargo }}</td>
+                <td>{{ $empleado->cargos->cargo }}</td>
                 <td>{{ $empleado->Fcontratacion }}</td>
                 <td>
                     @if ($empleado->Ftermino === null)
@@ -60,6 +61,9 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                     </form>
+                </td>
+                <td>
+                    <a href="{{ route('showUpdateEmpleado', $empleado->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
                 </td>
             </tr>
             @endforeach

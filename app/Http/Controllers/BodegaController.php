@@ -9,6 +9,11 @@ use App\Models\Empresa;
 
 class BodegaController extends Controller
 {
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class, 'empresa_id');
+    }
+
     public function showNewBodega()
     {
         $empresas = Empresa::all();
@@ -19,6 +24,7 @@ class BodegaController extends Controller
     {
         $request->validate([
             'empresa_id' => 'required|exists:empresas,id',
+
             'pais' => 'required',
             'region' => 'required',
             'direccion' => 'required',
