@@ -10,12 +10,21 @@
     </section>
     <form method="POST" action="">
         @csrf
+        <input type="hidden" name="empresa_id" value="1">
         <div class="row mt-4">
             <div class="col-md-6">
                 <label for="names"><strong>Datos de la bodega</strong></label>
                 <div class="input-group mt-2">
+                    <span class="input-group-text">Pais</span>
+                    <input type="text" class="form-control" name="pais" id="pais">
+                </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Region</span>
+                    <input type="text" class="form-control" name="region" id="region">
+                </div>
+                <div class="input-group mt-2">
                     <span class="input-group-text">Direccion</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion">
+                    <input type="text" class a="form-control" name="direccion" id="direccion">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Capacidad</span>
@@ -25,9 +34,10 @@
                     <span class="input-group-text">Stock</span>
                     <input type="text" class="form-control" name="stock" id="stock">
                 </div>
-
-        <div class="d-flex justify-content-end mt-4">
-            <input type="submit" value="Guardar" class="btn btn-primary">
+            </div>
+            <div class="d-flex justify-content-end mt-4">
+                <input type="submit" value="Guardar" class="btn btn-primary">
+            </div>
         </div>
     </form>
 </div>
