@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class BodegaController extends Controller
 {
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class, 'empresa_id');
+    }
+
     public function showNewBodega()
     {
         return view('vistas.bodega.create');
@@ -16,7 +21,7 @@ class BodegaController extends Controller
     public function createNewBodega(Request $request)
     {
         $request->validate([
-            'empresa_id' => 'required|exists:empresa,id',
+            'empresa_id' => 'required|exists:empresas,id',
             'direccion' => 'required',
             'capacidad' => 'required',
             'stock' => 'required',

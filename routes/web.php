@@ -52,7 +52,8 @@ Route::get('/details',[ProductoController::class,'Details'])->name('DetailsProdu
 Route::group(['prefix'=> 'ordendecompra'],function(){
     Route::get('/create',[OrdenDeCompraController::class,'ShowNewOrden'])->name('CreateOrdenDeCompra');
     Route::post('/create', [OrdenDeCompraController::class, 'CreateNewOrden'])->name('register.Orden')->middleware('auth');
-    Route::get('/update',[OrdenDeCompraController::class,'Update'])->name('UpdateOrdenDeCompra');
+    Route::get('/update/{id}', [OrdenDeCompraController::class, 'showUpdateOrdenDeCompra'])->name('showUpdateOrdenDeCompra');
+    Route::post('/update/{id}', [OrdenDeCompraController::class,'Update'])->name('UpdateOrdenDeCompra');
     Route::get('/list',[OrdenDeCompraController::class,'List'])->name('ListOrdenDeCompra');
     Route::get('/details',[OrdenDeCompraController::class,'Details'])->name('DetailsOrdenDeCompra');
     Route::delete('/deleteOrdenDeCompra/{id}', [OrdenDeCompraController::class, 'delete'])->name('EliminarOrdenDeCompra');
@@ -84,7 +85,8 @@ Route::get('/seguimiento/proveedores',[FlexController::class,'SeguimientoProveed
 Route::group(['prefix'=> 'empleado'],function(){
 Route::get('/create',[EmpleadoController::class,'ShowNewEmpleado'])->name('CreateEmpleado');
 Route::post('/create', [EmpleadoController::class, 'CreateNewEmpleado'])->name('register.empleado')->middleware('auth');
-Route::get('/update',[EmpleadoController::class,'Update'])->name('UpdateEmpleado');
+Route::get('/update/{id}', [EmpleadoController::class, 'showUpdateEmpleado'])->name('showUpdateEmpleado');
+Route::post('/update/{id}', [EmpleadoController::class,'Update'])->name('UpdateEmpleado');
 Route::get('/list',[EmpleadoController::class,'list'])->name('ListEmpleado');
 Route::get('/details',[EmpleadoController::class,'details'])->name('DetailsEmpleado');
 Route::delete('/eliminarEmpleado/{id}', [EmpleadoController::class, 'delete'])->name('eliminarEmpleado')->middleware('auth');
@@ -104,7 +106,8 @@ Route::group(['prefix'=> 'vendedor'],function(){
 Route::group(['prefix'=> 'empresa'],function(){
     Route::get('/create',[EmpresaController::class,'ShowNewEmpresa'])->name('CreateEmpresa');
     Route::post('/create', [EmpresaController::class, 'CreateNewEmpresa'])->name('register.Empresa')->middleware('auth');
-    Route::get('/update',[EmpresaController::class,'Update'])->name('UpdateEmpresa');
+    Route::get('/update/{id}', [EmpresaController::class, 'showUpdateEmpresa'])->name('showUpdateEmpresa');
+    Route::post('/update/{id}', [EmpresaController::class,'Update'])->name('UpdateEmpresa');
     Route::get('/list',[EmpresaController::class,'list'])->name('ListEmpresa');
     Route::get('/details',[EmpresaController::class,'details'])->name('DetailsEmpresa');
     Route::delete('/eliminarEmpresa/{id}', [EmpresaController::class, 'delete'])->name('eliminarEmpresa')->middleware('auth');

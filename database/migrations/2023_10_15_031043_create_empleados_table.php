@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('Empleados', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('empresa_id');
-            $table->unsignedBigInteger('bodega_id');
+            $table->unsignedBigInteger('bodega_id')->nullable();
+            $table->unsignedBigInteger('cargo_id');
             $table->string('nombre');
             $table->string('apellido_p');
             $table->string('apellido_m');
@@ -23,13 +24,13 @@ return new class extends Migration
             $table->string('telefono'); // Agregamos 'unique' a la columna 'email'
             $table->string('direccion');
             $table->date('Fcontratacion');
-            $table->string('cargo');
             $table->string('salario');
             $table->string('estado_laboral');
             $table->string('horario');
             $table->date('Ftermino')->nullable();
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->foreign('bodega_id')->references('id')->on('bodegas');
+            $table->foreign('cargo_id')->references('id')->on('cargos');
             $table->timestamps();
         });
     }
