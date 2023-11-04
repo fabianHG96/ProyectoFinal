@@ -135,7 +135,8 @@ Route::delete('/eliminarProveedor/{id}', [ProveedorController::class, 'delete'])
 Route::group(['prefix'=> 'bodega'],function(){
     Route::get('/create',[BodegaController::class,'ShowNewBodega'])->name('CreateBodega');
     Route::post('/create', [BodegaController::class, 'CreateNewBodega'])->name('register.Bodega')->middleware('auth');
-    Route::get('/update',[BodegaController::class,'Update'])->name('UpdateBodega');
+    Route::get('/bodegas/update/{id}', [BodegaController::class,'showUpdateBodega'])->name('ShowUpdateBodega');
+    Route::post('/bodegas/update/{id}', [BodegaController::class,'Update'])->name('UpdateBodega');
     Route::get('/list',[BodegaController::class,'list'])->name('ListBodega');
     Route::get('/details',[BodegaController::class,'details'])->name('DetailsBodega');
     Route::delete('/eliminarBodega/{id}', [BodegaController::class, 'delete'])->name('eliminarBodega')->middleware('auth');

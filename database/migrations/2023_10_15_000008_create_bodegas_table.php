@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('bodegas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('empresa_id');
+            $table->string('pais');
+            $table->string('region');
             $table->string('direccion');
             $table->integer('capacidad');
             $table->integer('stock');
