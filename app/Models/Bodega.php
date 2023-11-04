@@ -9,7 +9,7 @@ class Bodega extends Model
 {
     use HasFactory;
     protected $table = 'bodegas'; // Asegúrate de que coincida con el nombre de la tabla en la base de datos
-    protected $fillable = ['empresa_id','direccion', 'capacidad', 'stock'];
+    protected $fillable = ['empresa_id','pais','region','direccion', 'capacidad', 'stock'];
 
 
 
