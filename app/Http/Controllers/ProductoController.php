@@ -23,37 +23,96 @@ class ProductoController extends Controller
 public function CreateNewProducto(Request $request)
 {
     $request->validate([
-        'bodega_id' => 'required|exists:bodega,id',
-        'categoria_id' => 'required',
-        'cantidad_stock' => 'required',
-        'precio_unitario' => 'required',
-        'nombre_producto' => 'required',
+        'bodega_id.*' => 'required|exists:bodegas,id',
+        'categoria_id.*' => 'required|exists:categorias,id',
+        'cantidad_stock.*' => 'required',
+        'precio_unitario.*' => 'required',
+        'nombre_producto.*' => 'required',
     ]);
 
-    Producto::create([
-        'bodega_id' => $request->bodega_id,
-        'categoria_id' => $request->categoria_id,
-        'cantidad_stock' => $request->cantidad_stock,
-        'precio_unitario' => $request->precio_unitario,
-        'nombre_producto' => $request->nombre_producto,
-    ]);
+    $bodegaIds = $request->bodega_id;
+    $categoriaIds = $request->categoria_id;
+    $cantidades = $request->cantidad_stock;
+    $precios = $request->precio_unitario;
+    $nombres = $request->nombre_producto;
 
+    // Iterar sobre los campos de matriz y crear productos
+    foreach ($bodegaIds as $key => $bodegaId) {
+        Producto::create([
+            'bodega_id' => $bodegaId,
+            'categoria_id' => $categoriaIds[$key],
+            'cantidad_stock' => $cantidades[$key],
+            'precio_unitario' => $precios[$key],
+            'nombre_producto' => $nombres[$key],
+        ]);
+    }
     return redirect()->route('ListProductos')->with('success', 'Producto creado exitosamente');
 }
 
-function Update(){
-    return View('vistas.producto.update');
- }
+
+public function showUpdateProducto($id)
+{
+// Obtener la bodega que se desea actualizar por su ID
+$producto = Producto::find($id);
+
+// Verificar si se encontró la producto
+     if (!$producto)  {
+    return redirect()->route('ListProducto')->with('error', 'producto no encontrada');
+    }
+
+// Pasar la bodega a la vista de actualización
+return view('vistas.producto.update', ['producto' => $producto]);
+}
+
+function Update(Request $request, $id){
+
+    $request->validate([
+        'Nombre_Producto' => 'required',
+        'Cantidad_Stock' => 'required',
+        'Precio_Unitario' => 'required',
+    ]);
+
+    // Obtener el producto que se desea actualizar por su ID
+    $producto = Producto::find($id);
+
+    // Verificar si se encontró el producto
+    if (!$producto) {
+        return redirect()->route('ListProductos')->with('error', 'Producto no encontrado');
+    }
+
+    // Actualizar los atributos del producto con los valores del formulario
+    $producto->update([
+        'nombre_producto' => $request->input('Nombre_Producto'),
+        'cantidad_stock' => $request->input('Cantidad_Stock'),
+        'precio_unitario' => $request->input('Precio_Unitario'),
+    ]);
+
+    return redirect()->route('ListProductos')->with('success', 'Producto actualizado exitosamente');
+}
+
+
  function List(){
-    return View('vistas.producto.list');
+    $producto = Producto::all();
+    return view('vistas.producto.list', ['mostrarproducto' => $producto]);
  }
  function Details(){
     return View('vistas.producto.details');
  }
 
  public function delete($id) {
+    $producto = Producto::find($id);
 
-    return View('vistas.producto.list');
+    if (!$producto) {
+        return redirect()->route('ListProductos')->with('error', 'El producto no existe.');
+    }
+
+    // Usar DB::transaction para asegurarse de que la operación sea exitosa
+    DB::transaction(function () use ($producto) {
+        // Eliminar la empresa de forma suave
+        $producto->delete();
+    });
+
+    return redirect()->route('ListProductos')->with('success', 'El producto ha sido eliminado de forma suave.');
 }
 
 }
