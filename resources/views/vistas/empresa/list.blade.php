@@ -21,7 +21,8 @@
                 <th>Fecha de la Fundacion</th>
                 <th>email</th>
                 <th>telefono</th>
-                <th>Acciones</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +42,9 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                     </form>
+                </td>
+                <td>
+                    <a href="{{ route('showUpdateEmpresa', $empresa->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
                 </td>
             </tr>
             @endforeach

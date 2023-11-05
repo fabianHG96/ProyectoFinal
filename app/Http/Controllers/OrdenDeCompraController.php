@@ -53,10 +53,6 @@ class OrdenDeCompraController extends Controller
         $vendedores = Vendedor::where('proveedor_id', $proveedorId)->get();
         return response()->json($vendedores);
     }
-
-     function Update(){
-        return View('vistas.ordendecompra.update');
-     }
      function List(){
         $ordendecompra = OrdenDeCompra::all();
         return View('vistas.ordendecompra.list', ['mostrarordenes' => $ordendecompra]);
@@ -79,5 +75,46 @@ class OrdenDeCompraController extends Controller
         });
 
         return redirect()->route('ListOrdenDeCompra')->with('success', 'Orden De Compra ha sido eliminada de forma suave.');
+    }
+
+    function Update(Request $request, $id){
+
+        $request->validate([
+
+            'fsolicitud' => 'required|date',
+            'ftermino' => 'required|date',
+            'proveedor_id' => 'required|exists:proveedor,id',
+            'vendedor_id' => 'required|exists:vendedor,id',
+            'empleado_id' => 'required|exists:empleado,id',
+            'nitem' => 'required',
+            'estado' => 'required',
+            'cantidad' => 'required',
+            'monto' => 'required',
+            'total' => 'required',
+        ]);
+
+        // Obtener la Empresa que se desea actualizar por su ID
+        $ordendecompra = OrdenDeCompra::find($id);
+
+        // Verificar si se encontró la Empresa
+        if (!$ordendecompra) {
+            return redirect()->route('ListOrdendecompra')->with('error', 'Empresa no encontrada');
+        }
+
+        // Actualizar los atributos de la Empresa con los valores del formulario
+        $ordendecompra->update([
+            'fecha_solicitud' => $request->fsolicitud,
+            'fecha_termino' => $request->ftermino,
+            'proveedor_id' => $request->proveedor_id,
+            'vendedor_id' => $request->vendedor_id,
+            'empleado_id' => $request->empleado_id,
+            'nombre_producto' => $request->nitem,
+            'estado' => $request->estado,
+            'cantidad' => $request->cantidad,
+            'monto' => $request->monto,
+            'total' => $request->total,
+        ]);
+
+        return redirect()->route('ListEmpresa')->with('success', 'Empresa actualizada exitosamente');
     }
 }

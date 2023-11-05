@@ -72,7 +72,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
 
-  --bs-body-color: #212529;
+
   --bs-body-color2: #ffffff;
 
   --bs-body-bg: #fff;
@@ -136,10 +136,27 @@ body[data-bs-theme="light"] {
 /* Estilos para el tema oscuro */
 body[data-bs-theme="dark"] {
     background-color: #333333;
-    color: #ffffff;
+    color: #ffffff; /* Cambiar color del texto a blanco */
     --bs-light-rgb: #333333;
-    --bs-table-color: #ffffff;
     /* Otros estilos para el tema oscuro */
+
+.table {
+    --bs-table-color: var(--bs-body-color2);
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--bs-border-color);
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: var(--bs-body-color2);
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: var(--bs-body-color2);
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: var(--bs-body-color2);
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--bs-table-color);
+    vertical-align: top;
+    border-color: var(--bs-table-border-color);
+  }
 }
 
 

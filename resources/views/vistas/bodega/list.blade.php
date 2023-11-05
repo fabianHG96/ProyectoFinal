@@ -28,6 +28,7 @@
         <tbody>
             @foreach($mostrarbodega->sortBy('id') as $bodega)
             <tr>
+
                 <td>{{ $bodega->direccion }}</td>
                 <td>{{ $bodega->capacidad }}</td>
                 <td>{{ $bodega->stock }}</td>
@@ -41,6 +42,21 @@
                 <td>
                     <a href="{{ route('ShowUpdateBodega', $bodega->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
                 </td>
+
+               <td>{{ $bodega->direccion }}</td>
+               <td>{{ $bodega->capacidad }}</td>
+               <td>{{ $bodega->stock }}</td>
+               <td>
+
+                <form action="{{ route('eliminarBodega', $bodega->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </td>
+            <td><a href="{{ route('ShowUpdateBodega', $bodega->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
+            </td>
+
             </tr>
             @endforeach
         </tbody>
