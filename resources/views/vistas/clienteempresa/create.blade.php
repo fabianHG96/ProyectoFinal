@@ -10,6 +10,7 @@
     </section>
     <form method="POST" action="{{ route('register.ClienteEmpresa') }}">
         @csrf
+        <input type="hidden" name="empresa_id" value="1">
         <div class="row mt-4">
             <div class="col-md-6">
                 <label for="names"><strong>Datos del Cliente empresa</strong></label>

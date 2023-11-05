@@ -120,7 +120,8 @@ Route::group(['prefix'=> 'empresa'],function(){
 Route::group(['prefix'=> 'clienteEmpresa'],function(){
     Route::get('/create',[ClienteEmpresaController::class,'ShowNewClienteEmpresa'])->name('CreateClienteEmpresa');
     Route::post('/create', [ClienteEmpresaController::class, 'CreateNewClienteEmpresa'])->name('register.ClienteEmpresa')->middleware('auth');
-    Route::get('/update',[ClienteEmpresaController::class,'Update'])->name('UpdateClienteEmpresa');
+    Route::get('/clientes/update/{id}', [ClienteEmpresaController::class,'showUpdateClienteEmpresa'])->name('ShowUpdateClienteEmpresa');
+    Route::post('/clientes/update/{id}', [ClienteEmpresaController::class,'Update'])->name('UpdateClienteEmpresa');
     Route::get('/list',[ClienteEmpresaController::class,'list'])->name('ListClienteEmpresa');
     Route::get('/details',[ClienteEmpresaController::class,'details'])->name('DetailsClienteEmpresa');
     Route::delete('/eliminarClienteEmpresa/{id}', [ClienteEmpresaController::class, 'delete'])->name('eliminarClienteEmpresa')->middleware('auth');
