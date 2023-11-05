@@ -16,12 +16,22 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Aquí puedes incluir dinámicamente filas de datos de proveedores -->
-            <!-- Ejemplo de fila de datos (puedes repetir para cada proveedor) -->
+            @foreach($mostrarcategoria->sortBy('id') as $categoria)
             <tr>
-                <td>Categoria</td>
+               <td>{{ $categoria->categoria }}</td>
+
+               <td>
+
+                <form action="{{ route('eliminarCategoria', $categoria->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </td>
+            <td><a href="{{ route('ShowUpdateCategoria', $categoria->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
+            </td>
             </tr>
-            <!-- Fin del ejemplo -->
+            @endforeach
         </tbody>
     </table>
 </div>

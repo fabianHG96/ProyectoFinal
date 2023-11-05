@@ -24,7 +24,6 @@ class BodegaController extends Controller
     {
         $request->validate([
             'empresa_id' => 'required|exists:empresas,id',
-
             'pais' => 'required',
             'region' => 'required',
             'direccion' => 'required',

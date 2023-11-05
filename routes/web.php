@@ -42,11 +42,13 @@ Route::group(['prefix' => '/register'], function(){
 Route::get('/home',[FlexController::class,'index'])->name('home');
 //productos
 Route::group(['prefix'=> 'producto'],function(){
-Route::get('/create',[ProductoController::class,'Create'])->name('CreateProductos');
- Route::post('/create', [ProductoController::class, 'CreateNewProducto'])->name('register.Orden')->middleware('auth');
-Route::get('/update',[ProductoController::class,'Update'])->name('UpdateProductos');
+Route::get('/create',[ProductoController::class,'ShowNewProducto'])->name('CreateProductos');
+Route::post('/create', [ProductoController::class, 'CreateNewProducto'])->name('register.Productos');
+Route::get('/productos/update/{id}', [ProductoController::class,'showUpdateProducto'])->name('ShowUpdateProducto');
+Route::post('/productos/update/{id}', [ProductoController::class,'Update'])->name('UpdateProducto');
 Route::get('/list',[ProductoController::class,'List'])->name('ListProductos');
 Route::get('/details',[ProductoController::class,'Details'])->name('DetailsProductos');
+Route::delete('/eliminarProducto/{id}', [ProductoController::class, 'delete'])->name('EliminarProducto');
 });
 //orden de compra
 Route::group(['prefix'=> 'ordendecompra'],function(){
@@ -148,8 +150,9 @@ Route::group(['prefix'=> 'bodega'],function(){
 //Categoria
 Route::group(['prefix'=> 'categoria'],function(){
     Route::get('/create',[CategoriaController::class,'ShowNewCategoria'])->name('CreateCategoria');
-    Route::post('/create', [CategoriaController::class, 'CreateNewCategoria'])->name('register.Categoria')->middleware('auth');
-    Route::get('/update',[CategoriaController::class,'Update'])->name('UpdateCategoria');
+    Route::get('/categorias/update/{id}', [CategoriaController::class,'showUpdateCategoria'])->name('ShowUpdateCategoria');
+    Route::post('/categorias/update/{id}', [CategoriaController::class,'Update'])->name('UpdateCategoria');
     Route::get('/list',[CategoriaController::class,'list'])->name('ListCategoria');
     Route::get('/details',[CategoriaController::class,'details'])->name('DetailsCategoria');
+    Route::delete('/eliminarCategoria/{id}', [CategoriaController::class, 'delete'])->name('eliminarCategoria')->middleware('auth');
 });

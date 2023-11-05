@@ -14,8 +14,8 @@ class OrdenDeCompraController extends Controller
     function ShowNewOrden(){
         $proveedores = Proveedor::all();
         $vendedores = Vendedor::all(); // Inicialmente, la lista de vendedores estará vacía
-        $proveedores = Empleado::all();
-        return View('vistas.ordendecompra.create', compact('vendedores', 'proveedores'));
+        $empleados = Empleado::all();
+        return View('vistas.ordendecompra.create', compact('vendedores', 'proveedores', 'empleados'));
 
      }
 
@@ -25,7 +25,7 @@ class OrdenDeCompraController extends Controller
             'ftermino' => 'required|date',
             'proveedor_id' => 'required|exists:proveedor,id',
             'vendedor_id' => 'required|exists:vendedor,id',
-            'empleado_id' => 'required|exists:empleado,id',
+            'empleado_id' => 'required|exists:empleados,id',
             'nitem' => 'required',
             'estado' => 'required',
             'cantidad' => 'required',

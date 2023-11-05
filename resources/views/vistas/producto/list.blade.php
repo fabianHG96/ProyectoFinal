@@ -6,26 +6,35 @@
         <div class="">
             <h1 class="align-self-end">Producto</h1>
 
-            <a class="btn btn-primary align-self-end" href="create">Nueva Producto</a>
+            <a class="btn btn-primary align-self-end" href="create">Nuevo Producto</a>
         </div>
     </head>
     <table class="table">
         <thead>
             <tr>
+                <th>Nombre Producto</th>
                 <th>Cantidad Stock</th>
                 <th>Precio Unitario</th>
-                <th>Nombre Producto</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Aquí puedes incluir dinámicamente filas de datos de proveedores -->
-            <!-- Ejemplo de fila de datos (puedes repetir para cada proveedor) -->
+            @foreach($mostrarproducto->sortBy('id') as $producto)
             <tr>
-                <td>Cantidad Stock</td>
-                <td>Precio Unitario</td>
-                <td>Nombre Producto</td>
+                <td>{{ $producto->nombre_producto }}</td>
+                <td>{{ $producto->cantidad_stock}}</td>
+                <td>{{ $producto->precio_unitario}}</td>
+                <td>
+                    <form action="{{ route('EliminarProducto', $producto->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+                <td>
+                    <a href="{{ route('ShowUpdateProducto', $producto->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
+                </td>
             </tr>
-            <!-- Fin del ejemplo -->
+            @endforeach
         </tbody>
     </table>
 </div>

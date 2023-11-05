@@ -5,6 +5,21 @@
     <form method="POST" action="{{ route('register.Orden') }}">
         @csrf
         <div class="row mt-4">
+
+
+
+                <label for="names"><strong>Nombre solicitante</strong></label>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Nombre</span>
+                    <select name="empleado_id" id="empleado_id">
+                        <option value="">Selecciona un empleado</option>
+                        @foreach ($empleados as $empleado)
+                            <option value="{{ $empleado->id }}">{{ $empleado->nombre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+
             <div class="col-md-6">
                 <label for="names"><strong>fecha de la Solicitud</strong></label>
                 <div class="input-group mt-2">

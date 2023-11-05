@@ -1,14 +1,20 @@
 <title>Bodegas</title>
 @extends('layouts.main')
 @section('main-content')
-<head>
-    <div class="col-md-9">
-        <div class="">
-            <h1 class="align-self-end">Bodegas</h1>
-
-            <a class="btn btn-primary align-self-end" href="create">Nueva Bodega</a>
+<div class="container">
+    <section>
+        <div class="header-and-button d-flex justify-content-between align-items-center">
+            <h1 class="header">Bodegas</h1>
         </div>
-    </head>
+            <div>
+                <a class="btn btn-primary align-self-end" href="create">Nueva Bodega</a>
+
+            </div>
+            <div style="padding-left: 1000px">
+                <a class="btn btn-primary align-self-end ms-2" href="{{ route('ListProductos') }}">Ver Productos</a>
+            </div>
+        <hr />
+    </section>
     <table class="table">
         <thead>
             <tr>
@@ -22,6 +28,21 @@
         <tbody>
             @foreach($mostrarbodega->sortBy('id') as $bodega)
             <tr>
+
+                <td>{{ $bodega->direccion }}</td>
+                <td>{{ $bodega->capacidad }}</td>
+                <td>{{ $bodega->stock }}</td>
+                <td>
+                    <form action="{{ route('eliminarBodega', $bodega->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+                <td>
+                    <a href="{{ route('ShowUpdateBodega', $bodega->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
+                </td>
+
                <td>{{ $bodega->direccion }}</td>
                <td>{{ $bodega->capacidad }}</td>
                <td>{{ $bodega->stock }}</td>
@@ -35,6 +56,7 @@
             </td>
             <td><a href="{{ route('ShowUpdateBodega', $bodega->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
             </td>
+
             </tr>
             @endforeach
         </tbody>
@@ -43,5 +65,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
-
 @endsection
