@@ -16,6 +16,7 @@ class EmpleadoSeeder extends Seeder
         Empleado::create([
             'empresa_id' => '1',
             'bodega_id' => '1',
+            'cargo_id' => '1',
             'nombre' => 'Juan',
             'apellido_p' => 'Monte',
             'apellido_m' => 'Torres',
@@ -24,7 +25,6 @@ class EmpleadoSeeder extends Seeder
             'telefono' => '123456789',
             'direccion' => 'Dirección del Empleado',
             'Fcontratacion' => '2023-01-15',
-            'cargo' => 'Administrador',
             'salario' => '50000', // Salario (debes configurar el tipo de columna en la base de datos)
             'estado_laboral' => 'Activo',
             'horario' => 'Horario del Empleado',

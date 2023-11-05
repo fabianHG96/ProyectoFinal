@@ -42,11 +42,6 @@ class EmpresaController extends Controller
         return redirect()->route('ListEmpresa')->with('success', 'Empresa creada exitosamente');
     }
 
-    public function update()
-    {
-        return view('vistas.empresa.update');
-    }
-
     public function list(){
         $empresa = Empresa::all();
         return view('vistas.empresa.list', ['mostrarempresa' => $empresa]);
@@ -71,5 +66,59 @@ class EmpresaController extends Controller
         });
 
         return redirect()->route('ListEmpresa')->with('success', 'La empresa ha sido eliminada de forma suave.');
+    }
+
+    //////////////////////////////////
+
+    public function showUpdateEmpresa($id)
+    {
+        $empresa = Empresa::find($id);
+
+        if (!$empresa) {
+            return redirect()->route('ListEmpresa')->with('error', 'Empresa no encontrada');
+        }
+
+        return view('vistas.Empresa.update', ['empresa' => $empresa]);
+    }
+
+
+    function Update(Request $request, $id){
+
+        $request->validate([
+
+            'nombre' =>  'required',
+            'rut' =>  'required',
+            'pais' =>  'required',
+            'region' =>  'required',
+            'rubro' =>  'required',
+            'Ffundacion' =>  'required',
+            'email' =>  'required',
+            'telefono' =>  'required',
+        ]);
+
+        // Obtener la Empresa que se desea actualizar por su ID
+        $Empresa = Empresa::find($id);
+
+        // Verificar si se encontró la Empresa
+        if (!$Empresa) {
+            return redirect()->route('ListEmpresa')->with('error', 'Empresa no encontrada');
+        }
+
+        // Actualizar los atributos de la Empresa con los valores del formulario
+        $Empresa->update([
+            'direccion' => $request->direccion,
+            'capacidad' => $request->capacidad,
+            'stock' => $request->stock,
+            'nombre' => $request->nombre,
+            'rut' => $request->rut,
+            'pais' => $request->pais,
+            'region' => $request->region,
+            'rubro' => $request->rubro,
+            'Ffundacion' => $request->Ffundacion,
+            'email' => $request->email,
+            'telefono' => $request->telefono,
+        ]);
+
+        return redirect()->route('ListEmpresa')->with('success', 'Empresa actualizada exitosamente');
     }
 }

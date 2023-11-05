@@ -21,7 +21,8 @@
                         <th>Estado</th>
                         <th>Fecha Solicitud</th>
                         <th>Fecha Termino</th>
-                        <th>Acciones</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,9 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                             </form>
+                        </td>
+                        <td>
+                            <a href="{{ route('showUpdateOrdenDeCompra', $ordendecompra->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
                         </td>
                     @endforeach
                 </tbody>

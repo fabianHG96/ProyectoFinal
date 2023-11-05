@@ -13,6 +13,7 @@ class Empleado extends Model
     protected $fillable = [
         'empresa_id',
         'bodega_id',
+        'cargo_id',
         'nombre',
         'apellido_p',
         'apellido_m',
@@ -39,5 +40,8 @@ class Empleado extends Model
     }
     public function bodega() {
         return $this->belongsTo(Bodega::class, 'bodega_id');
+    }
+    public function cargos() {
+        return $this->belongsTo(Cargo::class, 'cargo_id');
     }
 }
