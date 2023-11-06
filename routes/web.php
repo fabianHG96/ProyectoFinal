@@ -98,7 +98,8 @@ Route::delete('/eliminarEmpleado/{id}', [EmpleadoController::class, 'delete'])->
 Route::group(['prefix'=> 'vendedor'],function(){
     Route::get('/create',[VendedorController::class,'ShowNewVendedor'])->name('CreateVendedor');
     Route::post('/create', [VendedorController::class, 'CreateNewVendedor'])->name('register.Vendedor')->middleware('auth');
-    Route::get('/update',[VendedorController::class,'Update'])->name('UpdateVendedor');
+    Route::get('/vendedor/update/{id}', [VendedorController::class, 'showUpdateVendedor'])->name('ShowUpdateVendedor');
+    Route::post('/vendedor/update/{id}', [VendedorController::class, 'update'])->name('UpdateVendedor');
     Route::get('/list',[VendedorController::class,'list'])->name('ListVendedor');
     Route::get('/details',[VendedorController::class,'details'])->name('DetailsVendedor');
     Route::delete('/eliminarVendedor/{id}', [VendedorController::class, 'delete'])->name('eliminarVendedor')->middleware('auth');

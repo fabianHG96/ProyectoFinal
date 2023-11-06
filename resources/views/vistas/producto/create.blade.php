@@ -17,16 +17,25 @@
         <table>
             <thead>
                 <tr>
+                    <th>Bodega</th>
                     <th>Categoría</th>
                     <th>Nombre del Producto</th>
                     <th>Cantidad</th>
                     <th>Precio Unitario</th>
-                    <th>Bodega</th>
+                    <th>Total</th>
                     <th>Acción</th>
                 </tr>
             </thead>
             <tbody id="product-table">
                 <tr>
+                    <td>
+                        <select name="bodega_id[]">
+                            <option value="">Selecciona una bodega</option>
+                            @foreach ($bodegas as $bodega)
+                                <option value="{{ $bodega->id }}">{{ $bodega->direccion }}</option>
+                            @endforeach
+                        </select>
+                    </td>
                     <td>
                         <select name="categoria_id[]">
                             <option value="">Selecciona una categoría</option>
@@ -38,15 +47,10 @@
                     <td><input type="text" name="nombre_producto[]"></td>
                     <td><input type="number" name="cantidad_stock[]"></td>
                     <td><input type="number" name="precio_unitario[]"></td>
+                    <td><input type="number" name="total[]" readonly></td>
                     <td>
-                        <select name="bodega_id[]">
-                            <option value="">Selecciona una bodega</option>
-                            @foreach ($bodegas as $bodega)
-                                <option value="{{ $bodega->id }}">{{ $bodega->direccion }}</option>
-                            @endforeach
-                        </select>
+                        <button type="button" class="remove-row">Eliminar</button>
                     </td>
-                    <td><button type="button" class="remove-row">Eliminar</button></td>
                 </tr>
             </tbody>
         </table>
@@ -65,6 +69,7 @@
         </ul>
     </div>
 @endif
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".add-row").addEventListener("click", function () {
@@ -72,11 +77,38 @@
             newRow.querySelectorAll("input, select").forEach((element) => {
                 element.value = "";
             });
-            newRow.querySelector(".remove-row").style.display = "block"; // Mostrar el botón "Eliminar" en la nueva fila
+            newRow.querySelector(".remove-row").style.display = "block";
             document.querySelector("#product-table").appendChild(newRow);
         });
 
-        document.querySelector(".remove-row").style.display = "none"; // Ocultar el botón "Eliminar" en la primera fila
+        document.querySelector(".remove-row").style.display = "none";
+
+        document.querySelector("table").addEventListener("input", function (event) {
+            if (event.target.name === "cantidad_stock[]" || event.target.name === "precio_unitario[]") {
+                const row = event.target.closest("tr");
+                const cantidad = row.querySelector("input[name='cantidad_stock[]']").value;
+                const precioUnitario = row.querySelector("input[name='precio_unitario[]']").value;
+                const total = cantidad * precioUnitario;
+
+                row.querySelector("input[name='total[]']").value = total;
+            }
+        });
+
+        document.querySelector("input[type='submit']").addEventListener("click", function (event) {
+            const categoriaInputs = document.querySelectorAll("select[name='categoria_id[]']");
+            let hasError = false;
+
+            categoriaInputs.forEach(function (categoriaInput) {
+                if (categoriaInput.value === "") {
+                    hasError = true;
+                    alert("Por favor, selecciona una categoría para cada producto.");
+                }
+            });
+
+            if (hasError) {
+                event.preventDefault(); // Evitar que se envíe el formulario si hay errores
+            }
+        });
 
         document.querySelector("table").addEventListener("click", function (event) {
             if (event.target.classList.contains("remove-row")) {

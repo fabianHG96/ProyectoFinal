@@ -49,6 +49,7 @@
                     <div class="input-group mt-2">
                         <span class="input-group-text">Estado Laboral</span>
                         <select id="estado_laboral" name="estado_laboral" class="form-control">
+                            <option value="inactivo">Pendiente</option>slot
                             <option value="activo">Activo</option>slot
                             <option value="inactivo">Inactivo</option>slot
                         </select>

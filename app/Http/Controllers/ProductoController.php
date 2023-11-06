@@ -28,6 +28,7 @@ public function CreateNewProducto(Request $request)
         'cantidad_stock.*' => 'required',
         'precio_unitario.*' => 'required',
         'nombre_producto.*' => 'required',
+
     ]);
 
     $bodegaIds = $request->bodega_id;
@@ -35,6 +36,7 @@ public function CreateNewProducto(Request $request)
     $cantidades = $request->cantidad_stock;
     $precios = $request->precio_unitario;
     $nombres = $request->nombre_producto;
+    $totals =  $request -> total;
 
     // Iterar sobre los campos de matriz y crear productos
     foreach ($bodegaIds as $key => $bodegaId) {
@@ -44,6 +46,7 @@ public function CreateNewProducto(Request $request)
             'cantidad_stock' => $cantidades[$key],
             'precio_unitario' => $precios[$key],
             'nombre_producto' => $nombres[$key],
+            'total' => $totals[$key],
         ]);
     }
     return redirect()->route('ListProductos')->with('success', 'Producto creado exitosamente');
@@ -85,6 +88,7 @@ function Update(Request $request, $id){
         'nombre_producto' => $request->input('Nombre_Producto'),
         'cantidad_stock' => $request->input('Cantidad_Stock'),
         'precio_unitario' => $request->input('Precio_Unitario'),
+        'total' => $request->input('Total'),
     ]);
 
     return redirect()->route('ListProductos')->with('success', 'Producto actualizado exitosamente');

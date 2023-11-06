@@ -53,11 +53,50 @@ class VendedorController extends Controller
         return redirect()->route('ListVendedor')->with('success', 'Vendedor creado exitosamente');
     }
 
-    function Update(){return View('vistas.vendedor.update');}
-    public function list(){
-        $vendedor = Vendedor::all();
-        return view('vistas.vendedor.list', ['mostrarvendedor' => $vendedor]);
+    public function showUpdateVendedor($id)
+{
+    $vendedor = Vendedor::find($id);
+
+    if (!$vendedor) {
+        return redirect()->route('ListVendedor')->with('error', 'Vendedor no encontrado');
     }
+
+    return view('vistas.vendedor.update', ['vendedor' => $vendedor]);
+}
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'nombre' => 'required',
+        'apellido' => 'required',
+        'rut' => 'required|unique:vendedor,rut,' . $id,
+        'direccion' => 'required',
+        'email' => 'required|email|unique:vendedor,email,' . $id,
+        'telefono' => 'required',
+        'estado_laboral' => 'required',
+    ]);
+
+    // Obtener el vendedor que se desea actualizar por su ID
+    $vendedor = Vendedor::find($id);
+
+    if (!$vendedor) {
+        return redirect()->route('ListVendedor')->with('error', 'Vendedor no encontrado');
+    }
+
+    $vendedor->update([
+        'nombre' => $request->nombre,
+        'apellido' => $request->apellido,
+        'rut' => $request->rut,
+        'direccion' => $request->direccion,
+        'email' => $request->email,
+        'telefono' => $request->telefono,
+        'estado_laboral' => $request->estado_laboral,
+    ]);
+
+    return redirect()->route('ListVendedor')->with('success', 'Vendedor actualizado exitosamente');
+}
+
+
     function Details(){return View('vistas.vendedor.details');}
 
     public function delete($id) {
@@ -75,4 +114,10 @@ class VendedorController extends Controller
 
         return redirect()->route('ListVendedor')->with('success', 'El vendedor ha sido eliminada de forma suave.');
     }
+
+    public function list()
+{
+    $vendedor = Vendedor::all();
+    return view('vistas.vendedor.list', ['mostrarvendedor' => $vendedor]);
+}
 }
