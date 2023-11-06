@@ -27,9 +27,10 @@
                 </thead>
                 <tbody>
                     @foreach ($mostrarordenes as $ordendecompra )
+                    <tr>
                         <td>{{ $ordendecompra->proveedor_id }}</td>
                         <td>{{ $ordendecompra->id }}</td>
-                        <td>Completado</td> {{-- TODO --}}
+                        <td>{{ $ordendecompra->estado }}</td> {{-- TODO --}}
                         <td>{{ $ordendecompra->fecha_solicitud }}</td>
                         <td>{{ $ordendecompra->fecha_termino }}</td>
                         <td>
@@ -42,6 +43,7 @@
                         <td>
                             <a href="{{ route('showUpdateOrdenDeCompra', $ordendecompra->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
                         </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>

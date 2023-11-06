@@ -5,7 +5,7 @@ use App\Models\Proveedor;
 use App\Models\Vendedor;
 use App\Models\Empleado;
 use App\Models\OrdenDeCompra;
-
+use App\Models\Producto;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,8 @@ class OrdenDeCompraController extends Controller
         $proveedores = Proveedor::all();
         $vendedores = Vendedor::all(); // Inicialmente, la lista de vendedores estará vacía
         $empleados = Empleado::all();
-        return View('vistas.ordendecompra.create', compact('vendedores', 'proveedores', 'empleados'));
+        $productos = Producto::all();
+        return View('vistas.ordendecompra.create', compact('vendedores', 'proveedores', 'empleados', 'productos'));
 
      }
 
@@ -26,7 +27,8 @@ class OrdenDeCompraController extends Controller
             'proveedor_id' => 'required|exists:proveedor,id',
             'vendedor_id' => 'required|exists:vendedor,id',
             'empleado_id' => 'required|exists:empleados,id',
-            'nitem' => 'required',
+            'producto_id' => 'required|exists:productos,id',
+            'nombre_producto' => 'required|exists:productos,nombre_producto',
             'estado' => 'required',
             'cantidad' => 'required',
             'monto' => 'required',
@@ -39,7 +41,8 @@ class OrdenDeCompraController extends Controller
             'proveedor_id' => $request->proveedor_id,
             'vendedor_id' => $request->vendedor_id,
             'empleado_id' => $request->empleado_id,
-            'nombre_producto' => $request->nitem,
+            'producto_id' => $request->producto_id,
+            'nombre_producto' => $request->nombre_producto,
             'estado' => $request->estado,
             'cantidad' => $request->cantidad,
             'monto' => $request->monto,
@@ -86,7 +89,8 @@ class OrdenDeCompraController extends Controller
             'proveedor_id' => 'required|exists:proveedor,id',
             'vendedor_id' => 'required|exists:vendedor,id',
             'empleado_id' => 'required|exists:empleado,id',
-            'nitem' => 'required',
+            'producto_id' => 'required|exists:producto,id',
+            'nombre_producto' => 'required|exists:producto,nombre_producto',
             'estado' => 'required',
             'cantidad' => 'required',
             'monto' => 'required',
@@ -108,7 +112,7 @@ class OrdenDeCompraController extends Controller
             'proveedor_id' => $request->proveedor_id,
             'vendedor_id' => $request->vendedor_id,
             'empleado_id' => $request->empleado_id,
-            'nombre_producto' => $request->nitem,
+            'prodcucto_id' => 'required|exists:prodcucto,id',
             'estado' => $request->estado,
             'cantidad' => $request->cantidad,
             'monto' => $request->monto,
