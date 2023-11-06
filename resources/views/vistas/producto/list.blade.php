@@ -15,6 +15,8 @@
                 <th>Nombre Producto</th>
                 <th>Cantidad Stock</th>
                 <th>Precio Unitario</th>
+                <th>total</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +25,7 @@
                 <td>{{ $producto->nombre_producto }}</td>
                 <td>{{ $producto->cantidad_stock}}</td>
                 <td>{{ $producto->precio_unitario}}</td>
+                <td>{{ $producto->cantidad_stock * $producto->precio_unitario }}</td> <!-- Cálculo del Total -->
                 <td>
                     <form action="{{ route('EliminarProducto', $producto->id) }}" method="POST">
                         @csrf

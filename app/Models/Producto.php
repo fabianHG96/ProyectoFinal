@@ -16,6 +16,7 @@ class Producto extends Model
         'cantidad_stock',
         'precio_unitario',
         'nombre_producto',
+        'total',
     ];
 
 

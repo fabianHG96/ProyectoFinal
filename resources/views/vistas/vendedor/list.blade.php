@@ -22,7 +22,8 @@
             <th>Correo</th>
             <th>telefono</th>
             <th>Estado laboral</th>
-            <th>Acciones</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -41,6 +42,9 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                 </form>
+            </td>
+            <td>
+                <a href="{{ route('ShowUpdateVendedor', $vendedor->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
             </td>
             </tr>
             @endforeach

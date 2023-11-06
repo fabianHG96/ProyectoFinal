@@ -98,7 +98,8 @@ Route::delete('/eliminarEmpleado/{id}', [EmpleadoController::class, 'delete'])->
 Route::group(['prefix'=> 'vendedor'],function(){
     Route::get('/create',[VendedorController::class,'ShowNewVendedor'])->name('CreateVendedor');
     Route::post('/create', [VendedorController::class, 'CreateNewVendedor'])->name('register.Vendedor')->middleware('auth');
-    Route::get('/update',[VendedorController::class,'Update'])->name('UpdateVendedor');
+    Route::get('/vendedor/update/{id}', [VendedorController::class, 'showUpdateVendedor'])->name('ShowUpdateVendedor');
+    Route::post('/vendedor/update/{id}', [VendedorController::class, 'update'])->name('UpdateVendedor');
     Route::get('/list',[VendedorController::class,'list'])->name('ListVendedor');
     Route::get('/details',[VendedorController::class,'details'])->name('DetailsVendedor');
     Route::delete('/eliminarVendedor/{id}', [VendedorController::class, 'delete'])->name('eliminarVendedor')->middleware('auth');
@@ -120,7 +121,8 @@ Route::group(['prefix'=> 'empresa'],function(){
 Route::group(['prefix'=> 'clienteEmpresa'],function(){
     Route::get('/create',[ClienteEmpresaController::class,'ShowNewClienteEmpresa'])->name('CreateClienteEmpresa');
     Route::post('/create', [ClienteEmpresaController::class, 'CreateNewClienteEmpresa'])->name('register.ClienteEmpresa')->middleware('auth');
-    Route::get('/update',[ClienteEmpresaController::class,'Update'])->name('UpdateClienteEmpresa');
+    Route::get('/clientes/update/{id}', [ClienteEmpresaController::class,'showUpdateClienteEmpresa'])->name('ShowUpdateClienteEmpresa');
+    Route::post('/clientes/update/{id}', [ClienteEmpresaController::class,'Update'])->name('UpdateClienteEmpresa');
     Route::get('/list',[ClienteEmpresaController::class,'list'])->name('ListClienteEmpresa');
     Route::get('/details',[ClienteEmpresaController::class,'details'])->name('DetailsClienteEmpresa');
     Route::delete('/eliminarClienteEmpresa/{id}', [ClienteEmpresaController::class, 'delete'])->name('eliminarClienteEmpresa')->middleware('auth');
