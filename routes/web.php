@@ -130,7 +130,8 @@ Route::group(['prefix'=> 'clienteEmpresa'],function(){
 Route::group(['prefix'=> 'proveedor'],function(){
 Route::get('/create',[ProveedorController::class,'ShowNewProveedor'])->name('CreateProveedor');
 Route::post('/create', [ProveedorController::class, 'createNewProveedor'])->name('register.proveedor')->middleware('auth');
-Route::get('/update',[ProveedorController::class,'Update'])->name('UpdateProveedor');
+Route::get('/update/{id}', [ProveedorController::class, 'showUpdateProveedor'])->name('showUpdateProveedor');
+Route::post('/update/{id}', [ProveedorController::class,'Update'])->name('UpdateProveedor');
 Route::get('/list',[ProveedorController::class,'list'])->name('ListProveedor');
 Route::get('/details',[ProveedorController::class,'details'])->name('DetailsProveedor');
 Route::delete('/eliminarProveedor/{id}', [ProveedorController::class, 'delete'])->name('eliminarProveedor')->middleware('auth');

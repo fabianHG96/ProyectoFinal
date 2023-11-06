@@ -15,13 +15,13 @@
 </head>
 
 <!-- CAMBIO DE TEMA DE CLARO A OSCURO-->
-<body data-bs-theme="light">
+<body data-bs-theme="dark">
     <div class="d-flex justify-content-between align-items-center border p-2">
         <label for="nombres"><strong>IntegralFlex</strong></label>
 <!-- Botón y estructura -->
 <button onclick="cambiarTema()" class="btn btn-outline-primary">
-    <i id="ICON" class="fa-regular fa-moon"></i>
-    <span id="modoTexto">Modo Oscuro</span>
+    <i id="ICON" class="fa-regular fa-sun"></i>
+    <span id="modoTexto">Modo Claro</span>
 </button>
 
 

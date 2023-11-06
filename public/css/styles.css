@@ -125,21 +125,60 @@ body {
 }
 
 /* Estilos para el tema claro */
+/* Estilos para el tema claro */
 body[data-bs-theme="light"] {
     background-color: #ffffff;
     color: #000000;
     --bs-light-rgb: #ffffff;
     --bs-table-color: #000000;
-    /* Otros estilos para el tema claro */
+
+    /* Estilo para los input en tema claro */
+    .form-control {
+        color: #212529;
+        background-color: #fff;
+        /* Agregar cualquier otro estilo deseado para los input */
+    }
+    .input-group {
+        color: #212529;
+        background-color: #fff;
+    }
+
+    /* Estilo para los select en tema claro */
+    .form-select {
+        color: #212529;
+        background-color: #fff;
+        /* Agregar cualquier otro estilo deseado para los select */
+    }
 }
 
 /* Estilos para el tema oscuro */
 body[data-bs-theme="dark"] {
     background-color: #333333;
-    color: #ffffff; /* Cambiar color del texto a blanco */
+    color: #ffffff;
     --bs-light-rgb: #333333;
-    /* Otros estilos para el tema oscuro */
+    --bs-table-color: #ffffff;
 
+    /* Estilo para los input en tema oscuro */
+    .form-control {
+        color: #ffffff;
+        background-color: #565e64;
+        /* Agregar cualquier otro estilo deseado para los input */
+    }
+    .input-group-text {
+        color: #ffffff;
+        background-color: #212529;
+    }
+
+    /* Estilo para los select en tema oscuro */
+    .form-select {
+        color: #ffffff;
+        background-color: #565e64;
+        /* Agregar cualquier otro estilo deseado para los select */
+    }
+
+
+
+    /* Otros estilos para el tema oscuro */
 .table {
     --bs-table-color: var(--bs-body-color2);
     --bs-table-bg: transparent;
@@ -156,7 +195,7 @@ body[data-bs-theme="dark"] {
     color: var(--bs-table-color);
     vertical-align: top;
     border-color: var(--bs-table-border-color);
-  }
+}
 }
 
 
@@ -2054,7 +2093,7 @@ progress {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  background-color: #fff;
+  background-color: var(--background);
   background-clip: padding-box;
   border: 1px solid #ced4da;
   -webkit-appearance: none;
