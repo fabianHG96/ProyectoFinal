@@ -52,7 +52,7 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="https://i.pinimg.com/564x/59/fc/75/59fc75f4f0336f0e5fb937cb83d319d1.jpg" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('assets\img\logo.jpg') }}" alt="..." /></div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">

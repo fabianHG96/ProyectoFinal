@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>IntegralFlex</title>
+    <link rel="icon" href="{!! asset('assets\favicon.ico') !!}"/>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <script src="http://localhost/ProyectoFinal/public/js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

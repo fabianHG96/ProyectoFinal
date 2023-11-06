@@ -29,7 +29,7 @@
             <tbody id="product-table">
                 <tr>
                     <td>
-                        <select name="bodega_id[]">
+                        <select name="bodega_id[]" class="form-select">
                             <option value="">Selecciona una bodega</option>
                             @foreach ($bodegas as $bodega)
                                 <option value="{{ $bodega->id }}">{{ $bodega->direccion }}</option>
@@ -37,7 +37,7 @@
                         </select>
                     </td>
                     <td>
-                        <select name="categoria_id[]">
+                        <select name="categoria_id[]" class="form-select">
                             <option value="">Selecciona una categoría</option>
                             @foreach ($categorias as $categoria)
                                 <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
