@@ -15,7 +15,8 @@ class ProductoSeeder extends Seeder
     {
         Producto::create([
             'bodega_id' => '1',  // ID de la bodega a la que pertenece el producto
-            'categoria_id' => '1',  // ID de la categoría del producto (puedes cambiarlo según la categoría de hidráulica)
+            'categoria_id' => '1',
+            'total' => 200000,   // ID de la categoría del producto (puedes cambiarlo según la categoría de hidráulica)
             'cantidad_stock' => 10,  // Cantidad en stock
             'precio_unitario' => 20000,  // Precio unitario del producto
             'nombre_producto' => 'Placa Metálica',  // Nombre del producto

@@ -1,50 +1,51 @@
-<title>Actualizar una Persona</title>
+<title>Actualizar un Vendedor</title>
 @extends('layouts.main')
 @section('main-content')
 <div class="container">
     <section>
         <div class="header-and-button d-flex justify-content-between align-items-center">
-            <h1 class="header">Actualizar una Persona</h1>
+            <h1 class="header">Actualizar un Vendedor</h1>
         </div>
         <hr />
     </section>
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('UpdateVendedor', ['id' => $vendedor->id]) }}">
         @csrf
         <div class="row mt-4">
             <div class="col-md-6">
                 <label for="names"><strong>Datos del Vendedor</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombres</span>
-                    <input type="text" class="form-control" name="nombre" id="nombre">
+                    <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $vendedor->nombre }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Apellido</span>
-                    <input type="text" class="form-control" name="apellido" id="apellido">
+                    <input type="text" class="form-control" name="apellido" id="apellido" value="{{ $vendedor->apellido }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">RUT</span>
-                    <input type="text" class="form-control" name="rut" id="rut">
+                    <input type="text" class="form-control" name="rut" id="rut" value="{{ $vendedor->rut }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Email</span>
-                    <input type="text" class="form-control" name="email" id="email" >
+                    <input type="text" class="form-control" name="email" id="email" value="{{ $vendedor->email }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Direccion</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion" >
+                    <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $vendedor->direccion }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Telefono</span>
-                    <input type="text" class="form-control" name="telefono" id="telefono">
+                    <input type="text" class="form-control" name="telefono" id="telefono" value="{{ $vendedor->telefono }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Estado Laboral</span>
-                <select id="estado_laboral" name="estado_laboral" class="form-control">
-                    <option value="activo">Activo</option>slot
-                    <option value="inactivo">Inactivo</option>slot
+                    <select id="estado_laboral" name="estado_laboral" class="form-control">
+                        <option value="activo" {{ $vendedor->estado_laboral === 'activo' ? 'selected' : '' }}>Activo</option>
+                        <option value="inactivo" {{ $vendedor->estado_laboral === 'inactivo' ? 'selected' : '' }}>Inactivo</option>
                     </select>
                 </div>
             </div>
+        </div>
         <div class="d-flex justify-content-end mt-4">
             <input type="submit" value="Actualizar" class="btn btn-primary">
         </div>

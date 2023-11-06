@@ -14,7 +14,7 @@
             <div class="col-md-6">
                 <label for="names"><strong>Datos del Producto</strong></label>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Nombre del Producto </span>
+                    <span class="input-group-text">Nombre del Producto</span>
                     <input type="text" class="form-control" name="Nombre_Producto" id="Nombre_Producto" value="{{ $producto->nombre_producto }}">
                 </div>
                 <div class="input-group mt-2">
@@ -22,9 +22,14 @@
                     <input type="number" class="form-control" name="Cantidad_Stock" id="Cantidad_Stock" value="{{ $producto->cantidad_stock }}">
                 </div>
                 <div class="input-group mt-2">
-                    <span class="input-group-text">Precio Unitario </span>
-                    <input type="number" class="form-control" name="Precio_Unitario" id="Precio_Unitario" value="{{ $producto->precio_unitario}}">
+                    <span class="input-group-text">Precio Unitario</span>
+                    <input type="number" class="form-control" name="Precio_Unitario" id="Precio_Unitario" value="{{ $producto->precio_unitario }}">
                 </div>
+                <div class="input-group mt-2">
+                    <span class="input-group-text">Total</span>
+                    <input type="text" class="form-control" name="Total" id="Total" readonly>
+                </div>
+
             </div>
         </div>
         <div class="d-flex justify-content-end mt-4">
@@ -41,6 +46,25 @@
         </ul>
     </div>
 @endif
+<!-- Agregar el siguiente script JavaScript al final de la vista -->
+<script>
+    // Función para calcular el total en tiempo real
+    function calcularTotal() {
+        const cantidad = parseFloat(document.getElementById('Cantidad_Stock').value);
+        const precioUnitario = parseFloat(document.getElementById('Precio_Unitario').value);
+        const total = cantidad * precioUnitario;
+        if (!isNaN(total)) {
+            document.getElementById('Total').value = total;
+        }
+    }
+
+    // Escuchar cambios en los campos de cantidad y precio unitario
+    document.getElementById('Cantidad_Stock').addEventListener('input', calcularTotal);
+    document.getElementById('Precio_Unitario').addEventListener('input', calcularTotal);
+
+    // Calcular el total inicial
+    calcularTotal();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>

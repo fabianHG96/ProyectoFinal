@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('bodega_id');
             $table->unsignedBigInteger('categoria_id');
-            $table->integer('cantidad_stock');
-            $table->integer('precio_unitario');
             $table->string('nombre_producto');
+            $table->integer('cantidad_stock');
+            $table->decimal('precio_unitario', 10, 0);
+            $table->decimal('total', 10, 0);
             $table->timestamps();
             $table->foreign('bodega_id')->references('id')->on('bodegas');
             $table->foreign('categoria_id')->references('id')->on('categorias');
