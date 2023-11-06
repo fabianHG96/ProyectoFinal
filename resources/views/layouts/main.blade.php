@@ -68,6 +68,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('ListProductos') }}">
+                            <i class="fa-solid fa-box-open"></i> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListVendedor') }}">
                                 <i class="fa-regular fa-handshake"></i> Vendedores
                             </a>
