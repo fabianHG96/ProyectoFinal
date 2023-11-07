@@ -17,6 +17,9 @@
                 <th>Precio Unitario</th>
                 <th>total</th>
                 <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +38,15 @@
                 </td>
                 <td>
                     <a href="{{ route('ShowUpdateProducto', $producto->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
+                </td>
+                <td>
+                    <a href="{{ route('ProductoDetails', $producto->id) }}" class="btn btn-primary btn-sm">Detalles</a>
+                </td>
+                <td>
+                    <form method="post" action="{{ route('DescargarProductoDetalles', ['id' => $producto->id]) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-success">Descargar Detalles</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

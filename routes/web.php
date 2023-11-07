@@ -47,7 +47,8 @@ Route::post('/create', [ProductoController::class, 'CreateNewProducto'])->name('
 Route::get('/productos/update/{id}', [ProductoController::class,'showUpdateProducto'])->name('ShowUpdateProducto');
 Route::post('/productos/update/{id}', [ProductoController::class,'Update'])->name('UpdateProducto');
 Route::get('/list',[ProductoController::class,'List'])->name('ListProductos');
-Route::get('/details',[ProductoController::class,'Details'])->name('DetailsProductos');
+Route::get('/productos/{id}', [ProductoController :: class,'Details'])->name('ProductoDetails');
+Route::post('/descargar-producto/{id}', [ProductoController::class, 'descargarDetalles'])->name('DescargarProductoDetalles');
 Route::delete('/eliminarProducto/{id}', [ProductoController::class, 'delete'])->name('EliminarProducto');
 });
 //orden de compra
@@ -61,7 +62,6 @@ Route::group(['prefix'=> 'ordendecompra'],function(){
     Route::delete('/deleteOrdenDeCompra/{id}', [OrdenDeCompraController::class, 'delete'])->name('EliminarOrdenDeCompra');
 });
 Route::get('/obtener-vendedores/{proveedorId}', [OrdenCompraController::class,'getVendedores']);
-
 
 //Gestor de usuarios
 Route::get('/manager/usuarios',[FlexController::class,'listUsers'])->name('Usuarios')->middleware('auth');

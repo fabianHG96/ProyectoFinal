@@ -131,11 +131,13 @@ body[data-bs-theme="light"] {
     color: #000000;
     --bs-light-rgb: #ffffff;
     --bs-table-color: #000000;
+    --bs-modal-color:#ffffff;
 
     /* Estilo para los input en tema claro */
     .form-control {
         color: #212529;
         background-color: #fff;
+        --bs-modal-color:#212529;
         /* Agregar cualquier otro estilo deseado para los input */
     }
     .input-group {
@@ -149,6 +151,11 @@ body[data-bs-theme="light"] {
         background-color: #fff;
         /* Agregar cualquier otro estilo deseado para los select */
     }
+    .modal-content {
+        color: #212529;
+        background-color: #fff;
+      }
+
 }
 
 /* Estilos para el tema oscuro */
@@ -175,6 +182,12 @@ body[data-bs-theme="dark"] {
         background-color: #565e64;
         /* Agregar cualquier otro estilo deseado para los select */
     }
+
+    .modal-content {
+        color: #ffffff;
+        background-color: #212529;
+      }
+
 
 
 
@@ -5405,7 +5418,7 @@ textarea.form-control-lg {
   display: flex;
   flex-direction: column;
   width: 100%;
-  color: var(--bs-modal-color);
+
   pointer-events: auto;
   background-color: var(--bs-modal-bg);
   background-clip: padding-box;

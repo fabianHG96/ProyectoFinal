@@ -10,11 +10,11 @@
     </section>
     <form method="POST" action="{{ route('register.Productos') }}">
         @csrf
-        <div class="d-flex justify-content-end mt-4">
+        <div class="container">
             <button type="button" class="add-row">Agregar Producto</button>
-        </div>
+        </div >
 
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Bodega</th>
@@ -44,10 +44,10 @@
                             @endforeach
                         </select>
                     </td>
-                    <td><input type="text" name="nombre_producto[]"></td>
-                    <td><input type="number" name="cantidad_stock[]"></td>
-                    <td><input type="number" name="precio_unitario[]"></td>
-                    <td><input type="number" name="total[]" readonly></td>
+                    <td><input type="text" class="form-control" name="nombre_producto[]"></td>
+                    <td><input type="number" class="form-control" name="cantidad_stock[]"></td>
+                    <td><input type="number" class="form-control" name="precio_unitario[]"></td>
+                    <td><input type="number" class="form-control" name="total[]" readonly></td>
                     <td>
                         <button type="button" class="remove-row">Eliminar</button>
                     </td>
