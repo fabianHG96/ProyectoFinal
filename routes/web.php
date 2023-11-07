@@ -62,7 +62,6 @@ Route::group(['prefix'=> 'ordendecompra'],function(){
 });
 Route::get('/obtener-vendedores/{proveedorId}', [OrdenCompraController::class,'getVendedores']);
 
-
 //Gestor de usuarios
 Route::get('/manager/usuarios',[FlexController::class,'listUsers'])->name('Usuarios')->middleware('auth');
 

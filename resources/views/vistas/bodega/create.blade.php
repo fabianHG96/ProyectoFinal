@@ -24,7 +24,7 @@
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Direccion</span>
-                    <input type="text" class a="form-control" name="direccion" id="direccion">
+                    <input type="text" class="form-control" name="direccion" id="direccion">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Capacidad</span>

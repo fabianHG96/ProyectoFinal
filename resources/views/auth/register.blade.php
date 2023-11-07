@@ -20,28 +20,33 @@
                         <div class="col-lg-6" style="margin-left: 225px" >
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">CREAR CUENTA</h1>
+                                    <h1 class="h4 text-gray-900 mb-4"><strong>CREAR CUENTA</strong></h1>
                                 </div>
                                 <form class="user">
                                     <div class="form-group">
+                                        <strong class="">Nombre</strong>
                                         <input type="text" class="form-control form-control-user"
                                             id="name"
                                             placeholder="Ingrese nombre ..." name="name">
                                     </div>
                                     <div class="form-group">
+                                        <strong class="">Apellido</strong>
                                         <input type="text" class="form-control form-control-user"
                                             id="apellidos" placeholder="Ingrese apellido ..." name="surname">
                                     </div>
                                     <div class="form-group">
+                                        <strong class="">Email</strong>
                                         <input type="email" class="form-control form-control-user"
                                             id="email" aria-describedby="emailHelp"
                                             placeholder="Ingrese Email ..." name="email">
                                     </div>
                                     <div class="form-group">
+                                        <strong class="">Contraseña</strong>
                                         <input type="password" class="form-control form-control-user"
                                             id="password" placeholder="Contraseña ..." name="password">
                                     </div>
                                     <div class="form-group">
+                                        <strong class="">Repetir Contraseña</strong>
                                         <input type="password" class="form-control form-control-user"
                                             id="password" placeholder="Repite Contraseña ..." name="password_confirmation">
                                     </div>
