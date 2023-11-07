@@ -7,7 +7,9 @@ use App\Models\Empresa;
 use App\Models\Bodega;
 use App\Models\Categoria;
 use App\Models\Producto;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ProductoController extends Controller
 {
@@ -99,9 +101,31 @@ function Update(Request $request, $id){
     $producto = Producto::all();
     return view('vistas.producto.list', ['mostrarproducto' => $producto]);
  }
- function Details(){
-    return View('vistas.producto.details');
- }
+ public function Details($id) {
+    // Obtener el producto por su ID
+    $producto = Producto::find($id);
+
+    // Verificar si se encontró el producto
+    if (!$producto) {
+        return redirect()->route('ListProductos')->with('error', 'Producto no encontrado');
+    }
+
+    return view('vistas.producto.details', ['producto' => $producto]);
+}
+
+
+public function descargarDetalles($id)
+{
+    $producto = Producto::find($id);
+
+    if (!$producto) {
+        return redirect()->route('ListProductos')->with('error', 'Producto no encontrado');
+    }
+
+    $pdf = FacadePdf::loadView('vistas.producto.details', compact('producto'));
+
+    return $pdf->download('detalle_producto.pdf');
+}
 
  public function delete($id) {
     $producto = Producto::find($id);
