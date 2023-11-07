@@ -1,3 +1,4 @@
+<title>Crear Usuario</title>
 @extends('layouts.main')
 @section('main-content')
 <form action="{{ route('register.store') }}" method="POST" >
@@ -76,6 +77,10 @@
 
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>

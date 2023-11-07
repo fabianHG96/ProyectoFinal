@@ -7,7 +7,7 @@
     <div class="">
         <h1 class="align-self-end">Administar usuarios</h1>
 
-        <a class="btn btn-primary align-self-end" href="create">Nuevo Administar usuarios</a>
+        <a class="btn btn-primary align-self-end" href="{{ route('register') }}">Nuevo usuario</a>
     </div>
 </head>
 
