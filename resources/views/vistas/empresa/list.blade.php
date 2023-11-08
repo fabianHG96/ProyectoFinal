@@ -23,6 +23,7 @@
                 <th>telefono</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -45,6 +46,9 @@
                 </td>
                 <td>
                     <a href="{{ route('showUpdateEmpresa', $empresa->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
+                </td>
+                <td>
+                    <a href="{{ route('DetailsEmpresa', $empresa->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
                 </td>
             </tr>
             @endforeach

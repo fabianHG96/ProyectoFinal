@@ -114,17 +114,18 @@ function Update(Request $request, $id){
 }
 
 
+
+
+
 public function descargarDetalles($id)
 {
-    $producto = Producto::find($id);
+    $producto = Producto::find($id); // Obtener el producto desde la base de datos
 
-    if (!$producto) {
-        return redirect()->route('ListProductos')->with('error', 'Producto no encontrado');
-    }
+    // Renderizar la vista 'detalles_producto' con la información del producto
+    $pdf = FacadePdf::loadView('vistas.producto.detalles_producto', compact('producto'));
 
-    $pdf = FacadePdf::loadView('vistas.producto.details', compact('producto'));
-
-    return $pdf->download('detalle_producto.pdf');
+    // Descargar el PDF
+    return $pdf->download('detalles_producto.pdf');
 }
 
  public function delete($id) {

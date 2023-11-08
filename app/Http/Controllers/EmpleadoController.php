@@ -56,7 +56,17 @@ function ShowNewEmpleado(){
         return redirect()->route('ListEmpleado')->with('success', 'Empleado creado exitosamente');
         }
 
-    function Details(){return View('vistas.empleado.details');}
+        public function Details($id)
+        {
+            $empleado = Empleado::find($id);
+            $cargos = Cargo::all(); // Obtener todos los cargos
+
+            if (!$empleado) {
+                return redirect()->route('ListEmpleado')->with('error', 'Empleado no encontrada');
+            }
+
+            return view('vistas.empleado.details', ['empleado' => $empleado, 'cargos' => $cargos]);
+        }
     public function list(){
         $empleado = Empleado::all();
         return view('vistas.empleado.list', ['mostrarempleado' => $empleado]);

@@ -42,12 +42,6 @@
                 <td>
                     <a href="{{ route('ProductoDetails', $producto->id) }}" class="btn btn-primary btn-sm">Detalles</a>
                 </td>
-                <td>
-                    <form method="post" action="{{ route('DescargarProductoDetalles', ['id' => $producto->id]) }}">
-                        @csrf
-                        <button type="submit" class="btn btn-success">Descargar Detalles</button>
-                    </form>
-                </td>
             </tr>
             @endforeach
         </tbody>

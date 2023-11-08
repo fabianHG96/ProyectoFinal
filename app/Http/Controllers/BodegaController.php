@@ -83,16 +83,30 @@ class BodegaController extends Controller
         return redirect()->route('ListBodega')->with('success', 'Bodega actualizada exitosamente');
     }
 
-
-
-
-
-
     public function list(){
         $bodega = Bodega::all();
         return view('vistas.bodega.list', ['mostrarbodega' => $bodega]);
     }
-    function Details(){return View('vistas.bodega.details');}
+    public function Details($id)
+    {
+    // Obtener la bodega que se desea actualizar por su ID
+    $bodega = Bodega::find($id);
+
+    // Verificar si se encontró la bodega
+         if (!$bodega)  {
+        return redirect()->route('ListBodega')->with('error', 'Bodega no encontrada');
+        }
+
+    // Pasar la bodega a la vista de actualización
+    return view('vistas.bodega.details', ['bodega' => $bodega]);
+    }
+
+
+
+
+
+
+
 
     public function delete($id) {
         $bodega = Bodega::find($id);

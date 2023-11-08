@@ -1,46 +1,98 @@
 <title>Detalles de Empleado</title>
 @extends('layouts.main')
+
 @section('main-content')
-<div class="container">
-    @csrf
     <div class="container">
-        <h1>Detalles de Empleado</h1>
-        <div class="card">
-            <div class="card-body">
-                <div class="detalle-label">Nombres:</div>
-                <div class="detalle-value">Nombres del Empleado</div>
-
-                <div class="detalle-label">Apellido Paterno:</div>
-                <div class="detalle-value">Apellido Paterno del Empleado</div>
-
-                <div class="detalle-label">Apellido Materno:</div>
-                <div class="detalle-value">Apellido Materno del Empleado</div>
-
-                <div class="detalle-label">RUT:</div>
-                <div class="detalle-value">RUT del Empleado</div>
-
-                <div class="detalle-label">Fecha de Contratación:</div>
-                <div class="detalle-value">Fecha de Contratación del Empleado</div>
-
-                <div class="detalle-label">Salario:</div>
-                <div class="detalle-value">Salario del Empleado</div>
-
-                <div class="detalle-label">Estado Laboral:</div>
-                <div class="detalle-value">Estado Laboral del Empleado</div>
-
-                <div class="detalle-label">Dirección:</div>
-                <div class="detalle-value">Dirección del Empleado</div>
-
-                <div class="detalle-label">Inicio:</div>
-                <div class="detalle-value">Fecha de Inicio del Empleado</div>
-
-                <div class="detalle-label">Término:</div>
-                <div class="detalle-value">Fecha de Término del Empleado</div>
+        <section>
+            <div class="header-and-button d-flex justify-content-between align-items-center">
+                <h1 class="header">Detalles del empleado</h1>
             </div>
-        </div>
+            <hr />
+        </section>
+        <form method="POST" action="{{ route('UpdateEmpleado', $empleado->id) }}">
+            @csrf
+            <input type="hidden" name="empresa_id" value="1">
+            <input type="hidden" name="_method" value="POST">
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <label for="names"><strong>Datos del empleado</strong></label>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Nombres</span>
+                        <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $empleado->nombre }}" readonly>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Apellido Paterno</span>
+                        <input type="text" class="form-control" name="apellido_p" id="apellido_p" value="{{ $empleado->apellido_p }}" readonly>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Apellido Materno</span>
+                        <input type="text" class="form-control" name="apellido_m" id="apellido_m" value="{{ $empleado->apellido_m }}" readonly>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">RUT</span>
+                        <input type="text" class="form-control" name="rut" id="rut" value="{{ $empleado->rut }}" readonly>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Email</span>
+                        <input type="text" class="form-control" name="email" id="email" value="{{ $empleado->email }}" readonly>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Telefono</span>
+                        <input type="text" class="form-control" name="telefono" id="telefono" value="{{ $empleado->telefono }}" readonly>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Direccion</span>
+                        <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $empleado->direccion }}" readonly>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="patent"><strong>Datos del trabajo</strong></label>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Fecha de contratacion</span>
+                        <input type="date" class="form-control" name="Fcontratacion" id="Fcontratacion" value="{{ $empleado->Fcontratacion }}" readonly>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Salario</span>
+                        <input type="text" class="form-control" name="salario" id="salario" value="{{ $empleado->salario }}" readonly>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Horario</span>
+                        <input type="text" class="form-control" name="horario" id="horario" value="{{ $empleado->horario }}" readonly>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Estado Laboral</span>
+                        <select id="estado_laboral" name="estado_laboral" class="form-control" readonly>
+                            <option value="activo" {{ $empleado->estado_laboral === 'activo' ? 'selected' : '' }}>Activo</option>
+                            <option value="inactivo" {{ $empleado->estado_laboral === 'inactivo' ? 'selected' : '' }}>Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="input-group mt-2">
+                        <span class="input-group-text">Fecha de Finalizacion</span>
+                        <input type="date" class="form-control" name="Ftermino" id="Ftermino" value="{{ $empleado->Ftermino }}" readonly>
+                    </div>
+                    <div class="input-group mt-2">
+                        <label for="cargo_id" class="input-group-text">Seleccionar cargo</label>
+                        <select class="form-select" name="cargo_id" id="cargo_id" readonly>
+                            @foreach($cargos as $cargo)
+                                <option value="{{ $cargo->id }}">{{ $cargo->cargo }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-
-    @endsection
+@endsection
