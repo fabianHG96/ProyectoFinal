@@ -38,9 +38,10 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('leer.pdf', ['id' => $factura->id]) }}" class="btn btn-info">
+                        <a href="javascript:void(0);" onclick="window.open('{{ route('leer.pdf', ['id' => $factura->id]) }}', 'NombreDeLaVentana', 'width=800, height=600');" class="btn btn-info">
                             Ver PDF
                         </a>
+
                     </td>
                 </tr>
             @endforeach

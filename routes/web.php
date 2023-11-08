@@ -10,10 +10,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlexController;
 use App\Http\Controllers\OrdenDeCompraController;
 use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\VendedorController;
-use App\Models\OrdenDeCompra;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,8 +59,9 @@ Route::group(['prefix'=> 'ordendecompra'],function(){
     Route::get('/list',[OrdenDeCompraController::class,'List'])->name('ListOrdenDeCompra');
     Route::get('/details/{id}',[OrdenDeCompraController::class,'Details'])->name('DetailsOrdenDeCompra');
     Route::delete('/deleteOrdenDeCompra/{id}', [OrdenDeCompraController::class, 'delete'])->name('EliminarOrdenDeCompra');
+    Route::get('/obtener-vendedores/{proveedorId}', [OrdenDeCompraController::class,'getVendedores']);
 });
-Route::get('/obtener-vendedores/{proveedorId}', [OrdenCompraController::class,'getVendedores']);
+
 
 //Gestor de usuarios
 Route::get('/manager/usuarios',[FlexController::class,'listUsers'])->name('Usuarios')->middleware('auth');

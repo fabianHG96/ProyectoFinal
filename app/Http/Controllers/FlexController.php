@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use TCPDF;
 use App\Models\PdfDocument;
 use Illuminate\Support\Facades\Response;
+use App\Models\DetalleFactura;
+use Spatie\PdfToText\Pdf;
 class FlexController extends Controller
 {
     public function index(){
@@ -65,6 +67,65 @@ class FlexController extends Controller
                 $factura->pdf_contenido = file_get_contents($archivo->getRealPath());
 
                 $factura->save();
+
+                // Convierte el contenido binario a texto
+                $pdfText = Pdf::getText($factura->pdf_contenido);
+
+                        // Expresiones regulares para buscar y extraer datos
+                $nombreEmpresaPattern = '/(?<=SEÑOR\(ES\): )(.+)(?=\nR\.U\.T\.:)/';
+                $rutPattern = '/R\.U\.T\.:\s*([\d\.-]+)\s/';
+                $numeroFacturaPattern = '/FACTURA ELECTRONICA\nNº(\d+)/';
+                $fechaEmisionPattern = '/Fecha Emision: (\d+\s\w+\s\d+)/';
+                $nombreProductoPattern = '/- MATERIALES HIDRAULICOS\n(.*?)\n\nForma de Pago:/';
+                $montoNetoPattern = '/MONTO NETO \$ ([\d.,]+)/';
+                $ivaPattern = '/I\.V\.A\. 19% \$ ([\d.,]+)/';
+                $impuestoAdicionalPattern = '/IMPUESTO ADICIONAL \$ ([\d.,]+)/';
+                $totalPattern = '/TOTAL \$ ([\d.,]+)/';
+
+                // Inicializa el arreglo $data
+                $data = [
+                    'numero_factura' => null,
+                    'fecha_emision' => null,
+                    'nombre_empresa' => null,
+                    'rut' => null,
+                    'nombre_producto' => null,
+                    'monto_neto' => null,
+                    'iva' => null,
+                    'impuesto_adicional' => null,
+                    'total' => null,
+                ];
+
+                // Busca y extrae los datos
+                if (preg_match($nombreEmpresaPattern, $pdfText, $matches)) {
+                    $data['nombre_empresa'] = $matches[1];
+                }
+                if (preg_match($rutPattern, $pdfText, $matches)) {
+                    $data['rut'] = $matches[1];
+                }
+                if (preg_match($numeroFacturaPattern, $pdfText, $matches)) {
+                    $data['numero_factura'] = $matches[1];
+                }
+                if (preg_match($fechaEmisionPattern, $pdfText, $matches)) {
+                    $data['fecha_emision'] = $matches[1];
+                }
+                if (preg_match($nombreProductoPattern, $pdfText, $matches)) {
+                    $data['nombre_producto'] = $matches[1];
+                }
+                if (preg_match($montoNetoPattern, $pdfText, $matches)) {
+                    $data['monto_neto'] = str_replace(',', '', $matches[1]);
+                }
+                if (preg_match($ivaPattern, $pdfText, $matches)) {
+                    $data['iva'] = str_replace(',', '', $matches[1]);
+                }
+                if (preg_match($impuestoAdicionalPattern, $pdfText, $matches)) {
+                    $data['impuesto_adicional'] = str_replace(',', '', $matches[1]);
+                }
+                if (preg_match($totalPattern, $pdfText, $matches)) {
+                    $data['total'] = str_replace(',', '', $matches[1]);
+                }
+
+                // Crea un nuevo registro en la tabla "detalle_factura" utilizando DetalleFactura::create($data)
+                DetalleFactura::create($data);
 
                 return back()->with('success', 'Factura subida correctamente');
             } catch (\Exception $e) {
