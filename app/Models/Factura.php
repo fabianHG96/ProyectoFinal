@@ -11,17 +11,12 @@ class Factura extends Model
     protected $table = 'facturas'; // Nombre de la tabla en la base de datos
 
     protected $fillable = [
-        'numero_factura',
         'nombre_archivo',
-        'fecha_emision',
-        'nombre_empresa',
-        'rut',
-        'giro',
-        'nombre_producto',
-        'monto_neto',
-        'iva',
-        'impuesto_adicional',
-        'total',
         'pdf_contenido', // Añade este campo si deseas almacenar el contenido binario del archivo PDF
     ];
+
+    public function detalleFacturas()
+{
+    return $this->hasMany(DetalleFactura::class, 'factura_id');
+}
 }
