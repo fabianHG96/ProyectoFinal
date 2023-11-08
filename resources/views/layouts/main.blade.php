@@ -18,27 +18,32 @@
 <!-- CAMBIO DE TEMA DE CLARO A OSCURO-->
 <body data-bs-theme="dark">
     <div class="d-flex justify-content-between align-items-center border p-2">
-        <label for="nombres"><strong>IntegralFlex</strong></label>
-<!-- Botón y estructura -->
-<button onclick="cambiarTema()" class="btn btn-outline-primary">
-    <i id="ICON" class="fa-regular fa-sun"></i>
-    <span id="modoTexto">Modo Claro</span>
-</button>
-
-
-
         @if (Auth::check())
-            <a class="navbar-brand">Bienvenido {{ Auth::user()->name }}</a>
-        @else
-            <script>
-                window.location = "{{ route('login') }}";
-            </script>
-        @endif
-        <a class="btn btn-outline-primary" href="{{ route('logout') }}">Cerrar Sesión</a>
-    </div>
+        <a class="navbar-brand">Bienvenido {{ Auth::user()->name }}</a>
+    @else
+        <script>
+            window.location = "{{ route('login') }}";
+        </script>
+    @endif
+
+
+<label for="nombres"><strong>IntegralFlex</strong></label>
+<!-- Botón y estructura -->
+<div >
+    <button onclick="cambiarTema()" class="btn btn-outline-primary mr-5">
+        <i id="ICON" class="fa-regular fa-sun"></i>
+        <span id="modoTexto">Modo Claro</span>
+    </button>
+
+    <a class="btn btn-outline-primary" href="{{ route('logout') }}">Cerrar Sesión</a>
+</div>
+</div>
+
+
 
     <div class="container-fluid">
         <div class="row">
+
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="position-sticky">
                     <ul class="nav flex-column">

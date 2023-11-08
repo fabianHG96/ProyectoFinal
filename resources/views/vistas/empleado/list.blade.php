@@ -28,6 +28,7 @@
             <th>Término</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -64,6 +65,9 @@
                 </td>
                 <td>
                     <a href="{{ route('showUpdateEmpleado', $empleado->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
+                </td>
+                <td>
+                    <a href="{{ route('DetailsEmpleado', $empleado->id) }}" class="btn btn-primary btn-sm">Detalles</a>
                 </td>
             </tr>
             @endforeach

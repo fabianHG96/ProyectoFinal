@@ -24,6 +24,7 @@
                 <th>Rubro</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -46,6 +47,9 @@
                 </td>
                 <td>
                     <a href="{{ route('showUpdateProveedor', $proveedor->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
+                </td>
+                <td>
+                    <a href="{{ route('DetailsProveedor', $proveedor->id) }}" class="btn btn-primary btn-sm">Detalles</a>
                 </td>
             </tr>
             @endforeach

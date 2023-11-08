@@ -24,6 +24,7 @@
             <th>Estado laboral</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -45,6 +46,9 @@
             </td>
             <td>
                 <a href="{{ route('ShowUpdateVendedor', $vendedor->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
+            </td>
+            <td>
+                <a href="{{ route('DetailsVendedor', $vendedor->id) }}" class="btn btn-primary btn-sm">Detalles</a>
             </td>
             </tr>
             @endforeach

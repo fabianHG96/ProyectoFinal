@@ -23,6 +23,7 @@
                 <th>Stock</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -39,8 +40,8 @@
                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                 </form>
             </td>
-            <td><a href="{{ route('ShowUpdateBodega', $bodega->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
-            </td>
+            <td><a href="{{ route('ShowUpdateBodega', $bodega->id) }}" class="btn btn-primary btn-sm">Actualizar</a></td>
+            <td><a href="{{ route('DetailsBodega', $bodega->id) }}" class="btn btn-primary btn-sm">Detalles</a></td>
             </tr>
             @endforeach
         </tbody>

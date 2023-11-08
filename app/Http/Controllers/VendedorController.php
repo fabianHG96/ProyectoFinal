@@ -97,7 +97,16 @@ public function update(Request $request, $id)
 }
 
 
-    function Details(){return View('vistas.vendedor.details');}
+public function Details($id)
+{
+    $vendedor = Vendedor::find($id);
+
+    if (!$vendedor) {
+        return redirect()->route('ListVendedor')->with('error', 'Vendedor no encontrado');
+    }
+
+    return view('vistas.vendedor.details', ['vendedor' => $vendedor]);
+}
 
     public function delete($id) {
         $vendedor = Vendedor::find($id);
