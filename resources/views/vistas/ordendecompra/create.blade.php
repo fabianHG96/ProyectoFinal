@@ -105,7 +105,7 @@
                 <select name="producto_id" id="producto_id" class="form-select">
                     <option value="">Selecciona un producto</option>
                     @foreach ($productos as $producto)
-                        <option value="{{ $producto->id }}" data-nombre_producto="{{ $producto->nombre_producto }}">{{ $producto->nombre_producto }}</option>
+                        <option value="{{ $producto->id }}" data-monto="{{ $producto->monto }}" data-total="{{ $producto->total }}" data-nombre_producto="{{ $producto->nombre_producto }}">{{ $producto->nombre_producto }}</option>
                     @endforeach
                 </select>
                 <input type="hidden" class="form-control" name="nombre_producto" id="nombre_producto" readonly style="background-color: rgb(225, 225, 225);">
@@ -116,11 +116,11 @@
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Monto</span>
-                    <input type="number" class="form-control" name="monto" id="monto">
+                    <input type="number" class="form-control" name="monto" id="monto" value="{{ $producto->monto }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Total</span>
-                    <input type="number" class="form-control" name="total" id="total">
+                    <input type="number" class="form-control" name="total" id="total" value="{{ $producto->total }}">
                 </div>
             </div>
                 </div>

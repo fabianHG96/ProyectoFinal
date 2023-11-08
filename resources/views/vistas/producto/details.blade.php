@@ -32,10 +32,7 @@
             <a href="{{ route('ListProductos') }}" class="btn btn-primary">Volver</a>
             <form method="post" action="{{ route('DescargarProductoDetalles', ['id' => $producto->id]) }}">
                 @csrf
-                <!-- Verifica si no estás generando un PDF para mostrar el botón de descarga -->
-                @if (!request()->is('producto/descargar-producto/*'))
-                    <button type="submit" class="btn btn-success">Descargar Detalles</button>
-                @endif
+                <button type="submit" class="btn btn-success">Descargar Detalles</button>
             </form>
         </div>
     </div>

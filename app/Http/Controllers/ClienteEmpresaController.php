@@ -91,9 +91,15 @@ class ClienteEmpresaController extends Controller
         return view('vistas.clienteempresa.list', ['mostrarcliente_empresas' => $clienteempresa]);
     }
 
-    public function details()
+    public function Details($id)
     {
-        return view('vistas.clienteempresa.details');
+        $clienteEmpresa = ClienteEmpresa::find($id);
+
+        if (!$clienteEmpresa) {
+            return redirect()->route('ListClienteEmpresa')->with('error', 'Cliente de la empresa no encontrado');
+        }
+
+        return view('vistas.clienteempresa.details', ['clienteEmpresa' => $clienteEmpresa]);
     }
 
     public function delete($id) {

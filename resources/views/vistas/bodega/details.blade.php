@@ -1,20 +1,47 @@
-<title>Detalle de la Bodega</title>
+<title>Detalles de la bodega</title>
 @extends('layouts.main')
 @section('main-content')
-
     <div class="container">
-        <h1>Detalles de la Bodega</h1>
-        <div class="card">
-            <div class="card-body">
-                <p>Direccion:</p>
-                <p>Capacidad:</p>
-                <p>Stock:</p>
+        <body>
+            <!-- Encabezado, menú u otras secciones -->
 
+            <div class="container">
+                <section>
+                    <div class="header-and-button d-flex justify-content-between align-items-center">
+                        <h1 class="header">Detalles de la bodega</h1>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" href="{{ route('ListBodega') }}">Volver a la lista</a>
+                    </div>
+                    <hr />
+                </section>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <label for="names"><strong>Detalles de la bodega</strong></label>
+                        <div class="input-group mt-2">
+                            <span class="input-group-text">País</span>
+                            <input type="text" class="form-control" name="pais" id="pais" value="{{ $bodega->pais }}" readonly>
+                        </div>
+                        <div class="input-group mt-2">
+                            <span class="input-group-text">Región</span>
+                            <input type="text" class="form-control" name="region" id="region" value="{{ $bodega->region }}" readonly>
+                        </div>
+                        <div class="input-group mt-2">
+                            <span class="input-group-text">Dirección</span>
+                            <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $bodega->direccion }}" readonly>
+                        </div>
+                        <div class="input-group mt-2">
+                            <span class="input-group-text">Capacidad</span>
+                            <input type="text" class="form-control" name="capacidad" id="capacidad" value="{{ $bodega->capacidad }}" readonly>
+                        </div>
+                        <div class="input-group mt-2">
+                            <span class="input-group-text">Stock</span>
+                            <input type="text" class="form-control" name="stock" id="stock" value="{{ $bodega->stock }}" readonly>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+        </body>
 
-    @endsection
+    </div>
+@endsection

@@ -60,9 +60,30 @@ class OrdenDeCompraController extends Controller
         $ordendecompra = OrdenDeCompra::all();
         return View('vistas.ordendecompra.list', ['mostrarordenes' => $ordendecompra]);
      }
-     function Details(){
-        return View('vistas.ordendecompra.details');
+     public function Details($id)
+     {
+         $ordendecompra = OrdenDeCompra::find($id);
+
+         if (!$ordendecompra) {
+             return redirect()->route('ListOrdenDeCompra')->with('error', 'Orden de Compra no encontrada');
+         }
+
+         // Asegúrate de tener los datos necesarios en las variables $empleados, $proveedores, $vendedores y $productos antes de pasarlos a la vista.
+         $proveedores = Proveedor::all();
+         $vendedores = Vendedor::all(); // Inicialmente, la lista de vendedores estará vacía
+         $empleados = Empleado::all();
+         $productos = Producto::all();
+
+         return view('vistas.ordendecompra.details', [
+             'ordendecompra' => $ordendecompra,
+
+             'proveedores' => $proveedores,
+             'vendedores' => $vendedores,
+             'empleados' => $empleados,
+             'productos' => $productos,
+         ]);
      }
+
 
      public function delete($id) {
         $ordendecompra = OrdenDeCompra::find($id);
@@ -79,6 +100,30 @@ class OrdenDeCompraController extends Controller
 
         return redirect()->route('ListOrdenDeCompra')->with('success', 'Orden De Compra ha sido eliminada de forma suave.');
     }
+    ////////////////////
+
+    public function showUpdateOrdenDeCompra($id)
+    {
+        $ordendecompra = OrdenDeCompra::find($id);
+
+        if (!$ordendecompra) {
+            return redirect()->route('ListOrdenDeCompra')->with('error', 'OrdenDeCompra no encontrado');
+        }
+
+        $proveedores = Proveedor::all();
+        $vendedores = Vendedor::all(); // Inicialmente, la lista de vendedores estará vacía
+        $empleados = Empleado::all();
+        $productos = Producto::all();
+
+
+        return view('vistas.ordendecompra.update', [
+            'ordendecompra' => $ordendecompra,
+            'proveedores' => $proveedores,
+            'vendedores' => $vendedores,
+            'empleados' => $empleados,
+            'productos' => $productos,
+        ]);
+    }
 
     function Update(Request $request, $id){
 
@@ -86,11 +131,11 @@ class OrdenDeCompraController extends Controller
 
             'fsolicitud' => 'required|date',
             'ftermino' => 'required|date',
-            'proveedor_id' => 'required|exists:proveedor,id',
-            'vendedor_id' => 'required|exists:vendedor,id',
-            'empleado_id' => 'required|exists:empleado,id',
-            'producto_id' => 'required|exists:producto,id',
-            'nombre_producto' => 'required|exists:producto,nombre_producto',
+            'proveedor_id' => 'required:proveedor,id',
+            'vendedor_id' => 'required:vendedor,id',
+            'empleado_id' => 'required:empleados,id',
+            'producto_id' => 'required:productos,id',
+            'nombre_producto' => 'required:productos,nombre_producto',
             'estado' => 'required',
             'cantidad' => 'required',
             'monto' => 'required',
@@ -112,13 +157,13 @@ class OrdenDeCompraController extends Controller
             'proveedor_id' => $request->proveedor_id,
             'vendedor_id' => $request->vendedor_id,
             'empleado_id' => $request->empleado_id,
-            'prodcucto_id' => 'required|exists:prodcucto,id',
+            'prodcucto_id' => $request->producto,
             'estado' => $request->estado,
             'cantidad' => $request->cantidad,
             'monto' => $request->monto,
             'total' => $request->total,
         ]);
 
-        return redirect()->route('ListEmpresa')->with('success', 'Empresa actualizada exitosamente');
+        return redirect()->route('ListOrdenDeCompra')->with('success', 'Empresa actualizada exitosamente');
     }
 }

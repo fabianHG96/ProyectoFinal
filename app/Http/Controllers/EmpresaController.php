@@ -47,9 +47,15 @@ class EmpresaController extends Controller
         return view('vistas.empresa.list', ['mostrarempresa' => $empresa]);
     }
 
-    public function details()
+    public function Details($id)
     {
-        return view('vistas.empresa.list');
+        $empresa = Empresa::find($id);
+
+        if (!$empresa) {
+            return redirect()->route('ListEmpresa')->with('error', 'Empresa no encontrada');
+        }
+
+        return view('vistas.Empresa.details', ['empresa' => $empresa]);
     }
 
     public function delete($id) {

@@ -46,7 +46,7 @@ Route::get('/create',[ProductoController::class,'ShowNewProducto'])->name('Creat
 Route::post('/create', [ProductoController::class, 'CreateNewProducto'])->name('register.Productos');
 Route::get('/productos/update/{id}', [ProductoController::class,'showUpdateProducto'])->name('ShowUpdateProducto');
 Route::post('/productos/update/{id}', [ProductoController::class,'Update'])->name('UpdateProducto');
-Route::get('/list',[ProductoController::class,'List'])->name('ListProductos');
+Route::get('/list/',[ProductoController::class,'List'])->name('ListProductos');
 Route::get('/productos/{id}', [ProductoController :: class,'Details'])->name('ProductoDetails');
 Route::post('/descargar-producto/{id}', [ProductoController::class, 'descargarDetalles'])->name('DescargarProductoDetalles');
 Route::delete('/eliminarProducto/{id}', [ProductoController::class, 'delete'])->name('EliminarProducto');
@@ -58,7 +58,7 @@ Route::group(['prefix'=> 'ordendecompra'],function(){
     Route::get('/update/{id}', [OrdenDeCompraController::class, 'showUpdateOrdenDeCompra'])->name('showUpdateOrdenDeCompra');
     Route::post('/update/{id}', [OrdenDeCompraController::class,'Update'])->name('UpdateOrdenDeCompra');
     Route::get('/list',[OrdenDeCompraController::class,'List'])->name('ListOrdenDeCompra');
-    Route::get('/details',[OrdenDeCompraController::class,'Details'])->name('DetailsOrdenDeCompra');
+    Route::get('/details/{id}',[OrdenDeCompraController::class,'Details'])->name('DetailsOrdenDeCompra');
     Route::delete('/deleteOrdenDeCompra/{id}', [OrdenDeCompraController::class, 'delete'])->name('EliminarOrdenDeCompra');
 });
 Route::get('/obtener-vendedores/{proveedorId}', [OrdenCompraController::class,'getVendedores']);
@@ -90,7 +90,7 @@ Route::post('/create', [EmpleadoController::class, 'CreateNewEmpleado'])->name('
 Route::get('/update/{id}', [EmpleadoController::class, 'showUpdateEmpleado'])->name('showUpdateEmpleado');
 Route::post('/update/{id}', [EmpleadoController::class,'Update'])->name('UpdateEmpleado');
 Route::get('/list',[EmpleadoController::class,'list'])->name('ListEmpleado');
-Route::get('/details',[EmpleadoController::class,'details'])->name('DetailsEmpleado');
+Route::get('/details/{id}',[EmpleadoController::class,'details'])->name('DetailsEmpleado');
 Route::delete('/eliminarEmpleado/{id}', [EmpleadoController::class, 'delete'])->name('eliminarEmpleado')->middleware('auth');
 });
 
@@ -101,7 +101,7 @@ Route::group(['prefix'=> 'vendedor'],function(){
     Route::get('/vendedor/update/{id}', [VendedorController::class, 'showUpdateVendedor'])->name('ShowUpdateVendedor');
     Route::post('/vendedor/update/{id}', [VendedorController::class, 'update'])->name('UpdateVendedor');
     Route::get('/list',[VendedorController::class,'list'])->name('ListVendedor');
-    Route::get('/details',[VendedorController::class,'details'])->name('DetailsVendedor');
+    Route::get('/details/{id}',[VendedorController::class,'details'])->name('DetailsVendedor');
     Route::delete('/eliminarVendedor/{id}', [VendedorController::class, 'delete'])->name('eliminarVendedor')->middleware('auth');
     });
 
@@ -112,7 +112,7 @@ Route::group(['prefix'=> 'empresa'],function(){
     Route::get('/update/{id}', [EmpresaController::class, 'showUpdateEmpresa'])->name('showUpdateEmpresa');
     Route::post('/update/{id}', [EmpresaController::class,'Update'])->name('UpdateEmpresa');
     Route::get('/list',[EmpresaController::class,'list'])->name('ListEmpresa');
-    Route::get('/details',[EmpresaController::class,'details'])->name('DetailsEmpresa');
+    Route::get('/details/{id}',[EmpresaController::class,'details'])->name('DetailsEmpresa');
     Route::delete('/eliminarEmpresa/{id}', [EmpresaController::class, 'delete'])->name('eliminarEmpresa')->middleware('auth');
 
     });
@@ -124,7 +124,7 @@ Route::group(['prefix'=> 'clienteEmpresa'],function(){
     Route::get('/clientes/update/{id}', [ClienteEmpresaController::class,'showUpdateClienteEmpresa'])->name('ShowUpdateClienteEmpresa');
     Route::post('/clientes/update/{id}', [ClienteEmpresaController::class,'Update'])->name('UpdateClienteEmpresa');
     Route::get('/list',[ClienteEmpresaController::class,'list'])->name('ListClienteEmpresa');
-    Route::get('/details',[ClienteEmpresaController::class,'details'])->name('DetailsClienteEmpresa');
+    Route::get('/details/{id}',[ClienteEmpresaController::class,'details'])->name('DetailsClienteEmpresa');
     Route::delete('/eliminarClienteEmpresa/{id}', [ClienteEmpresaController::class, 'delete'])->name('eliminarClienteEmpresa')->middleware('auth');
 });
 
@@ -135,7 +135,7 @@ Route::post('/create', [ProveedorController::class, 'createNewProveedor'])->name
 Route::get('/update/{id}', [ProveedorController::class, 'showUpdateProveedor'])->name('showUpdateProveedor');
 Route::post('/update/{id}', [ProveedorController::class,'Update'])->name('UpdateProveedor');
 Route::get('/list',[ProveedorController::class,'list'])->name('ListProveedor');
-Route::get('/details',[ProveedorController::class,'details'])->name('DetailsProveedor');
+Route::get('/details/{id}',[ProveedorController::class,'details'])->name('DetailsProveedor');
 Route::delete('/eliminarProveedor/{id}', [ProveedorController::class, 'delete'])->name('eliminarProveedor')->middleware('auth');
 });
 
@@ -146,7 +146,7 @@ Route::group(['prefix'=> 'bodega'],function(){
     Route::get('/bodegas/update/{id}', [BodegaController::class,'showUpdateBodega'])->name('ShowUpdateBodega');
     Route::post('/bodegas/update/{id}', [BodegaController::class,'Update'])->name('UpdateBodega');
     Route::get('/list',[BodegaController::class,'list'])->name('ListBodega');
-    Route::get('/details',[BodegaController::class,'details'])->name('DetailsBodega');
+    Route::get('/details/{id}',[BodegaController::class,'Details'])->name('DetailsBodega');
     Route::delete('/eliminarBodega/{id}', [BodegaController::class, 'delete'])->name('eliminarBodega')->middleware('auth');
 });
 
@@ -156,6 +156,6 @@ Route::group(['prefix'=> 'categoria'],function(){
     Route::get('/categorias/update/{id}', [CategoriaController::class,'showUpdateCategoria'])->name('ShowUpdateCategoria');
     Route::post('/categorias/update/{id}', [CategoriaController::class,'Update'])->name('UpdateCategoria');
     Route::get('/list',[CategoriaController::class,'list'])->name('ListCategoria');
-    Route::get('/details',[CategoriaController::class,'details'])->name('DetailsCategoria');
+    Route::get('/details/{id}',[CategoriaController::class,'details'])->name('DetailsCategoria');
     Route::delete('/eliminarCategoria/{id}', [CategoriaController::class, 'delete'])->name('eliminarCategoria')->middleware('auth');
 });

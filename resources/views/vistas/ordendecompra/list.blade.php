@@ -23,6 +23,7 @@
                         <th>Fecha Termino</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,7 @@
                         <td>
                             <a href="{{ route('showUpdateOrdenDeCompra', $ordendecompra->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
                         </td>
+                        <td><a href="{{ route('DetailsOrdenDeCompra', $ordendecompra->id) }}" class="btn btn-primary btn-sm">Detalles</a></td>
                     </tr>
                     @endforeach
                 </tbody>

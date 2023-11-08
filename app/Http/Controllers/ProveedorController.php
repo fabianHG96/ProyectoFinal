@@ -42,7 +42,16 @@ class ProveedorController extends Controller
         $proveedor = Proveedor::all();
         return view('vistas.proveedor.list', ['mostrarproveedor' => $proveedor]);
     }
-    function Details(){return View('vistas.proveedor.details');}
+    public function Details($id)
+    {
+        $proveedor = Proveedor::find($id);
+
+        if (!$proveedor) {
+            return redirect()->route('ListProveedor')->with('error', 'Proveedor no encontrado');
+        }
+
+        return view('vistas.Proveedor.details', ['proveedor' => $proveedor]);
+    }
 
     public function delete($id) {
         $proveedor = Proveedor::find($id);

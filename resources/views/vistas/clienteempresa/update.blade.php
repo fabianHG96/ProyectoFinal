@@ -27,7 +27,7 @@
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Region</span>
-                    <input type="text" class "form-control" name="region" id="region" value="{{ $clienteEmpresa->region }}">
+                    <input type="text" class="form-control" name="region" id="region" value="{{ $clienteEmpresa->region }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Direccion</span>

@@ -27,7 +27,7 @@
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Total</span>
-                    <input type="text" class="form-control" name="Total" id="Total" readonly>
+                    <input type="text" class="form-control" name="Total" id="Total" style="background-color: rgb(124, 124, 124);" readonly>
                 </div>
 
             </div>
