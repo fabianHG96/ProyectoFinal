@@ -7,6 +7,9 @@
             <div class="header-and-button d-flex justify-content-between align-items-center">
                 <h1 class="header">Detalles del empleado</h1>
             </div>
+            <div class="mt-3">
+                <a class="btn btn-primary" href="{{ route('ListEmpleado') }}">Volver a la lista</a>
+            </div>
             <hr />
         </section>
         <form method="POST" action="{{ route('UpdateEmpleado', $empleado->id) }}">
@@ -15,76 +18,38 @@
             <input type="hidden" name="_method" value="POST">
             <div class="row mt-4">
                 <div class="col-md-6">
-                    <label for="names"><strong>Datos del empleado</strong></label>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Nombres</span>
-                        <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $empleado->nombre }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Apellido Paterno</span>
-                        <input type="text" class="form-control" name="apellido_p" id="apellido_p" value="{{ $empleado->apellido_p }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Apellido Materno</span>
-                        <input type="text" class="form-control" name="apellido_m" id="apellido_m" value="{{ $empleado->apellido_m }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">RUT</span>
-                        <input type="text" class="form-control" name="rut" id="rut" value="{{ $empleado->rut }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Email</span>
-                        <input type="text" class="form-control" name="email" id="email" value="{{ $empleado->email }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Telefono</span>
-                        <input type="text" class="form-control" name="telefono" id="telefono" value="{{ $empleado->telefono }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Direccion</span>
-                        <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $empleado->direccion }}" readonly>
+                    <h2>{{ $empleado->nombre }}</h2>
+                    <p>Creado el: {{ $empleado->created_at->format('d/m/Y H:i:s') }}</p>
+                    <p>Última actualización: {{ $empleado->updated_at->format('d/m/Y H:i:s') }}</p>
+
+                    <div class="details">
+                        <p><strong>Nombres:</strong> {{ $empleado->nombre }}</p>
+                        <p><strong>Apellido Paterno:</strong> {{ $empleado->apellido_p }}</p>
+                        <p><strong>Apellido Materno:</strong> {{ $empleado->apellido_m }}</p>
+                        <p><strong>RUT:</strong> {{ $empleado->rut }}</p>
+                        <p><strong>Email:</strong> {{ $empleado->email }}</p>
+                        <p><strong>Telefono:</strong> {{ $empleado->telefono }}</p>
+                        <p><strong>Direccion:</strong> {{ $empleado->direccion }}</p>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <label for="patent"><strong>Datos del trabajo</strong></label>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Fecha de contratacion</span>
-                        <input type="date" class="form-control" name="Fcontratacion" id="Fcontratacion" value="{{ $empleado->Fcontratacion }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Salario</span>
-                        <input type="text" class="form-control" name="salario" id="salario" value="{{ $empleado->salario }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Horario</span>
-                        <input type="text" class="form-control" name="horario" id="horario" value="{{ $empleado->horario }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Estado Laboral</span>
-                        <select id="estado_laboral" name="estado_laboral" class="form-control" readonly>
-                            <option value="activo" {{ $empleado->estado_laboral === 'activo' ? 'selected' : '' }}>Activo</option>
-                            <option value="inactivo" {{ $empleado->estado_laboral === 'inactivo' ? 'selected' : '' }}>Inactivo</option>
-                        </select>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Fecha de Finalizacion</span>
-                        <input type="date" class="form-control" name="Ftermino" id="Ftermino" value="{{ $empleado->Ftermino }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <label for="cargo_id" class="input-group-text">Seleccionar cargo</label>
-                        <select class="form-select" name="cargo_id" id="cargo_id" readonly>
-                            @foreach($cargos as $cargo)
-                                <option value="{{ $cargo->id }}">{{ $cargo->cargo }}</option>
-                            @endforeach
-                        </select>
+                    <div class="details">
+                        <p><strong>Fecha de contratacion:</strong> {{ $empleado->Fcontratacion }}</p>
+                        <p><strong>Salario:</strong> {{ $empleado->salario }}</p>
+                        <p><strong>Horario:</strong> {{ $empleado->horario }}</p>
+                        <p><strong>Estado Laboral:</strong> {{ $empleado->estado_laboral }}</p>
+                        <p><strong>Fecha de Finalizacion:</strong> {{ $empleado->Ftermino }}</p>
+                        <p><strong>Cargo:</strong> {{ $empleado->cargo ? $empleado->cargo->cargo : 'Sin cargo asignado' }}</p>
+
                     </div>
                 </div>
             </div>
         </form>
     </div>
     @if($errors->any())
-        <div class="alert alert-danger">
+        <div class="alert alert-danger mt-4">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>

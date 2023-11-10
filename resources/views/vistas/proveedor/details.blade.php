@@ -5,59 +5,42 @@
     <div class="container">
         <section>
             <div class="header-and-button d-flex justify-content-between align-items-center">
-                <h1 class="header">Detalles del proveedor</h1>
+                <h1 class="header">Detalles de la Proveedor</h1>
+            </div>
+            <div class="mt-3">
+                <a class="btn btn-primary" href="{{ route('ListProveedor') }}">Volver a la lista</a>
             </div>
             <hr />
         </section>
         <form method="POST" action="{{ route('DetailsProveedor', $proveedor->id) }}">
             @csrf
-            <input type="hidden" name="proveedor_id" value="1">
-            <input type="hidden" name="_method" value="POST">
             <div class="row mt-4">
                 <div class="col-md-6">
                     <label for="names"><strong>Datos del Proveedor</strong></label>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Nombre del Proveedor</span>
-                        <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $proveedor->nombre }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">RUT</span>
-                        <input type="text" class="form-control" name="rut" id="rut" value="{{ $proveedor->rut }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">País</span>
-                        <input type="text" class="form-control" name="pais" id="pais" value="{{ $proveedor->pais }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Región</span>
-                        <input type="text" class="form-control" name="region" id="region" value="{{ $proveedor->region }}" readonly>
+
+                    <div class="details">
+                        <p><strong>Nombre del Proveedor:</strong> {{ $proveedor->nombre }}</p>
+                        <p><strong>RUT:</strong> {{ $proveedor->rut }}</p>
+                        <p><strong>País:</strong> {{ $proveedor->pais }}</p>
+                        <p><strong>Región:</strong> {{ $proveedor->region }}</p>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <label for="patent"><strong>Datos del trabajo</strong></label>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Dirección</span>
-                        <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $proveedor->direccion }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Número de Contacto</span>
-                        <input type="text" class="form-control" name="telefono" id="telefono" value="{{ $proveedor->telefono }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Correo Electrónico</span>
-                        <input type="text" class="form-control" name="email" id="email" value="{{ $proveedor->email }}" readonly>
-                    </div>
-                    <div class="input-group mt-2">
-                        <span class="input-group-text">Rubro</span>
-                        <input type="text" class="form-control" name="rubro" id="rubro" value="{{ $proveedor->rubro }}" readonly>
+                    <label for="patent"><strong>Datos del Trabajo</strong></label>
+
+                    <div class="details">
+                        <p><strong>Dirección:</strong> {{ $proveedor->direccion }}</p>
+                        <p><strong>Número de Contacto:</strong> {{ $proveedor->telefono }}</p>
+                        <p><strong>Correo Electrónico:</strong> {{ $proveedor->email }}</p>
+                        <p><strong>Rubro:</strong> {{ $proveedor->rubro }}</p>
                     </div>
                 </div>
             </div>
         </form>
     </div>
     @if($errors->any())
-        <div class="alert alert-danger">
+        <div class="alert alert-danger mt-4">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>

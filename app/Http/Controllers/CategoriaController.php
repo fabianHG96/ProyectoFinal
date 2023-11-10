@@ -88,5 +88,18 @@ class CategoriaController extends Controller
     }
 
 
-    function Details(){return View('vistas.categoria.details');}
+    public function Details($id)
+    {
+    // Obtener la bodega que se desea actualizar por su ID
+    $categoria = Categoria::find($id);
+
+    // Verificar si se encontró la bodega
+         if (!$categoria)  {
+        return redirect()->route('ListCategoria')->with('error', 'Bodega no encontrada');
+        }
+
+    // Pasar la bodega a la vista de actualización
+    return view('vistas.categoria.details', ['categoria' => $categoria]);
+    }
+
 }
