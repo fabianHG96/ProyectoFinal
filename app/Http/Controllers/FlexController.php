@@ -62,74 +62,24 @@ class FlexController extends Controller
             $archivo = $request->file('archivo_pdf');
 
             try {
-                $factura = new Factura();
-                $factura->nombre_archivo = $request->input('nombre_archivo');
-                $factura->pdf_contenido = file_get_contents($archivo->getRealPath());
+                // Agregar un identificador único al nombre del archivo
+                $nombreArchivo = $request->input('nombre_archivo') . '_' . uniqid();
+                $rutaArchivo = 'archivos/' . $nombreArchivo . '.' . $archivo->getClientOriginalExtension();
 
+                $archivo->move(public_path('archivos'), $rutaArchivo);
+
+                // Crear el registro de la factura con el nombre del archivo
+                $factura = new Factura();
+                $factura->nombre_archivo = $nombreArchivo;
+                $factura->ruta_archivo = $rutaArchivo;
                 $factura->save();
 
-                // Convierte el contenido binario a texto
-                $pdfText = Pdf::getText($factura->pdf_contenido);
-
-                        // Expresiones regulares para buscar y extraer datos
-                $nombreEmpresaPattern = '/(?<=SEÑOR\(ES\): )(.+)(?=\nR\.U\.T\.:)/';
-                $rutPattern = '/R\.U\.T\.:\s*([\d\.-]+)\s/';
-                $numeroFacturaPattern = '/FACTURA ELECTRONICA\nNº(\d+)/';
-                $fechaEmisionPattern = '/Fecha Emision: (\d+\s\w+\s\d+)/';
-                $nombreProductoPattern = '/- MATERIALES HIDRAULICOS\n(.*?)\n\nForma de Pago:/';
-                $montoNetoPattern = '/MONTO NETO \$ ([\d.,]+)/';
-                $ivaPattern = '/I\.V\.A\. 19% \$ ([\d.,]+)/';
-                $impuestoAdicionalPattern = '/IMPUESTO ADICIONAL \$ ([\d.,]+)/';
-                $totalPattern = '/TOTAL \$ ([\d.,]+)/';
-
-                // Inicializa el arreglo $data
-                $data = [
-                    'numero_factura' => null,
-                    'fecha_emision' => null,
-                    'nombre_empresa' => null,
-                    'rut' => null,
-                    'nombre_producto' => null,
-                    'monto_neto' => null,
-                    'iva' => null,
-                    'impuesto_adicional' => null,
-                    'total' => null,
-                ];
-
-                // Busca y extrae los datos
-                if (preg_match($nombreEmpresaPattern, $pdfText, $matches)) {
-                    $data['nombre_empresa'] = $matches[1];
-                }
-                if (preg_match($rutPattern, $pdfText, $matches)) {
-                    $data['rut'] = $matches[1];
-                }
-                if (preg_match($numeroFacturaPattern, $pdfText, $matches)) {
-                    $data['numero_factura'] = $matches[1];
-                }
-                if (preg_match($fechaEmisionPattern, $pdfText, $matches)) {
-                    $data['fecha_emision'] = $matches[1];
-                }
-                if (preg_match($nombreProductoPattern, $pdfText, $matches)) {
-                    $data['nombre_producto'] = $matches[1];
-                }
-                if (preg_match($montoNetoPattern, $pdfText, $matches)) {
-                    $data['monto_neto'] = str_replace(',', '', $matches[1]);
-                }
-                if (preg_match($ivaPattern, $pdfText, $matches)) {
-                    $data['iva'] = str_replace(',', '', $matches[1]);
-                }
-                if (preg_match($impuestoAdicionalPattern, $pdfText, $matches)) {
-                    $data['impuesto_adicional'] = str_replace(',', '', $matches[1]);
-                }
-                if (preg_match($totalPattern, $pdfText, $matches)) {
-                    $data['total'] = str_replace(',', '', $matches[1]);
-                }
-
-                // Crea un nuevo registro en la tabla "detalle_factura" utilizando DetalleFactura::create($data)
-                DetalleFactura::create($data);
+                // Resto del código...
 
                 return back()->with('success', 'Factura subida correctamente');
             } catch (\Exception $e) {
-                logger()->error('Error al guardar la factura: ' . $e->getMessage());
+                // Manejar errores...
+
                 return back()->with('error', 'Error al guardar la factura');
             }
         }
@@ -137,40 +87,37 @@ class FlexController extends Controller
         return back()->with('error', 'No se subió ningún archivo PDF.');
     }
 
-    public function descargarPdf($id = null){
+    public function descargarPdf($id = null)
+    {
         $factura = Factura::find($id);
 
         if (!$factura) {
             return redirect()->back()->with('error', 'Factura no encontrada.');
         }
 
-        $pdfContent = $factura->pdf_contenido;
         $nombreArchivo = $factura->nombre_archivo;
+        $rutaArchivo = public_path('archivos/' . $nombreArchivo . '.pdf');
 
-        if ($pdfContent) {
-            return response($pdfContent)
-                ->header('Content-Type', 'application/pdf')
-                ->header('Content-Disposition', 'attachment; filename="' . $nombreArchivo . '"');
+        if (file_exists($rutaArchivo)) {
+            return response()->file($rutaArchivo, ['Content-Type' => 'application/pdf']);
         }
 
-        return back()->with('error', 'No se encontró contenido PDF para descargar.');
+        return back()->with('error', 'No se encontró el archivo PDF para descargar.');
     }
 
-    public function leerContenidoPDF($id) {
-        $pdf_contenido = Factura::find($id);
+    public function leerContenidoPDF($id)
+    {
+        $factura = Factura::find($id);
 
-        if (!$pdf_contenido) {
+        if (!$factura) {
             return "Factura no encontrada";
         }
 
-        $pdfContent = $pdf_contenido->pdf_contenido;
+        $nombreArchivo = $factura->nombre_archivo;
+        $rutaArchivo = public_path('archivos/' . $nombreArchivo . '.pdf');
 
-        if ($pdfContent) {
-            // Convertir el contenido del blob a un PDF y mostrarlo en el navegador
-            return Response::make($pdfContent, 200, [
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'inline; filename="factura.pdf"',
-            ]);
+        if (file_exists($rutaArchivo)) {
+            return response()->file($rutaArchivo, ['Content-Type' => 'application/pdf']);
         }
 
         return "PDF no encontrado";

@@ -144,7 +144,16 @@
     @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-
+    <script>
+        $(document).ready(function () {
+            $('#proveedor_id').on('change', function () {
+                var proveedorId = $(this).val();
+                $('#vendedor_id option').hide();
+                $('#vendedor_id option[data-proveedor="' + proveedorId + '"]').show();
+                $('#vendedor_id').val(''); // Limpia la selección de vendedor
+            });
+        });
+        </script>
     <script>
         document.getElementById('proveedor_id').addEventListener('change', function () {
             const selectedProveedor = this.options[this.selectedIndex];

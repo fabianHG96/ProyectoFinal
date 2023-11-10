@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cliente_empresas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('empresa_id');
-            $table->string('nombre')->unique;
+            $table->string('nombre')->unique();
             $table->string('rut')->unique(); // Agregar restricción 'unique' al campo 'rut'
             $table->string('pais');
             $table->string('region');
