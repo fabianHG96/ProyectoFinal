@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_archivo');
-            $table->binary('pdf_contenido', 4294967295);
+            $table->string('nombre_archivo')->unique();
+            $table->string('ruta_archivo');
             $table->timestamps();
         });
     }

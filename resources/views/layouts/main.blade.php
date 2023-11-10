@@ -119,16 +119,7 @@
             </nav>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 @yield('main-content')
-                <script>
-                    $(document).ready(function () {
-                        $('#proveedor_id').on('change', function () {
-                            var proveedorId = $(this).val();
-                            $('#vendedor_id option').hide();
-                            $('#vendedor_id option[data-proveedor="' + proveedorId + '"]').show();
-                            $('#vendedor_id').val(''); // Limpia la selección de vendedor
-                        });
-                    });
-                    </script>
+
 
                    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
