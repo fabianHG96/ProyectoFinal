@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Cargo;
 
 class AuthController extends Controller
 {
@@ -28,7 +29,8 @@ class AuthController extends Controller
     }
 
     public function showRegister(){
-        return View('auth.register');
+        $cargos = Cargo::all();
+        return View('auth.register', compact('cargos'));
     }
 
     public function storeAccount(Request $request){
