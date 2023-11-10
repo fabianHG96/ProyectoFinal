@@ -22,6 +22,5 @@ class CategoriaSeeder extends Seeder
         Categoria::create(['categoria' => 'Accesorios Hidráulicos']);
         Categoria::create(['categoria' => 'Componentes Hidráulicos']);
         Categoria::create(['categoria' => 'Sistemas Hidráulicos']);
-
     }
 }

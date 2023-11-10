@@ -20,7 +20,7 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="https://i.pinimg.com/750x/ab/c8/81/abc88166e368d4b7099c7b84d01ec324.jpg" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('assets\img\imagenmision.jpg') }}" alt="..." /></div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
@@ -36,12 +36,12 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="https://i.pinimg.com/750x/b1/37/af/b137afd3d1ccb907a2f5aa0bc9874b46.jpg" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('assets\img\imagenvision.jpg') }}" alt="..." /></div>
                     </div>
                     <div class="col-lg-6">
                         <div class="p-5">
                             <h2 class="display-4">Nuestra Vision.</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut arcu vel nulla tempus tempus ut sit amet tortor. Phasellus tempus a nibh eu malesuada. Praesent interdum pulvinar vulputate. Vestibulum finibus justo mi, ut lacinia enim vehicula vel. Cras in sapien convallis, vulputate leo nec, dignissim velit. Nunc id nunc vitae risus sagittis malesuada ut id est. Integer volutpat dui felis, et fringilla enim laoreet id. In mattis mollis leo id mattis.</p>
+                            <p>La visión de IntegralFlex es ser un socio confiable en la gestión empresarial. Nos esforzamos por ofrecer soluciones integrales que permitan a las empresas mejorar su eficiencia y productividad. Nuestra visión es continuar trabajando en colaboración con Fleximaq SPA y otras organizaciones para seguir mejorando y personalizando nuestras soluciones, ayudando así a las empresas a simplificar sus procesos internos y alcanzar sus objetivos.</p>
                         </div>
                     </div>
                 </div>
@@ -55,9 +55,15 @@
                         <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('assets\img\logo.jpg') }}" alt="..." /></div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
-                        <div class="p-5">
+                        <div class="p-3">
                             <h2 class="display-4">Nuestros Valores.</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut arcu vel nulla tempus tempus ut sit amet tortor. Phasellus tempus a nibh eu malesuada. Praesent interdum pulvinar vulputate. Vestibulum finibus justo mi, ut lacinia enim vehicula vel. Cras in sapien convallis, vulputate leo nec, dignissim velit. Nunc id nunc vitae risus sagittis malesuada ut id est. Integer volutpat dui felis, et fringilla enim laoreet id. In mattis mollis leo id mattis.</p>
+                            <p>Calidad: Nos comprometemos a ofrecer soluciones de alta calidad para satisfacer las necesidades de las empresas.</p>
+                            <p>Innovación: Buscamos constantemente maneras de mejorar y personalizar nuestras soluciones.</p>
+                            <p>Colaboración: Valoramos las relaciones a largo plazo y trabajamos en estrecha colaboración con nuestros clientes y socios.</p>
+                            <p>Adaptabilidad: Ofrecemos soluciones personalizadas que se ajustan a las necesidades de cada empresa.</p>
+                            <p>Integridad: Operamos con honestidad y ética en todas nuestras acciones.</p>
+                            <p>Enfoque en el cliente: Nos centramos en comprender y satisfacer las necesidades de nuestros clientes.</p>
+                            <p>Mejora continua: Buscamos la mejora constante en todo lo que hacemos.</p>
                         </div>
                     </div>
                 </div>
