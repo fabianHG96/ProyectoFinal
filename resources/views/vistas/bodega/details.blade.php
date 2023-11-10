@@ -2,46 +2,30 @@
 @extends('layouts.main')
 @section('main-content')
     <div class="container">
-        <body>
-            <!-- Encabezado, menú u otras secciones -->
+        <section>
+            <div class="header-and-button d-flex justify-content-between align-items-center">
+                <h1 class="header">Detalles de la bodega</h1>
+            </div>
+            <div class="mt-3">
+                <a class="btn btn-primary" href="{{ route('ListBodega') }}">Volver a la lista</a>
+            </div>
+            <hr />
+        </section>
 
-            <div class="container">
-                <section>
-                    <div class="header-and-button d-flex justify-content-between align-items-center">
-                        <h1 class="header">Detalles de la bodega</h1>
-                    </div>
-                    <div>
-                        <a class="btn btn-primary" href="{{ route('ListBodega') }}">Volver a la lista</a>
-                    </div>
-                    <hr />
-                </section>
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <label for="names"><strong>Detalles de la bodega</strong></label>
-                        <div class="input-group mt-2">
-                            <span class="input-group-text">País</span>
-                            <input type="text" class="form-control" name="pais" id="pais" value="{{ $bodega->pais }}" readonly>
-                        </div>
-                        <div class="input-group mt-2">
-                            <span class="input-group-text">Región</span>
-                            <input type="text" class="form-control" name="region" id="region" value="{{ $bodega->region }}" readonly>
-                        </div>
-                        <div class="input-group mt-2">
-                            <span class="input-group-text">Dirección</span>
-                            <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $bodega->direccion }}" readonly>
-                        </div>
-                        <div class="input-group mt-2">
-                            <span class="input-group-text">Capacidad</span>
-                            <input type="text" class="form-control" name="capacidad" id="capacidad" value="{{ $bodega->capacidad }}" readonly>
-                        </div>
-                        <div class="input-group mt-2">
-                            <span class="input-group-text">Stock</span>
-                            <input type="text" class="form-control" name="stock" id="stock" value="{{ $bodega->stock }}" readonly>
-                        </div>
-                    </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h2>{{ $bodega->nombre_bodega }}</h2>
+                <p>Creado el: {{ $bodega->created_at->format('d/m/Y H:i:s') }}</p>
+                <p>Última actualización: {{ $bodega->updated_at->format('d/m/Y H:i:s') }}</p>
+
+                <div class="details">
+                    <p>País: {{ $bodega->pais }}</p>
+                    <p>Región: {{ $bodega->region }}</p>
+                    <p>Dirección: {{ $bodega->direccion }}</p>
+                    <p>Capacidad: {{ $bodega->capacidad }}</p>
+                    <p>Stock: {{ $bodega->stock }}</p>
                 </div>
             </div>
-        </body>
-
+        </div>
     </div>
 @endsection

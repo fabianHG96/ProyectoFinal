@@ -15,7 +15,7 @@
                 <label for="names"><strong>Datos de la Categoria</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Categoria</span>
-                    <input type="text" class="form-control" name="categoria" id="categoria">
+                    <input type="text" class="form-control" name="categoria" id="categoria" value="{{ $categoria->categoria }}">
                 </div>
         <div class="d-flex justify-content-end mt-4">
             <input type="submit" value="Guardar" class="btn btn-primary">
