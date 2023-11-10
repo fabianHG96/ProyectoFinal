@@ -14,10 +14,10 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    protected $fillable = ['empresa_id','name', 'surname', 'cargo', 'email', 'password', 'remember_token'];
+    protected $fillable = ['empresa_id','name', 'surname', 'cargo_id', 'email', 'password', 'remember_token'];
 
     public function rolWeb(){
-        return $this->belongsTo(Cargo::class, );
+        return $this->belongsTo(Cargo::class, 'cargo_id');
     }
 
     public function empresa() {
