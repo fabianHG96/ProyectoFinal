@@ -65,7 +65,7 @@ function ShowNewEmpleado(){
                 return redirect()->route('ListEmpleado')->with('error', 'Empleado no encontrada');
             }
 
-            return view('vistas.empleado.details', ['empleado' => $empleado, 'cargos' => $cargos]);
+            return view('vistas.empleado.details', ['empleado' => $empleado, 'cargos' => $cargos] , compact('empleado', 'cargos'));
         }
     public function list(){
         $empleado = Empleado::all();

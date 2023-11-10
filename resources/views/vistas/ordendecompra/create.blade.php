@@ -105,22 +105,22 @@
                 <select name="producto_id" id="producto_id" class="form-select">
                     <option value="">Selecciona un producto</option>
                     @foreach ($productos as $producto)
-                        <option value="{{ $producto->id }}" data-monto="{{ $producto->monto }}" data-total="{{ $producto->total }}" data-nombre_producto="{{ $producto->nombre_producto }}">{{ $producto->nombre_producto }}</option>
+                        <option value="{{ $producto->id }}" data-nombre_producto="{{ $producto->nombre_producto }}" data-cantidad_stock="{{ $producto->cantidad_stock }}" data-precio_unitario="{{ $producto->precio_unitario }}" data-total="{{ $producto->total }}">{{ $producto->nombre_producto }}</option>
                     @endforeach
                 </select>
                 <input type="hidden" class="form-control" name="nombre_producto" id="nombre_producto" readonly style="background-color: rgb(225, 225, 225);">
             </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Cantidad</span>
-                    <input type="number" class="form-control" name="cantidad" id="cantidad">
+                    <input type="number" class="form-control" name="pcantidad_stock" id="pcantidad_stock">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Monto</span>
-                    <input type="number" class="form-control" name="monto" id="monto" value="{{ $producto->monto }}">
+                    <input type="number" class="form-control" name="pmonto" id="pprecio_unitario" readonly style="background-color: rgb(124, 124, 124);">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Total</span>
-                    <input type="number" class="form-control" name="total" id="total" value="{{ $producto->total }}">
+                    <input type="number" class="form-control" name="ptotal" id="ptotal" readonly style="background-color: rgb(124, 124, 124);">
                 </div>
             </div>
                 </div>
@@ -162,8 +162,10 @@
         document.getElementById('producto_id').addEventListener('change', function() {
         var selectedOption = this.options[this.selectedIndex];
         document.getElementById('nombre_producto').value = selectedOption.getAttribute('data-nombre_producto');
-        });
-
+        document.getElementById('pprecio_unitario').value = selectedOption.getAttribute('data-precio_unitario');
+        document.getElementById('ptotal').value = selectedOption.getAttribute('data-total');
+        document.getElementById('pcantidad_stock').value = selectedOption.getAttribute('data-cantidad_stock');
+    });
         </script>
         </html>
 

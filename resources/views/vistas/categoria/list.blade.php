@@ -13,6 +13,9 @@
         <thead>
             <tr>
                 <th>Categoria</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +32,8 @@
                 </form>
             </td>
             <td><a href="{{ route('ShowUpdateCategoria', $categoria->id) }}" class="btn btn-primary btn-sm">Actualizar</a>
+            </td>
+            <td><a href="{{ route('DetailsCategoria', $categoria->id) }}" class="btn btn-primary btn-sm">Detalles</a>
             </td>
             </tr>
             @endforeach

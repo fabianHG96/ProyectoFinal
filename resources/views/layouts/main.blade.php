@@ -78,6 +78,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('ListCategoria') }}">
+                                <i class="fa-solid fa-inbox"></i> Categoria
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('ListVendedor') }}">
                                 <i class="fa-regular fa-handshake"></i> Vendedores
                             </a>

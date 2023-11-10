@@ -1,19 +1,28 @@
 <title>Detalles de la Categoria</title>
 @extends('layouts.main')
 @section('main-content')
-<div class="container">
-    @csrf
     <div class="container">
-        <h1>Detalles de la Categoria</h1>
-        <div class="card">
+        <section>
+            <div class="header-and-button d-flex justify-content-between align-items-center">
+                <h1 class="header">Detalles de la Categoria</h1>
+            </div>
+            <div class="mt-3">
+                <a class="btn btn-primary" href="{{ route('ListCategoria') }}">Volver a la lista</a>
+            </div>
+            <hr />
+        </section>
+
+        <div class="">
             <div class="card-body">
-                <div class="detalle-label">Categoria:</div>
-                <div class="detalle-value">Categoria del prodcuto</div>
+                <h2>{{ $categoria->categoria }}</h2>
+                <p>Creado el: {{ $categoria->created_at->format('d/m/Y H:i:s') }}</p>
+                <p>Última actualización: {{ $categoria->updated_at->format('d/m/Y H:i:s') }}</p>
+
+                <div class="details">
+                    <div class="detalle-label">Categoría:</div>
+                    <div class="detalle-value">{{ $categoria->categoria }}</div>
+                </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-
-    @endsection
+@endsection
