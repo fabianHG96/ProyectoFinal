@@ -42,6 +42,15 @@
                                             placeholder="Ingrese Email ..." name="email">
                                     </div>
                                     <div class="form-group">
+                                        <strong class="">Cargo</strong>
+                                        <select name="cargo_id" id="cargo_id" class="form-select">
+                                            <option value="">Selecciona un cargo</option>
+                                            @foreach ($cargos as $cargo)
+                                                <option value="{{ $cargo->id }}" data-cargo="{{ $cargo->cargo }}">{{ $cargo->cargo }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <strong class="">Contraseña</strong>
                                         <input type="password" class="form-control form-control-user"
                                             id="password" placeholder="Contraseña ..." name="password">
