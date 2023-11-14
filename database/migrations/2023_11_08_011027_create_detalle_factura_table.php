@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('detalle_factura', function (Blueprint $table) {
             $table->id();
-            $table->string('numero_factura');
-            $table->date('fecha_emision');
-            $table->string('nombre_empresa');
-            $table->string('rut');
-            $table->string('giro');
-            $table->string('nombre_producto');
-            $table->decimal('monto_neto', 10, 2);
-            $table->decimal('iva', 10, 2);
-            $table->decimal('impuesto_adicional', 10, 2);
-            $table->decimal('total', 10, 2);
+            $table->unsignedBigInteger('factura_id');
+            $table->string('nombre_cliente')->nullable();
+            $table->string('rut_cliente')->nullable();
+            $table->string('fecha_emision')->nullable();
+            $table->json('detalle_productos')->nullable(); // Cambiado a tipo JSON
+            $table->string('monto_neto')->nullable();
+            $table->string('iva')->nullable();
+            $table->string('total_factura')->nullable();
+            $table->foreign('factura_id')->references('id')->on('facturas');
             $table->timestamps();
         });
     }

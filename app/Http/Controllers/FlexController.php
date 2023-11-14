@@ -14,6 +14,7 @@ use App\Models\PdfDocument;
 use Illuminate\Support\Facades\Response;
 use App\Models\DetalleFactura;
 use Spatie\PdfToText\Pdf;
+use Smalot\PdfParser\Parser;
 class FlexController extends Controller
 {
     public function index(){
@@ -51,6 +52,8 @@ class FlexController extends Controller
         return view('vistas.manager.usuarios', ['mostraruser' => $users]);
     }
 
+
+
     public function subirFactura(Request $request)
     {
         $request->validate([
@@ -74,7 +77,50 @@ class FlexController extends Controller
                 $factura->ruta_archivo = $rutaArchivo;
                 $factura->save();
 
-                // Resto del código...
+                // Instantiate the Parser class
+                $parser = new Parser();
+
+                // Leer el contenido del archivo PDF
+                $rutaCompletaArchivo = public_path($rutaArchivo);
+                $pdf = $parser->parseFile($rutaCompletaArchivo);
+                $contenidoFactura = $pdf->getText();
+
+                // Expresiones regulares para extraer información
+                preg_match('/SEÑOR\(ES\): (.+?)\R/', $contenidoFactura, $matches);
+                $nombreCliente = isset($matches[1]) ? trim($matches[1]) : '';
+
+                preg_match('/R\.U\.T\.: (.+?)\R/', $contenidoFactura, $matches);
+                $rutCliente = isset($matches[1]) ? trim($matches[1]) : '';
+
+                preg_match('/Fecha Emision: (.+?)\R/', $contenidoFactura, $matches);
+                $fechaEmision = isset($matches[1]) ? trim($matches[1]) : '';
+
+                preg_match('/- MATERIALES HIDRAULICOS\R(.+?)TOTAL \$ (.+?)\R/s', $contenidoFactura, $matches);
+                $detalleProductos = isset($matches[1]) ? trim($matches[1]) : '';
+                $totalFactura = isset($matches[2]) ? floatval($matches[2]) : null;
+
+
+                preg_match('/MONTO NETO[^\$]*\$([\d,.]+)/', $contenidoFactura, $matches);
+                $montoNeto = isset($matches[1]) ? str_replace(',', '', $matches[1]) : null;
+
+                preg_match('/I\.V\.A\. 19% \$\s*(.+?)\R/', $contenidoFactura, $matches);
+                $iva = isset($matches[1]) ? trim($matches[1]) : null;
+
+                preg_match('/TOTAL \$\s*(.+?)\R/', $contenidoFactura, $matches);
+                $totalFactura = isset($matches[1]) ? trim($matches[1]) : null;
+
+                // Almacenar la información en la tabla detalle_factura
+                $detalleFactura = new DetalleFactura();
+                $detalleFactura->factura_id = $factura->id;
+                $detalleFactura->nombre_cliente = $nombreCliente;
+                $detalleFactura->rut_cliente = $rutCliente;
+                $detalleFactura->fecha_emision = $fechaEmision;
+                $detalleFactura->detalle_productos = $detalleProductos;
+                $detalleFactura->monto_neto = $montoNeto; // No hay información en el ejemplo proporcionado
+                $detalleFactura->iva = $iva; // No hay información en el ejemplo proporcionado
+                $detalleFactura->total_factura = $totalFactura;
+                $detalleFactura->save();
+                    // Resto del código...
 
                 return back()->with('success', 'Factura subida correctamente');
             } catch (\Exception $e) {
