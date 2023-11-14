@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-chart-line"></i> Seguimientos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -110,7 +110,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('register')}}">
+                            <a class="nav-link" href="{{ route('register') }}">
                                 <i class="fa-solid fa-user-plus"></i> Crear Nuevo Usuario
                             </a>
                         </li>
@@ -119,16 +119,7 @@
             </nav>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 @yield('main-content')
-                <script>
-                    $(document).ready(function () {
-                        $('#proveedor_id').on('change', function () {
-                            var proveedorId = $(this).val();
-                            $('#vendedor_id option').hide();
-                            $('#vendedor_id option[data-proveedor="' + proveedorId + '"]').show();
-                            $('#vendedor_id').val(''); // Limpia la selección de vendedor
-                        });
-                    });
-                    </script>
+
 
                    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -139,5 +130,24 @@
             </main>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="noPermissionsModal" tabindex="-1" role="dialog" aria-labelledby="noPermissionsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="noPermissionsModalLabel">Acceso no autorizado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Lo sentimos, no tiene permisos para acceder a esta página.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

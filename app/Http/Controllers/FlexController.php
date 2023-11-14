@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use TCPDF;
 use App\Models\PdfDocument;
 use Illuminate\Support\Facades\Response;
+use App\Models\DetalleFactura;
+use Spatie\PdfToText\Pdf;
 class FlexController extends Controller
 {
     public function index(){
@@ -60,15 +62,24 @@ class FlexController extends Controller
             $archivo = $request->file('archivo_pdf');
 
             try {
-                $factura = new Factura();
-                $factura->nombre_archivo = $request->input('nombre_archivo');
-                $factura->pdf_contenido = file_get_contents($archivo->getRealPath());
+                // Agregar un identificador único al nombre del archivo
+                $nombreArchivo = $request->input('nombre_archivo') . '_' . uniqid();
+                $rutaArchivo = 'archivos/' . $nombreArchivo . '.' . $archivo->getClientOriginalExtension();
 
+                $archivo->move(public_path('archivos'), $rutaArchivo);
+
+                // Crear el registro de la factura con el nombre del archivo
+                $factura = new Factura();
+                $factura->nombre_archivo = $nombreArchivo;
+                $factura->ruta_archivo = $rutaArchivo;
                 $factura->save();
+
+                // Resto del código...
 
                 return back()->with('success', 'Factura subida correctamente');
             } catch (\Exception $e) {
-                logger()->error('Error al guardar la factura: ' . $e->getMessage());
+                // Manejar errores...
+
                 return back()->with('error', 'Error al guardar la factura');
             }
         }
@@ -76,40 +87,37 @@ class FlexController extends Controller
         return back()->with('error', 'No se subió ningún archivo PDF.');
     }
 
-    public function descargarPdf($id = null){
+    public function descargarPdf($id = null)
+    {
         $factura = Factura::find($id);
 
         if (!$factura) {
             return redirect()->back()->with('error', 'Factura no encontrada.');
         }
 
-        $pdfContent = $factura->pdf_contenido;
         $nombreArchivo = $factura->nombre_archivo;
+        $rutaArchivo = public_path('archivos/' . $nombreArchivo . '.pdf');
 
-        if ($pdfContent) {
-            return response($pdfContent)
-                ->header('Content-Type', 'application/pdf')
-                ->header('Content-Disposition', 'attachment; filename="' . $nombreArchivo . '"');
+        if (file_exists($rutaArchivo)) {
+            return response()->file($rutaArchivo, ['Content-Type' => 'application/pdf']);
         }
 
-        return back()->with('error', 'No se encontró contenido PDF para descargar.');
+        return back()->with('error', 'No se encontró el archivo PDF para descargar.');
     }
 
-    public function leerContenidoPDF($id) {
-        $pdf_contenido = Factura::find($id);
+    public function leerContenidoPDF($id)
+    {
+        $factura = Factura::find($id);
 
-        if (!$pdf_contenido) {
+        if (!$factura) {
             return "Factura no encontrada";
         }
 
-        $pdfContent = $pdf_contenido->pdf_contenido;
+        $nombreArchivo = $factura->nombre_archivo;
+        $rutaArchivo = public_path('archivos/' . $nombreArchivo . '.pdf');
 
-        if ($pdfContent) {
-            // Convertir el contenido del blob a un PDF y mostrarlo en el navegador
-            return Response::make($pdfContent, 200, [
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'inline; filename="factura.pdf"',
-            ]);
+        if (file_exists($rutaArchivo)) {
+            return response()->file($rutaArchivo, ['Content-Type' => 'application/pdf']);
         }
 
         return "PDF no encontrado";

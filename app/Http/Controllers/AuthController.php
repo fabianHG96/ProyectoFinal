@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Cargo;
 
 class AuthController extends Controller
 {
@@ -28,7 +29,8 @@ class AuthController extends Controller
     }
 
     public function showRegister(){
-        return View('auth.register');
+        $cargos = Cargo::all();
+        return View('auth.register', compact('cargos'));
     }
 
     public function storeAccount(Request $request){
@@ -36,12 +38,14 @@ class AuthController extends Controller
             'name' => 'required|string',
             'surname' => 'required|string',
             'email' => 'required|email|unique:users,email',
+            'cargo_id' => 'required|exists:productos,id',
             'password' => 'required|min:6|confirmed'
         ]);
         $user = User::create([
             'name' => $request->name,
             'surname' => $request->surname,
             'email' => $request->email,
+            'cargo_id' => $request->cargo_id,
             'password' => bcrypt($request->password),
 
         ]);

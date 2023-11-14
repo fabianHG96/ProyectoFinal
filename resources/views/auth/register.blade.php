@@ -1,3 +1,4 @@
+<title>Crear Usuario</title>
 @extends('layouts.main')
 @section('main-content')
 <form action="{{ route('register.store') }}" method="POST" >
@@ -41,6 +42,15 @@
                                             placeholder="Ingrese Email ..." name="email">
                                     </div>
                                     <div class="form-group">
+                                        <strong class="">Cargo</strong>
+                                        <select name="cargo_id" id="cargo_id" class="form-select">
+                                            <option value="">Selecciona un cargo</option>
+                                            @foreach ($cargos as $cargo)
+                                                <option value="{{ $cargo->id }}" data-cargo="{{ $cargo->cargo }}">{{ $cargo->cargo }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <strong class="">Contraseña</strong>
                                         <input type="password" class="form-control form-control-user"
                                             id="password" placeholder="Contraseña ..." name="password">
@@ -81,6 +91,10 @@
 
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
