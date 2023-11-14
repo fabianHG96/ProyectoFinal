@@ -38,12 +38,14 @@ class AuthController extends Controller
             'name' => 'required|string',
             'surname' => 'required|string',
             'email' => 'required|email|unique:users,email',
+            'cargo_id' => 'required|exists:productos,id',
             'password' => 'required|min:6|confirmed'
         ]);
         $user = User::create([
             'name' => $request->name,
             'surname' => $request->surname,
             'email' => $request->email,
+            'cargo_id' => $request->cargo_id,
             'password' => bcrypt($request->password),
 
         ]);
