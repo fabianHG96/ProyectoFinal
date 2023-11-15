@@ -95,19 +95,41 @@ class FlexController extends Controller
                 preg_match('/Fecha Emision: (.+?)\R/', $contenidoFactura, $matches);
                 $fechaEmision = isset($matches[1]) ? trim($matches[1]) : '';
 
-                preg_match('/- MATERIALES HIDRAULICOS\R(.+?)TOTAL \$ (.+?)\R/s', $contenidoFactura, $matches);
-                $detalleProductos = isset($matches[1]) ? trim($matches[1]) : '';
-                $totalFactura = isset($matches[2]) ? floatval($matches[2]) : null;
-
-
                 preg_match('/MONTO NETO[^\$]*\$([\d,.]+)/', $contenidoFactura, $matches);
-                $montoNeto = isset($matches[1]) ? str_replace(',', '', $matches[1]) : null;
+                $montoNeto = isset($matches[1]) ? floatval(str_replace([',', '.'], '', $matches[1])) : null;
 
-                preg_match('/I\.V\.A\. 19% \$\s*(.+?)\R/', $contenidoFactura, $matches);
-                $iva = isset($matches[1]) ? trim($matches[1]) : null;
+                preg_match('/I\.V\.A\. 19% \$\s*([\d,.]+)/', $contenidoFactura, $matches);
+                $iva = isset($matches[1]) ? floatval(str_replace([',', '.'], '', $matches[1])) : null;
 
-                preg_match('/TOTAL \$\s*(.+?)\R/', $contenidoFactura, $matches);
-                $totalFactura = isset($matches[1]) ? trim($matches[1]) : null;
+                preg_match('/TOTAL \$\s*([\d,.]+)/', $contenidoFactura, $matches);
+                $totalFactura = isset($matches[1]) ? floatval(str_replace([',', '.'], '', $matches[1])) : null;
+
+                // Expresión regular para encontrar la información de cada ítem
+                $itemPattern = '/(\S+)\s+(.+?)\s+(\d+)\s+(\d+\.\d+)\s+(\d+\.\d+)\s+\S+/';
+
+                // Buscar todos los elementos que coincidan con el patrón
+                preg_match_all($itemPattern, $contenidoFactura, $matches, PREG_SET_ORDER);
+
+                // Iterar sobre los resultados y guardar en la base de datos
+                foreach ($matches as $match) {
+                    $codigo = $match[1];
+                    $descripcion = $match[2];
+                    $cantidad = $match[3];
+                    $precio = str_replace(',', '', $match[4]); // Reemplazar comas si es necesario
+
+                    // Crear un nuevo registro en la tabla detalle_factura para cada ítem
+                    $detalleItem = new DetalleFactura();
+                    $detalleItem->factura_id = $factura->id;
+                    $detalleItem->nombre_cliente = $nombreCliente;
+                    $detalleItem->rut_cliente = $rutCliente;
+                    $detalleItem->fecha_emision = $fechaEmision;
+                    $detalleItem->codigo = $codigo;
+                    $detalleItem->descripcion = $descripcion;
+                    $detalleItem->cantidad = $cantidad;
+                    $detalleItem->precio = $precio;
+                    // Otros campos...
+                    $detalleItem->save();
+                }
 
                 // Almacenar la información en la tabla detalle_factura
                 $detalleFactura = new DetalleFactura();
@@ -115,12 +137,11 @@ class FlexController extends Controller
                 $detalleFactura->nombre_cliente = $nombreCliente;
                 $detalleFactura->rut_cliente = $rutCliente;
                 $detalleFactura->fecha_emision = $fechaEmision;
-                $detalleFactura->detalle_productos = $detalleProductos;
                 $detalleFactura->monto_neto = $montoNeto; // No hay información en el ejemplo proporcionado
                 $detalleFactura->iva = $iva; // No hay información en el ejemplo proporcionado
                 $detalleFactura->total_factura = $totalFactura;
                 $detalleFactura->save();
-                    // Resto del código...
+                // Resto del código...
 
                 return back()->with('success', 'Factura subida correctamente');
             } catch (\Exception $e) {
