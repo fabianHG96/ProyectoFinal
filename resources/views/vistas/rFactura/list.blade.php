@@ -66,7 +66,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="" class="body">
+            <div class="body">
                 <form action="{{ route('subirFactura') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
