@@ -1,6 +1,13 @@
 <title>Crear Usuario</title>
 @extends('layouts.main')
 @section('main-content')
+@if (Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 2 && Auth::user()->cargo_id != 5 )
+    <script>
+        $(document).ready(function(){
+            $('#noPermissionsModal').modal('show');
+        });
+    </script>
+@endif
 <form action="{{ route('register.store') }}" method="POST" >
 @csrf
 @if (session('message'))
@@ -46,7 +53,7 @@
                                         <select name="cargo_id" id="cargo_id" class="form-select">
                                             <option value="">Selecciona un cargo</option>
                                             @foreach ($cargos as $cargo)
-                                                <option value="{{ $cargo->id }}" data-cargo="{{ $cargo->cargo }}">{{ $cargo->cargo }}</option>
+                                                <option value="{{ $cargo->id }}" data-cargo="{{ $cargo->id }}">{{ $cargo->cargo }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -58,7 +65,7 @@
                                     <div class="form-group">
                                         <strong class="">Repetir Contraseña</strong>
                                         <input type="password" class="form-control form-control-user"
-                                            id="password" placeholder="Repite Contraseña ..." name="password_confirmation">
+                                            id="rpassword" placeholder="Repite Contraseña ..." name="password_confirmation">
                                     </div>
                                     @if ($errors->any())
                                                 <div class="alert alert-danger">

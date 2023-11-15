@@ -11,24 +11,21 @@ class DetalleFactura extends Model
 
     protected $table = 'detalle_factura'; // Nombre de la tabla
     protected $fillable = [
-        'numero_factura',
+        'factura_id',
+        'nombre_cliente',
+        'rut_cliente',
         'fecha_emision',
-        'nombre_empresa',
-        'rut',
-        'giro',
-        'nombre_producto',
+        'detalle_productos',
         'monto_neto',
         'iva',
-        'impuesto_adicional',
-        'total',
+        'total_factura',
         // Otros campos que desees llenar
     ];
 
-    // Si vas a almacenar el contenido del PDF original en la base de datos, asegúrate de agregarlo aquí.
-    // Ejemplo:
     protected $casts = [
-        'pdf_contenido' => 'binary', // El nombre del campo debe coincidir con el de la base de datos
+        'detalle_productos' => 'array', // Si el detalle de productos es un JSON, de lo contrario, ajusta según sea necesario
     ];
+
 
     public function factura()
 {

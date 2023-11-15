@@ -1,6 +1,13 @@
 <title>Actualizar Orden de Compra</title>
 @extends('layouts.main')
 @section('main-content')
+@if (Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 5)
+    <script>
+        $(document).ready(function(){
+            $('#noPermissionsModal').modal('show');
+        });
+    </script>
+@endif
     <h1>Actualizar orden de compra</h1>
     <form method="POST" action="{{ route('UpdateOrdenDeCompra', ['id' => $ordendecompra->id]) }}">
         @csrf

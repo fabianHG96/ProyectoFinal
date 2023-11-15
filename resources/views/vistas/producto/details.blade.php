@@ -2,6 +2,13 @@
 @extends('layouts.main')
 
 @section('main-content')
+@if (Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 4 && Auth::user()->cargo_id != 5)
+    <script>
+        $(document).ready(function(){
+            $('#noPermissionsModal').modal('show');
+        });
+    </script>
+@endif
     <div class="container">
         <section>
             <div class="header-and-button d-flex justify-content-between align-items-center">
@@ -36,4 +43,8 @@
             </form>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
 @endsection

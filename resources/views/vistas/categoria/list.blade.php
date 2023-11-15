@@ -1,6 +1,13 @@
 <title>Categoria</title>
 @extends('layouts.main')
 @section('main-content')
+@if (Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 5 && Auth::user()->cargo_id != 4)
+    <script>
+        $(document).ready(function(){
+            $('#noPermissionsModal').modal('show');
+        });
+    </script>
+@endif
 <head>
     <div class="col-md-9">
         <div class="">

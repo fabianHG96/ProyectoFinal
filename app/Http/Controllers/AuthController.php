@@ -38,7 +38,7 @@ class AuthController extends Controller
             'name' => 'required|string',
             'surname' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'cargo_id' => 'required|exists:productos,id',
+            'cargo_id' => 'required|exists:cargos,id',
             'password' => 'required|min:6|confirmed'
         ]);
         $user = User::create([
