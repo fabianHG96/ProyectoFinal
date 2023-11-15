@@ -1,6 +1,13 @@
 <title>Lista Vendedores</title>
 @extends('layouts.main')
 @section('main-content')
+@if (Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 5)
+    <script>
+        $(document).ready(function(){
+            $('#noPermissionsModal').modal('show');
+        });
+    </script>
+@endif
 <div class="container">
 <head>
 <div class="col-md-9">

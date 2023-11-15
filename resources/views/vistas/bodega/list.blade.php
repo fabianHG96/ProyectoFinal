@@ -1,6 +1,13 @@
 <title>Bodegas</title>
 @extends('layouts.main')
 @section('main-content')
+@if (Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 5 && Auth::user()->cargo_id != 6 )
+    <script>
+        $(document).ready(function(){
+            $('#noPermissionsModal').modal('show');
+        });
+    </script>
+@endif
 <div class="container">
     <section>
         <div class="header-and-button d-flex justify-content-between align-items-center">
