@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('detalle_factura', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('factura_id');
+            $table->unsignedBigInteger('cliente_id')->nullable();
             $table->string('nombre_cliente')->nullable();
             $table->string('rut_cliente')->nullable();
             $table->string('fecha_emision')->nullable();
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->decimal('iva', 10, 2)->nullable();
             $table->decimal('total_factura', 10, 2)->nullable();
             $table->foreign('factura_id')->references('id')->on('facturas');
+            $table->foreign('cliente_id')->references('id')->on('cliente_empresas');
             $table->timestamps();
         });
     }
