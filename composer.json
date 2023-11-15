@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "setasign/fpdi": "^2.5",
+        "smalot/pdfparser": "^2.7",
         "spatie/pdf-to-text": "^1.52",
         "tecnickcom/tcpdf": "^6.6"
     },
