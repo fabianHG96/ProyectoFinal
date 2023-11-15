@@ -10,6 +10,9 @@ use App\Models\Producto;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\Notifications\StockNotification;
+use Illuminate\Support\Facades\Notification;
+
 
 class ProductoController extends Controller
 {
@@ -30,7 +33,6 @@ public function CreateNewProducto(Request $request)
         'cantidad_stock.*' => 'required',
         'precio_unitario.*' => 'required',
         'nombre_producto.*' => 'required',
-
     ]);
 
     $bodegaIds = $request->bodega_id;
@@ -38,11 +40,11 @@ public function CreateNewProducto(Request $request)
     $cantidades = $request->cantidad_stock;
     $precios = $request->precio_unitario;
     $nombres = $request->nombre_producto;
-    $totals =  $request -> total;
+    $totals =  $request->total;
 
     // Iterar sobre los campos de matriz y crear productos
     foreach ($bodegaIds as $key => $bodegaId) {
-        Producto::create([
+        $producto = Producto::create([
             'bodega_id' => $bodegaId,
             'categoria_id' => $categoriaIds[$key],
             'cantidad_stock' => $cantidades[$key],
@@ -50,9 +52,18 @@ public function CreateNewProducto(Request $request)
             'nombre_producto' => $nombres[$key],
             'total' => $totals[$key],
         ]);
+
+        // Verificar si la cantidad de stock es inferior a 10 y enviar notificación
+        if ($producto->cantidad_stock < 10) {
+            $user = auth()->user();
+            Notification::send($user, new StockNotification());
+            dd('Notificación enviada con éxito.'); // Agrega esto para depuración
+        }
     }
+
     return redirect()->route('ListProductos')->with('success', 'Producto creado exitosamente');
 }
+
 
 
 public function showUpdateProducto($id)
@@ -97,10 +108,13 @@ function Update(Request $request, $id){
 }
 
 
- function List(){
-    $producto = Producto::all();
-    return view('vistas.producto.list', ['mostrarproducto' => $producto]);
- }
+public function List()
+{
+    $productos = Producto::all();
+
+    return view('vistas.producto.list', ['mostrarproducto' => $productos]);
+}
+
  public function Details($id) {
     // Obtener el producto por su ID
     $producto = Producto::find($id);
@@ -112,10 +126,6 @@ function Update(Request $request, $id){
 
     return view('vistas.producto.details', ['producto' => $producto]);
 }
-
-
-
-
 
 public function descargarDetalles($id)
 {

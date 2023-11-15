@@ -63,13 +63,13 @@
                 <div class="input-group mt-2">
                     <span class="input-group-text">Fecha de Término</span>
                     <input type="date" class="form-control" name="ftermino" id="ftermino">
-                    <div class="input-group mt-2">
+                    <div class="input-group mt-2" style="display: none;">
                         <span class="input-group-text">Estado de la orden</span>
                         <select name="estado" id="estado" class="form-select">
+                            <option value="en_proceso">En proceso</option>
                             <option value="">Selecciona el estado</option>
                             <option value="aprobado">Aprobado</option>
                             <option value="rechazado">Rechazado</option>
-                            <option value="en_proceso">En proceso</option>
                             <option value="pendiente_revision">Pendiente de revisión</option>
                             <option value="cancelado">Cancelado</option>
                             <option value="completado">Completado</option>
@@ -77,7 +77,6 @@
                             <!-- Puedes seguir añadiendo más opciones según tus procesos -->
                         </select>
                     </div>
-
                 </div>
 
                 <!-- Datos Vendedor -->
@@ -109,7 +108,7 @@
             <label for="vendedor"><strong>Producto</strong></label>
             <div class="input-group mt-2">
                 <span class="input-group-text">Nombre producto</span>
-                <select name="producto_id" id="producto_id" class="form-select">
+                <select name="producto_id" id="producto_id" class="form-select" required>
                     <option value="">Selecciona un producto</option>
                     @foreach ($productos as $producto)
                         <option value="{{ $producto->id }}" data-nombre_producto="{{ $producto->nombre_producto }}" data-cantidad_stock="{{ $producto->cantidad_stock }}" data-precio_unitario="{{ $producto->precio_unitario }}" data-total="{{ $producto->total }}">{{ $producto->nombre_producto }}</option>
@@ -117,18 +116,17 @@
                 </select>
                 <input type="hidden" class="form-control" name="nombre_producto" id="nombre_producto" readonly style="background-color: rgb(225, 225, 225);">
             </div>
-                <div class="input-group mt-2">
-                    <span class="input-group-text">Cantidad</span>
-                    <input type="number" class="form-control" name="pcantidad_stock" id="pcantidad_stock">
-                </div>
-                <div class="input-group mt-2">
-                    <span class="input-group-text">Monto</span>
-                    <input type="number" class="form-control" name="pmonto" id="pprecio_unitario" readonly style="background-color: rgb(124, 124, 124);">
-                </div>
-                <div class="input-group mt-2">
-                    <span class="input-group-text">Total</span>
-                    <input type="number" class="form-control" name="ptotal" id="ptotal" readonly style="background-color: rgb(124, 124, 124);">
-                </div>
+            <div class="input-group mt-2">
+                <span class="input-group-text">Cantidad</span>
+                <input type="number" class="form-control" name="cantidad" id="cantidad" required>
+            </div>
+            <div class="input-group mt-2">
+                <span class="input-group-text">Monto</span>
+                <input type="number" class="form-control" name="monto" id="monto" readonly style="background-color: rgb(124, 124, 124);" required>
+            </div>
+            <div class="input-group mt-2">
+                <span class="input-group-text">Total</span>
+                <input type="number" class="form-control" name="total" id="total" readonly style="background-color: rgb(124, 124, 124);" required>
             </div>
                 </div>
             </div>
@@ -139,16 +137,18 @@
     </form>
 
 
+</div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+@endif
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script>
@@ -177,10 +177,18 @@
         });
         document.getElementById('producto_id').addEventListener('change', function() {
         var selectedOption = this.options[this.selectedIndex];
-        document.getElementById('nombre_producto').value = selectedOption.getAttribute('data-nombre_producto');
-        document.getElementById('pprecio_unitario').value = selectedOption.getAttribute('data-precio_unitario');
-        document.getElementById('ptotal').value = selectedOption.getAttribute('data-total');
-        document.getElementById('pcantidad_stock').value = selectedOption.getAttribute('data-cantidad_stock');
+        if (selectedOption) {
+            document.getElementById('nombre_producto').value = selectedOption.getAttribute('data-nombre_producto');
+            document.getElementById('monto').value = selectedOption.getAttribute('data-precio_unitario');
+            document.getElementById('total').value = selectedOption.getAttribute('data-total');
+            document.getElementById('cantidad').value = selectedOption.getAttribute('data-cantidad_stock');
+        } else {
+            // Limpiar campos si no se selecciona ningún producto
+            document.getElementById('nombre_producto').value = '';
+            document.getElementById('monto').value = '';
+            document.getElementById('total').value = '';
+            document.getElementById('cantidad').value = '';
+        }
     });
         </script>
         </html>

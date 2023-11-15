@@ -2,15 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>IntegralFlex</title>
     <link rel="icon" href="{!! asset('assets\favicon.ico') !!}"/>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <script src="http://localhost/ProyectoFinal/public/js/scripts.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
     @stack('css')
 
 </head>
@@ -25,6 +26,54 @@
             window.location = "{{ route('login') }}";
         </script>
     @endif
+<!-- Agrega este botón donde quieras en tu vista -->
+<button id="mostrarAlertas" class="btn btn-primary">Mostrar Alertas</button>
+
+<!-- Modal -->
+<div class="modal fade" id="alertasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Notificaciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if(auth()->check())
+                    @php
+                        $productosConStockBajo = \App\Models\Producto::where('cantidad_stock', '<', 10)->count();
+                    @endphp
+
+                    @if($productosConStockBajo > 0)
+                        <div class="alert alert-warning">
+                            <p class="mb-0">¡Atención! Algunos productos tienen un stock por debajo de 10.</p>
+                        </div>
+                    @else
+                        <div class="alert alert-info">
+                            <p class="mb-0">No hay productos con stock por debajo de 10.</p>
+                        </div>
+                    @endif
+                @else
+                    <div class="alert alert-info mb-0">
+                        <p class="mb-0">No hay notificaciones.</p>
+                    </div>
+                @endif
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('mostrarAlertas').addEventListener('click', function() {
+        $('#alertasModal').modal('show'); // Mostrar la ventana modal
+    });
+</script>
+
+
 
 
 <label for="nombres"><strong>IntegralFlex</strong></label>
