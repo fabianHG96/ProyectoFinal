@@ -16,5 +16,9 @@ class ClienteEmpresa extends Model
         return $this->belongsTo(Empresa::class, 'empresa_id');
     }
 
+    public function detalleFacturas()
+{
+    return $this->hasMany(DetalleFactura::class, 'factura_id');
+}
 
 }
