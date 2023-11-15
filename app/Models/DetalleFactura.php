@@ -15,16 +15,18 @@ class DetalleFactura extends Model
         'nombre_cliente',
         'rut_cliente',
         'fecha_emision',
-        'detalle_productos',
+        'codigo',
+        'descripcion',
+        'cantidad',
+        'precio',
+        'total_item',
         'monto_neto',
         'iva',
         'total_factura',
         // Otros campos que desees llenar
     ];
 
-    protected $casts = [
-        'detalle_productos' => 'array', // Si el detalle de productos es un JSON, de lo contrario, ajusta según sea necesario
-    ];
+
 
 
     public function factura()
