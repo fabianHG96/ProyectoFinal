@@ -96,6 +96,10 @@ function Update(Request $request, $id){
         return redirect()->route('ListProductos')->with('error', 'Producto no encontrado');
     }
 
+    if ($request->input('Cantidad_Stock') < 0) {
+        return view('vistas.producto.update', ['producto' => $producto])->with('error', 'La cantidad no puede ser menor que cero');
+    }
+
     // Actualizar los atributos del producto con los valores del formulario
     $producto->update([
         'nombre_producto' => $request->input('Nombre_Producto'),

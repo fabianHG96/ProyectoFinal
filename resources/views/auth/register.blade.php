@@ -75,7 +75,7 @@
                                                         @endforeach
                                                     </ul>
                                                 </div>
-                                            @endif
+                                    @endif
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
                                         Crear Cuenta
                                     </button>

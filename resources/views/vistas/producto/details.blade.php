@@ -2,7 +2,7 @@
 @extends('layouts.main')
 
 @section('main-content')
-@if (Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 4 && Auth::user()->cargo_id != 5)
+@if (Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 4 && Auth::user()->cargo_id != 5 && Auth::user()->cargo_id != 6)
     <script>
         $(document).ready(function(){
             $('#noPermissionsModal').modal('show');
