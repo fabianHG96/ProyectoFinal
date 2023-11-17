@@ -19,7 +19,7 @@
 <!-- CAMBIO DE TEMA DE CLARO A OSCURO-->
 <body data-bs-theme="dark">
     <div class="d-flex justify-content-between align-items-center border p-2">
-        @if (Auth::check())
+    @if (Auth::check())
         <a class="navbar-brand">Bienvenido {{ Auth::user()->name }}</a>
     @else
         <script>
@@ -73,9 +73,6 @@
     });
 </script>
 
-
-
-
 <label for="nombres"><strong>IntegralFlex</strong></label>
 <!-- Botón y estructura -->
 <div >
@@ -92,80 +89,114 @@
 
     <div class="container-fluid">
         <div class="row">
+            @if (Auth::check())
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="position-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">
+                                    <i class="fa-solid fa-house"></i> Dashboard
+                                </a>
+                            </li>
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 5))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('ListOrdenDeCompra') }}">
+                                    <i class="fa-solid fa-file-invoice-dollar"></i> Orden de Compra
+                                </a>
+                            </li>
+                            @endif
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 5 && Auth::user()->cargo_id != 2 ))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ListEmpleado') }}">
+                                        <i class="fa-solid fa-helmet-safety"></i> Empleados
+                                    </a>
+                                </li>
+                            @endif
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 5))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('ListProveedor') }}">
+                                    <i class="fa-solid fa-hand-holding"></i> Proveedores
+                                </a>
+                            </li>
+                            @endif
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 5 && Auth::user()->cargo_id != 6 ))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ListBodega') }}">
+                                        <i class="fa-solid fa-warehouse"></i> Bodega
+                                    </a>
+                                </li>
+                            @endif
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 4 && Auth::user()->cargo_id != 5 && Auth::user()->cargo_id != 6))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ListProductos') }}">
+                                    <i class="fa-solid fa-box-open"></i> Productos
+                                    </a>
+                                </li>
+                            @endif
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 5 && Auth::user()->cargo_id != 4))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ListCategoria') }}">
+                                        <i class="fa-solid fa-inbox"></i> Categoria
+                                    </a>
+                                </li>
+                            @endif
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 5))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ListVendedor') }}">
+                                        <i class="fa-regular fa-handshake"></i> Vendedores
+                                    </a>
+                                </li>
+                            @endif
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 5 && Auth::user()->cargo_id != 2 ))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ListClienteEmpresa') }}">
+                                        <i class="fa-solid fa-users"></i> Cliente Empresa
+                                    </a>
+                                </li>
+                            @endif
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 2 && Auth::user()->cargo_id != 5 ))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ListEmpresa') }}">
+                                        <i class="fa-solid fa-building"></i> Empresas
+                                    </a>
+                                </li>
+                            @endif
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 2 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 4 && Auth::user()->cargo_id != 5))
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-chart-line"></i> Seguimientos
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 4 && Auth::user()->cargo_id != 5))
+                                            <li><a class="dropdown-item" href="{{ route('SeguimientoClientes') }}">SeguimientoClientes</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('SeguimientoProveedores') }}">SeguimientoProveedores</a></li>
+                                        @endif
+                                        <li><a class="dropdown-item" href="{{ route('SeguimientoProductos') }}">SeguimientoProductos</a></li>
+                                        @if (@(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 5))
+                                            <li><a class="dropdown-item" href="{{ route('listFactura') }}">RespaldoFacturas</a></li>
+                                        @endif
+                                        @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 2 && Auth::user()->cargo_id != 5))
+                                            <li><a class="dropdown-item" href="{{ route('Usuarios') }}">Usuarios</a></li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
+                            @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 2 && Auth::user()->cargo_id != 5 ))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">
+                                        <i class="fa-solid fa-user-plus"></i> Crear Nuevo Usuario
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                </nav>
+            @else
+                <script>
+                    window.location = "{{ route('login') }}";
+                </script>
+            @endif
 
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                <div class="position-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">
-                                <i class="fa-solid fa-house"></i> Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListOrdenDeCompra') }}">
-                                <i class="fa-solid fa-file-invoice-dollar"></i> Orden de Compra
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListEmpleado') }}">
-                                <i class="fa-solid fa-helmet-safety"></i> Empleados
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListProveedor') }}">
-                                <i class="fa-solid fa-hand-holding"></i> Proveedores
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListBodega') }}">
-                                <i class="fa-solid fa-warehouse"></i> Bodega
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListProductos') }}">
-                            <i class="fa-solid fa-box-open"></i> Productos
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListCategoria') }}">
-                                <i class="fa-solid fa-inbox"></i> Categoria
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListVendedor') }}">
-                                <i class="fa-regular fa-handshake"></i> Vendedores
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListClienteEmpresa') }}">
-                                <i class="fa-solid fa-users"></i> Cliente Empresa
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ListEmpresa') }}">
-                                <i class="fa-solid fa-building"></i> Empresas
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-chart-line"></i> Seguimientos
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{ route('SeguimientoClientes') }}">SeguimientoClientes</a></li>
-                                <li><a class="dropdown-item" href="{{ route('SeguimientoProductos') }}">SeguimientoProductos</a></li>
-                                <li><a class="dropdown-item" href="{{ route('SeguimientoProveedores') }}">SeguimientoProveedores</a></li>
-                                <li><a class="dropdown-item" href="{{ route('listFactura') }}">RespaldoFacturas</a></li>
-                                <li><a class="dropdown-item" href="{{ route('Usuarios') }}">Usuarios</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">
-                                <i class="fa-solid fa-user-plus"></i> Crear Nuevo Usuario
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 @yield('main-content')
 
