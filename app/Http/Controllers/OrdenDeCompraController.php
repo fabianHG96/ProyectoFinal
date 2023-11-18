@@ -22,44 +22,48 @@ class OrdenDeCompraController extends Controller
      }
 
      function createNewOrden(Request $request)
-{
-    $request->validate([
-        'fsolicitud' => 'required|date',
-        'ftermino' => 'required|date',
-        'proveedor_id' => 'required|exists:proveedor,id',
-        'vendedor_id' => 'required|exists:vendedor,id',
-        'empleado_id' => 'required|exists:empleados,id',
-        'producto_id' => 'required|exists:productos,id',
-        'nombre_producto' => 'required|exists:productos,nombre_producto',
-        'estado' => 'required',
-        'cantidad' => 'required|integer',
-        'monto' => 'required',
-        'total' => 'required',
-    ]);
+    {
+        $request->validate([
+            'fsolicitud' => 'required|date',
+            'ftermino' => 'required|date',
+            'proveedor_id' => 'required|exists:proveedor,id',
+            'vendedor_id' => 'required|exists:vendedor,id',
+            'empleado_id' => 'required|exists:empleados,id',
+            'producto_id' => 'required|exists:productos,id',
+            'nombre_producto' => 'required|exists:productos,nombre_producto',
+            'estado' => 'required',
+            'cantidad' => 'required|integer',
+            'monto' => 'required',
+            'total' => 'required',
+        ]);
 
-    $producto = Producto::find($request->producto_id);
+        $producto = Producto::find($request->producto_id);
 
-    // Crea la orden de compra
-    OrdenDeCompra::create([
-        'fecha_solicitud' => $request->fsolicitud,
-        'fecha_termino' => $request->ftermino,
-        'proveedor_id' => $request->proveedor_id,
-        'vendedor_id' => $request->vendedor_id,
-        'empleado_id' => $request->empleado_id,
-        'producto_id' => $request->producto_id,
-        'nombre_producto' => $request->nombre_producto,
-        'estado' => $request->estado,
-        'cantidad' => $request->cantidad,
-        'monto' => $request->monto,
-        'total' => $request->total,
-    ]);
+        // Obtiene el nombre del proveedor
+        $nombreProveedor = Proveedor::find($request->proveedor_id)->nombre;
 
-    // Actualiza el stock del producto
-    $producto->cantidad_stock += $request->cantidad;
-    $producto->save();
+        // Crea la orden de compra
+        OrdenDeCompra::create([
+            'fecha_solicitud' => $request->fsolicitud,
+            'fecha_termino' => $request->ftermino,
+            'proveedor_id' => $request->proveedor_id,
+            'nombre_proveedor' => $nombreProveedor, // Agrega el nombre del proveedor
+            'vendedor_id' => $request->vendedor_id,
+            'empleado_id' => $request->empleado_id,
+            'producto_id' => $request->producto_id,
+            'nombre_producto' => $request->nombre_producto,
+            'estado' => $request->estado,
+            'cantidad' => $request->cantidad,
+            'monto' => $request->monto,
+            'total' => $request->total,
+        ]);
 
-    return redirect()->route('ListOrdenDeCompra')->with('success', 'Orden De Compra creado exitosamente');
-}
+        // Actualiza el stock del producto
+        $producto->cantidad_stock += $request->cantidad;
+        $producto->save();
+
+        return redirect()->route('ListOrdenDeCompra')->with('success', 'Orden De Compra creado exitosamente');
+        }
 
 
     public function getVendedores($proveedorId)

@@ -16,6 +16,7 @@ class OrdenDeCompraSeeder extends Seeder
         OrdenDeCompra::create([
         'fecha_solicitud' => '2023-01-15',
         'fecha_termino' => '2023-01-15',
+        'nombre_proveedor'=> 'Flexloko',
         'proveedor_id' => '2',
         'vendedor_id' => '1',
         'empleado_id' => '1',

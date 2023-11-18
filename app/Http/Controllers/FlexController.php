@@ -14,6 +14,7 @@ use TCPDF;
 use App\Models\PdfDocument;
 use Illuminate\Support\Facades\Response;
 use App\Models\DetalleFactura;
+use App\Models\OrdenDeCompra;
 use Spatie\PdfToText\Pdf;
 use Smalot\PdfParser\Parser;
 class FlexController extends Controller
@@ -63,14 +64,39 @@ class FlexController extends Controller
             return view('vistas.sClientes.seguimiento', compact('resultadosConsulta', 'tipoConsulta', 'fechaInicio', 'fechaFin'))->with(['user' => $authenticatedUser]);
         }
 
-     function SeguimientoProductos(){
-        $authenticated_user = Auth::user();
-        return view('vistas.sProductos.seguimiento')->with(['user' => $authenticated_user,]);
-     }
-     function SeguimientoProveedores(){
-        $authenticated_user = Auth::user();
-        return view('vistas.sProveedores.seguimiento')->with(['user' => $authenticated_user,]);
-     }
+            function SeguimientoProductos(){
+                $authenticated_user = Auth::user();
+                return view('vistas.sProductos.seguimiento')->with(['user' => $authenticated_user,]);
+            }
+
+            function SeguimientoProveedores(Request $request){
+                $authenticatedUser = Auth::user();
+            $tipoConsulta = $request->input('tipo_consulta', 'total_pedidos');
+            $fechaInicio = $request->input('fechaInicio');
+            $fechaFin = $request->input('fechaFin');
+
+            $query = OrdenDeCompra::query();
+
+            // Filtrar por fechas si se proporcionan ambas fechas
+            if (!empty($fechaInicio) && !empty($fechaFin)) {
+                $query->whereBetween('fecha_solicitud', [$fechaInicio, $fechaFin]);
+            }
+
+            $query->select('proveedor_id', 'nombre_proveedor', 'fecha_solicitud','fecha_termino');
+
+            if ($tipoConsulta === 'total_pedidos') {
+                $query->selectRaw('count(*) as total');
+            } elseif ($tipoConsulta === 'total_compras') {
+                $query->selectRaw('sum(total) as total');
+            }
+
+            $query->groupBy('proveedor_id', 'nombre_proveedor');
+
+            $resultadosConsulta = $query->get();
+
+            return view('vistas.sProveedores.seguimiento', compact('resultadosConsulta', 'tipoConsulta', 'fechaInicio', 'fechaFin'))->with(['user' => $authenticatedUser]);
+        }
+
 
      public function listUsers(){
         $users = User::all();
