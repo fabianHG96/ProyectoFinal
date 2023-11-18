@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetalleFactura extends Model
 {
+ /* The code you provided is a PHP class definition for a model called "DetalleFactura" in the
+ "App\Models" namespace. */
     use HasFactory;
 
     protected $table = 'detalle_factura'; // Nombre de la tabla
