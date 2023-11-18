@@ -8,6 +8,20 @@
         });
     </script>
 @endif
+
+
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <h1>Crear orden de compra</h1>
     <form method="POST" action="{{ route('register.Orden') }}">
         @csrf
@@ -104,33 +118,48 @@
                 </div>
             </div>
 
-            <!-- Detalles orden de compra -->
-            <label for="vendedor"><strong>Producto</strong></label>
-            <div class="input-group mt-2">
-                <span class="input-group-text">Nombre producto</span>
-                <select name="producto_id" id="producto_id" class="form-select" required>
-                    <option value="">Selecciona un producto</option>
-                    @foreach ($productos as $producto)
-                        <option value="{{ $producto->id }}" data-nombre_producto="{{ $producto->nombre_producto }}" data-cantidad_stock="{{ $producto->cantidad_stock }}" data-precio_unitario="{{ $producto->precio_unitario }}" data-total="{{ $producto->total }}">{{ $producto->nombre_producto }}</option>
-                    @endforeach
-                </select>
-                <input type="hidden" class="form-control" name="nombre_producto" id="nombre_producto" readonly style="background-color: rgb(225, 225, 225);">
+            <div class="container mt-3">
+                <label for="vendedor"><strong>Producto</strong></label>
             </div>
-            <div class="input-group mt-2">
-                <span class="input-group-text">Cantidad</span>
-                <input type="number" class="form-control" name="cantidad" id="cantidad" required>
-            </div>
-            <div class="input-group mt-2">
-                <span class="input-group-text">Monto</span>
-                <input type="number" class="form-control" name="monto" id="monto" readonly style="background-color: rgb(124, 124, 124);" required>
-            </div>
-            <div class="input-group mt-2">
-                <span class="input-group-text">Total</span>
-                <input type="number" class="form-control" name="total" id="total" readonly style="background-color: rgb(124, 124, 124);" required>
-            </div>
-                </div>
-            </div>
+
         </div>
+
+        <div class="container mt-3">
+
+            <button type="button" class="add-product-row">Agregar Producto</button>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre producto</th>
+                    <th>Cantidad</th>
+                    <th>Monto</th>
+                    <th>Total</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="product-table">
+                <tr class="product-row">
+                    <td>
+                        <select name="producto_id[]" class="form-select producto-select" required>
+                            <option value="">Selecciona un producto</option>
+                            @foreach ($productos as $producto)
+                                <option value="{{ $producto->id }}" data-nombre_producto="{{ $producto->nombre_producto }}" data-cantidad_stock="{{ $producto->cantidad_stock }}" data-precio_unitario="{{ $producto->precio_unitario }}" data-total="{{ $producto->total }}">{{ $producto->nombre_producto }}</option>
+                            @endforeach
+                        </select>
+                        <input type="hidden" class="form-control nombre-producto" name="nombre_producto[]" readonly style="background-color: rgb(225, 225, 225);">
+                    </td>
+                    <td><input type="number" class="form-control cantidad" name="cantidad[]" required></td>
+                    <td><input type="number" class="form-control monto" name="monto[]"  required></td>
+                    <td><input type="number" class="form-control total" name="total[]" readonly style="background-color: rgb(124, 124, 124);" required></td>
+                    <td>
+                        <button type="button" class="remove-product-row">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
         <div class="d-flex justify-content-end mt-4">
             <input type="submit" value="Guardar" class="btn btn-primary">
         </div>
@@ -189,8 +218,54 @@
             document.getElementById('total').value = '';
             document.getElementById('cantidad').value = '';
         }
-    });
+
+     });
         </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // ... (código existente)
+
+        // Agregar producto dinámicamente
+        document.querySelector(".add-product-row").addEventListener("click", function () {
+            const newRow = document.querySelector(".product-row").cloneNode(true);
+            newRow.querySelectorAll("input, select").forEach((element) => {
+                element.value = "";
+            });
+            document.querySelector("#product-table").appendChild(newRow);
+        });
+
+        // Eliminar producto dinámicamente
+        document.querySelector("table").addEventListener("click", function (event) {
+            if (event.target.classList.contains("remove-product-row")) {
+                if (document.querySelectorAll(".product-row").length > 1) {
+                    event.target.closest(".product-row").remove();
+                    actualizarTotal();
+                }
+            }
+        });
+
+        // Cálculo al seleccionar un producto o cambiar la cantidad/precio
+        document.getElementById('product-table').addEventListener('change', function (event) {
+            if (event.target.classList.contains("form-select") || event.target.classList.contains("form-control")) {
+                actualizarTotal();
+            }
+        });
+
+        function actualizarTotal() {
+            // Obtener todas las filas de productos
+            const filas = document.querySelectorAll(".product-row");
+
+            // Actualizar el total para cada fila
+            filas.forEach(function (fila) {
+                const cantidad = fila.querySelector("input[name^='cantidad']").value || 0;
+                const precio = fila.querySelector("input[name^='monto']").value || 0;
+                const total = cantidad * precio;
+                fila.querySelector("input[name^='total']").value = total;
+            });
+        }
+    });
+</script>
         </html>
 
     <script src="js/scripts.js"></script>
