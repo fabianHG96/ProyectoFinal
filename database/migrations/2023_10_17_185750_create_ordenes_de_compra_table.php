@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('fecha_solicitud');
             $table->date('fecha_termino');
+            $table->string('nombre_proveedor');
             $table->unsignedBigInteger('proveedor_id');
             $table->unsignedBigInteger('vendedor_id');
             $table->unsignedBigInteger('empleado_id');

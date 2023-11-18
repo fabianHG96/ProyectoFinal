@@ -34,5 +34,8 @@ class ProveedorSeeder extends Seeder
             'email' => 'proveedor2@example.com',
             'rubro' => 'Rubro 2',
         ]);
+
+
+
     }
 }
