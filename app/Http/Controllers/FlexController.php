@@ -35,10 +35,34 @@ class FlexController extends Controller
         return view('vistas.rFactura.list', ['mostrarfactura' => $factura]);
         }
 
-     function SeguimientoClientes(){
-        $authenticated_user = Auth::user();
-        return view('vistas.sClientes.seguimiento')->with(['user' => $authenticated_user,]);
-     }
+
+        function SeguimientoClientes(Request $request){
+            $authenticatedUser = Auth::user();
+            $tipoConsulta = $request->input('tipo_consulta', 'total_facturas');
+            $fechaInicio = $request->input('fechaInicio');
+            $fechaFin = $request->input('fechaFin');
+
+            $query = DetalleFactura::query();
+
+            // Filtrar por fechas si se proporcionan ambas fechas
+            if (!empty($fechaInicio) && !empty($fechaFin)) {
+                $query->whereBetween('fecha_emision', [$fechaInicio, $fechaFin]);
+            }
+
+            $query->select('rut_cliente', 'nombre_cliente', 'fecha_emision');
+
+            if ($tipoConsulta === 'total_facturas') {
+                $query->selectRaw('count(*) as total');
+            } elseif ($tipoConsulta === 'total_ventas') {
+                $query->selectRaw('sum(total_factura) as total');
+            }
+
+            // No agrupar por la fecha de emisión
+            $resultadosConsulta = $query->groupBy('rut_cliente', 'nombre_cliente')->get();
+
+            return view('vistas.sClientes.seguimiento', compact('resultadosConsulta', 'tipoConsulta', 'fechaInicio', 'fechaFin'))->with(['user' => $authenticatedUser]);
+        }
+
      function SeguimientoProductos(){
         $authenticated_user = Auth::user();
         return view('vistas.sProductos.seguimiento')->with(['user' => $authenticated_user,]);
