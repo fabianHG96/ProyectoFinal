@@ -36,7 +36,7 @@
                 <tbody>
                     @foreach ($mostrarordenes as $ordendecompra )
                     <tr>
-                        <td>{{ $ordendecompra->proveedor_id }}</td>
+                        <td>{{ $ordendecompra->nombre_proveedor }}</td>
                         <td>{{ $ordendecompra->id }}</td>
                         <td>{{ $ordendecompra->estado }}</td> {{-- TODO --}}
                         <td>{{ $ordendecompra->fecha_solicitud }}</td>
