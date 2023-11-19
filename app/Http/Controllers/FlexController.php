@@ -69,6 +69,8 @@ class FlexController extends Controller
                 return view('vistas.sProductos.seguimiento')->with(['user' => $authenticated_user,]);
             }
 
+
+
             function SeguimientoProveedores(Request $request){
                 $authenticatedUser = Auth::user();
             $tipoConsulta = $request->input('tipo_consulta', 'total_pedidos');
@@ -97,6 +99,70 @@ class FlexController extends Controller
             return view('vistas.sProveedores.seguimiento', compact('resultadosConsulta', 'tipoConsulta', 'fechaInicio', 'fechaFin'))->with(['user' => $authenticatedUser]);
         }
 
+
+        function SeguimientoFinanciero(Request $request) {
+            $authenticatedUser = Auth::user();
+            $filtroAnio = $request->input('filtro_anio', date('Y'));
+            $fechaInicio = $filtroAnio . '-01-01';
+            $fechaFin = $filtroAnio . '-12-31';
+
+            // Obtener ventas (total facturas por mes)
+            $ventas = DetalleFactura::query()
+                ->whereBetween('fecha_emision', [$fechaInicio, $fechaFin])
+                ->select(DB::raw('MONTH(fecha_emision) as mes'), DB::raw('sum(total_factura) as total'))
+                ->groupBy(DB::raw('MONTH(fecha_emision)'))
+                ->orderBy('mes') // Ordenar por mes
+                ->get();
+
+            // Obtener compras (total ordenes de compra por mes)
+            $compras = OrdenDeCompra::query()
+                ->whereBetween('fecha_solicitud', [$fechaInicio, $fechaFin])
+                ->select(DB::raw('MONTH(fecha_solicitud) as mes'), DB::raw('sum(total) as total'))
+                ->groupBy(DB::raw('MONTH(fecha_solicitud)'))
+                ->orderBy('mes') // Ordenar por mes
+                ->get();
+
+            // Combinar resultados por mes
+            $resultadosPorMes = $this->combinarResultadosPorMes($ventas, $compras);
+
+            // Calcular ganancias (ventas - compras) por mes
+            $ganancias = $this->calcularGananciasPorMes($resultadosPorMes);
+
+            return view('vistas.sFinanciero.seguimiento', compact('resultadosPorMes', 'ganancias', 'filtroAnio'))
+                ->with(['user' => $authenticatedUser]);
+        }
+
+        // Función para combinar resultados por mes
+        private function combinarResultadosPorMes($ventas, $compras) {
+            $resultadosPorMes = [];
+
+            foreach ($ventas as $venta) {
+                $mes = $venta->mes;
+                $resultadosPorMes[$mes]['ventas'] = $venta->total;
+                $resultadosPorMes[$mes]['compras'] = 0; // Inicializar compras en 0
+            }
+
+            foreach ($compras as $compra) {
+                $mes = $compra->mes;
+                if (!isset($resultadosPorMes[$mes])) {
+                    $resultadosPorMes[$mes] = ['ventas' => 0]; // Inicializar ventas en 0 si no existe
+                }
+                $resultadosPorMes[$mes]['compras'] = $compra->total;
+            }
+
+            return $resultadosPorMes;
+        }
+
+        // Función para calcular ganancias por mes
+        private function calcularGananciasPorMes($resultadosPorMes) {
+            $ganancias = [];
+
+            foreach ($resultadosPorMes as $mes => $resultados) {
+                $ganancias[$mes] = $resultados['ventas'] - $resultados['compras'];
+            }
+
+            return $ganancias;
+        }
 
      public function listUsers(){
         $users = User::all();

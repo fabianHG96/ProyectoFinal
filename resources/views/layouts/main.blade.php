@@ -178,6 +178,9 @@
                                         @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 2 && Auth::user()->cargo_id != 5))
                                             <li><a class="dropdown-item" href="{{ route('Usuarios') }}">Usuarios</a></li>
                                         @endif
+                                        @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 2 && Auth::user()->cargo_id != 5))
+                                        <li><a class="dropdown-item" href="{{ route('SeguimientoFinanciero') }}">SeguimientoFinanciero</a></li>
+                                        @endif
                                     </ul>
                                 </li>
                             @endif

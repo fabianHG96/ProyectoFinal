@@ -80,6 +80,9 @@ Route::get('/seguimiento/clientes',[FlexController::class,'SeguimientoClientes']
 //Seguimiento financiero productos
 Route::get('/seguimiento/productos',[FlexController::class,'SeguimientoProductos'])->name('SeguimientoProductos');
 
+//Seguimiento financiero financiero
+Route::get('/seguimiento/financiero',[FlexController::class,'SeguimientoFinanciero'])->name('SeguimientoFinanciero');
+
 //Seguimiento financiero proveedores
 Route::get('/seguimiento/proveedores',[FlexController::class,'SeguimientoProveedores'])->name('SeguimientoProveedores');
 
