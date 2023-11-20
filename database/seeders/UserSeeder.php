@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
             'name' => 'Nicolas',
             'surname' => 'Reyes',
             'email' => 'nicolas@example.com',
-            'cargo_id' => '3',
+            'cargo_id' => '1',
             'password' => Hash::make('12345'),
             'remember_token' => null,
         ]);

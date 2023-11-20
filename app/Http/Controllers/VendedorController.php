@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vendedor;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Proveedor;
 
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class VendedorController extends Controller
 {
+    use SoftDeletes;
     public function showNewVendedor()
     {
         $proveedores = Proveedor::all();
