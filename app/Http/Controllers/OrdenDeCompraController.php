@@ -27,7 +27,7 @@ class OrdenDeCompraController extends Controller
         try {
             $request->validate([
                 'fsolicitud' => 'required|date',
-                'ftermino' => 'required|date',
+                'ftermino' => 'required|date|after_or_equal:fsolicitud', // Asegura que la fecha de término sea igual o posterior a la fecha de solicitud
                 'proveedor_id' => 'required|exists:proveedor,id',
                 'vendedor_id' => 'required|exists:vendedor,id',
                 'empleado_id' => 'required|exists:empleados,id',
@@ -36,8 +36,21 @@ class OrdenDeCompraController extends Controller
                 'estado' => 'required',
                 'cantidad' => 'required|integer|min:1', // Asegura que la cantidad sea al menos 1
                 'monto' => 'required|numeric|min:0', // Asegura que el monto no sea negativo
-                'total' => 'required|numeric|min:0', // Asegura que el total no sea negativo
+                'total' => 'required|numeric|min:0', // Asegura que el total no sea negativo // Añade la posibilidad de un comprobante de pago (ajusta según tus necesidades)
+            ], [
+                'fsolicitud.required' => 'El campo fsolicitud es obligatorio.',
+                'fsolicitud.date' => 'El campo fsolicitud debe ser una fecha válida.',
+                'ftermino.required' => 'El campo ftermino es obligatorio.',
+                'ftermino.date' => 'El campo ftermino debe ser una fecha válida.',
+                'ftermino.after_or_equal' => 'La fecha de término debe ser igual o posterior a la fecha de solicitud.',
+                'proveedor_id.required' => 'El campo proveedor_id es obligatorio.',
+                'proveedor_id.exists' => 'El proveedor especificado no existe.',
+                'vendedor_id.required' => 'El campo vendedor_id es obligatorio.',
+                'vendedor_id.exists' => 'El vendedor especificado no existe.',
+                'empleado_id.required' => 'El campo empleado_id es obligatorio.',
+                'empleado_id.exists' => 'El empleado especificado no existe.',
             ]);
+
 
             // Obtiene el nombre del proveedor
             $nombreProveedor = Proveedor::find($request->proveedor_id)->nombre;

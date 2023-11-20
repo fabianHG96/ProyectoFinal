@@ -19,14 +19,41 @@ class ClienteEmpresaController extends Controller
     {
         $request->validate([
             'empresa_id' => 'required|exists:empresas,id',
-            'nombre' => 'required',
-            'rut' => 'required|unique:cliente_empresas',
-            'pais' => 'required',
-            'region' => 'required',
-            'direccion' => 'required',
-            'email' => 'required|email',
-            'telefono' => 'required',
+            'nombre' => 'required|min:2|max:255', // Agregado: Longitud mínima y máxima para el nombre
+            'rut' => 'required|unique:cliente_empresas|min:7|max:12', // Agregado: Longitud y unicidad para el RUT
+            'pais' => 'required|string|min:2', // Agregado: Longitud mínima para el país
+            'region' => 'required|string|min:2', // Agregado: Longitud mínima para la región
+            'direccion' => 'required|string|min:5', // Agregado: Longitud mínima para la dirección
+            'email' => 'required|email|unique:cliente_empresas', // Agregado: Validación de correo electrónico y unicidad
+            'telefono' => 'required|numeric|min:100000000|max:999999999', // Agregado: Número de teléfono con longitud específica
+        ], [
+            'empresa_id.required' => 'El campo empresa_id es obligatorio.',
+            'empresa_id.exists' => 'La empresa especificada no existe.',
+            'nombre.required' => 'El campo nombre es obligatorio.',
+            'nombre.min' => 'El nombre debe tener al menos 2 caracteres.',
+            'nombre.max' => 'El nombre no puede tener más de 255 caracteres.',
+            'rut.required' => 'El campo RUT es obligatorio.',
+            'rut.unique' => 'El RUT ya está registrado.',
+            'rut.min' => 'El RUT debe tener al menos 7 caracteres.',
+            'rut.max' => 'El RUT no puede tener más de 12 caracteres.',
+            'pais.required' => 'El campo país es obligatorio.',
+            'pais.string' => 'El valor del país debe ser una cadena de texto.',
+            'pais.min' => 'La longitud mínima para el país es de 2 caracteres.',
+            'region.required' => 'El campo región es obligatorio.',
+            'region.string' => 'El valor de la región debe ser una cadena de texto.',
+            'region.min' => 'La longitud mínima para la región es de 2 caracteres.',
+            'direccion.required' => 'El campo dirección es obligatorio.',
+            'direccion.string' => 'El valor de la dirección debe ser una cadena de texto.',
+            'direccion.min' => 'La longitud mínima para la dirección es de 5 caracteres.',
+            'email.required' => 'El campo email es obligatorio.',
+            'email.email' => 'El formato del correo electrónico no es válido.',
+            'email.unique' => 'El correo electrónico ya está registrado.',
+            'telefono.required' => 'El campo teléfono es obligatorio.',
+            'telefono.numeric' => 'El teléfono debe ser un número.',
+            'telefono.min' => 'El teléfono debe tener al menos 9 dígitos.',
+            'telefono.max' => 'El teléfono no puede tener más de 9 dígitos.',
         ]);
+
 
         ClienteEmpresa::create([
             'empresa_id' => $request->empresa_id,

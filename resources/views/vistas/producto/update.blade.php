@@ -22,19 +22,19 @@
                 <label for="names"><strong>Datos del Producto</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre del Producto</span>
-                    <input type="text" class="form-control" name="Nombre_Producto" id="Nombre_Producto" value="{{ $producto->nombre_producto }}">
+                    <input required type="text" class="form-control" name="Nombre_Producto" id="Nombre_Producto" value="{{ $producto->nombre_producto }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Cantidad Stock</span>
-                    <input type="number" class="form-control" name="Cantidad_Stock" id="Cantidad_Stock" value="{{ $producto->cantidad_stock }}">
+                    <input required type="number" class="form-control" name="Cantidad_Stock" id="Cantidad_Stock" value="{{ $producto->cantidad_stock }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Precio Unitario</span>
-                    <input type="number" class="form-control" name="Precio_Unitario" id="Precio_Unitario" value="{{ $producto->precio_unitario }}">
+                    <input required type="number" class="form-control" name="Precio_Unitario" id="Precio_Unitario" value="{{ $producto->precio_unitario }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Total</span>
-                    <input type="text" class="form-control" name="Total" id="Total" style="background-color: rgb(124, 124, 124);" readonly>
+                    <input required type="text" class="form-control" name="Total" id="Total" style="background-color: rgb(124, 124, 124);" readonly>
                 </div>
 
             </div>
