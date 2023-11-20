@@ -7,9 +7,11 @@ use App\Models\Empleado;
 use App\Models\Bodega;
 use App\Models\Cargo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EmpleadoController extends Controller
 {
+    use SoftDeletes;
 
 function ShowNewEmpleado(){
     $cargos = Cargo::all(); // o cualquier método que utilices para obtener las cargos
