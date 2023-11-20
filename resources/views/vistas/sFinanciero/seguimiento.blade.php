@@ -1,3 +1,4 @@
+<title>Seguimiento Financiero</title>
 @extends('layouts.main')
 @section('main-content')
 

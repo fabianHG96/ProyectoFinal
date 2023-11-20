@@ -174,7 +174,7 @@ class FlexController extends Controller
     public function subirFactura(Request $request)
     {
         $request->validate([
-            'nombre_archivo' => 'required|string|min:2|max:255', // Ajusta la longitud mínima y máxima según tus necesidades
+            'nombre_archivo' => 'required|string|max:255', // Ajusta la longitud mínima y máxima según tus necesidades
             'archivo_pdf' => 'required|mimes:pdf', // Se permite solo PDF y el tamaño máximo es 10 MB (ajusta según tus necesidades)
         ], [
             'nombre_archivo.required' => 'El campo nombre_archivo es obligatorio.',

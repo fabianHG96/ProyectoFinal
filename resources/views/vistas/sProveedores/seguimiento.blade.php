@@ -1,4 +1,4 @@
-<title>Lista Seguimiento De Proveedores</title>
+<title>Seguimiento De Proveedores</title>
 @extends('layouts.main')
 
 @section('main-content')
