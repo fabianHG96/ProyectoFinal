@@ -1,4 +1,4 @@
-<title>Actualizar una Persona</title>
+<title>Actualizar un Empleado</title>
 @extends('layouts.main')
 @section('main-content')
 @if (Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 5 && Auth::user()->cargo_id != 2 )
@@ -11,7 +11,7 @@
 <div class="container">
     <section>
         <div class="header-and-button d-flex justify-content-between align-items-center">
-            <h1 class="header">Actualizar una Persona</h1>
+            <h1 class="header">Actualizar un Empleado</h1>
         </div>
         <hr />
     </section>

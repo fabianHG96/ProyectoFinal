@@ -1,4 +1,4 @@
-
+<title>Seguimiento Clientes</title>
 @extends('layouts.main')
 @section('main-content')
 @if (Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 4 && Auth::user()->cargo_id != 5)
