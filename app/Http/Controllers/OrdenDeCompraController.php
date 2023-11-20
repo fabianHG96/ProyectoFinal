@@ -22,59 +22,51 @@ class OrdenDeCompraController extends Controller
 
      }
 
+
      function createNewOrden(Request $request)
-    {
-        try {
-            $request->validate([
-                'fsolicitud' => 'required|date',
-                'ftermino' => 'required|date',
-                'proveedor_id' => 'required|exists:proveedor,id',
-                'vendedor_id' => 'required|exists:vendedor,id',
-                'empleado_id' => 'required|exists:empleados,id',
-                'producto_id' => 'required|exists:productos,id',
-                'nombre_producto' => 'required|exists:productos,nombre_producto',
-                'estado' => 'required',
-                'cantidad' => 'required|integer|min:1', // Asegura que la cantidad sea al menos 1
-                'monto' => 'required|numeric|min:0', // Asegura que el monto no sea negativo
-                'total' => 'required|numeric|min:0', // Asegura que el total no sea negativo
-            ]);
+     {
+         $request->validate([
+             'fsolicitud' => 'required|date',
+             'ftermino' => 'required|date',
+             'proveedor_id' => 'required|exists:proveedor,id',
+             'vendedor_id' => 'required|exists:vendedor,id',
+             'empleado_id' => 'required|exists:empleados,id',
+             'producto_id' => 'required|exists:productos,id',
+             'nombre_producto' => 'required|exists:productos,nombre_producto',
+             'nombre_proveedor' => 'required|',
+             'estado' => 'required',
+             'cantidad' => 'required|integer',
+             'monto' => 'required',
+             'total' => 'required',
+         ]);
 
-            // Obtiene el nombre del proveedor
-            $nombreProveedor = Proveedor::find($request->proveedor_id)->nombre;
+         $producto = Producto::find($request->producto_id);
 
-            // Crea la orden de compra
-            OrdenDeCompra::create([
-                'fecha_solicitud' => $request->fsolicitud,
-                'fecha_termino' => $request->ftermino,
-                'proveedor_id' => $request->proveedor_id,
-                'nombre_proveedor' => $nombreProveedor,
-                'vendedor_id' => $request->vendedor_id,
-                'empleado_id' => $request->empleado_id,
-                'producto_id' => $request->producto_id,
-                'nombre_producto' => $request->nombre_producto,
-                'estado' => $request->estado,
-                'cantidad' => $request->cantidad,
-                'monto' => $request->monto,
-                'total' => $request->total,
-            ]);
+         // Crea la orden de compra
+         OrdenDeCompra::create([
+             'fecha_solicitud' => $request->fsolicitud,
+             'fecha_termino' => $request->ftermino,
+             'proveedor_id' => $request->proveedor_id,
+             'vendedor_id' => $request->vendedor_id,
+             'empleado_id' => $request->empleado_id,
+             'producto_id' => $request->producto_id,
+             'nombre_proveedor' => $request->nombre_proveedor,
+             'nombre_producto' => $request->nombre_producto,
+             'estado' => $request->estado,
+             'cantidad' => $request->cantidad,
+             'monto' => $request->monto,
+             'total' => $request->total,
 
-            // Actualiza el stock del producto
-            $producto = Producto::find($request->producto_id);
-            $producto->cantidad_stock += $request->cantidad;
-            $producto->save();
 
-            return redirect()->route('ListOrdenDeCompra')->with('success', 'Orden De Compra creado exitosamente');
-        } catch (ValidationException $e) {
-            // Captura la excepción de validación y redirige de nuevo al formulario con los errores
-            return redirect()->back()->withErrors($e->validator->errors())->withInput();
-        } catch (QueryException $e) {
-            // Captura excepciones de la base de datos y maneja según sea necesario
-            return redirect()->back()->with('error', 'Error al guardar la orden: ' . $e->getMessage())->withInput();
-        } catch (\Exception $e) {
-            // Captura otras excepciones no manejadas y maneja según sea necesario
-            return redirect()->back()->with('error', 'Error inesperado: ' . $e->getMessage())->withInput();
-        }
-    }
+         ]);
+
+         // Actualiza el stock del producto
+         $producto->cantidad_stock += $request->cantidad;
+         $producto->save();
+
+         return redirect()->route('ListOrdenDeCompra')->with('success', 'Orden De Compra creado exitosamente');
+     }
+
 
 
     public function getVendedores($proveedorId)

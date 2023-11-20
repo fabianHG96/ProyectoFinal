@@ -17,7 +17,7 @@
                 <label for="solicitante"><strong>Datos Solicitante</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre Solicitante</span>
-                    <select name="empleado_id" id="empleado_id" class="form-select">
+                    <select name="empleado_id" id="empleado_id" class="form-select" required>
                         <option value="">Selecciona un empleado</option>
                         @foreach ($empleados as $empleado)
                             <option value="{{ $empleado->id }}" @if($empleado->id == $ordendecompra->empleado_id) selected @endif>
@@ -30,7 +30,7 @@
                 <label for="proveedor"><strong>Proveedor</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre Proveedor</span>
-                    <select name="proveedor_id" id="proveedor_id" class="form-select">
+                    <select name="proveedor_id" id="proveedor_id" class="form-select" required>
                         <option value="">Selecciona un proveedor</option>
                         @foreach ($proveedores as $proveedor)
                             <option value="{{ $proveedor->id }}" data-nombre="{{ $proveedor->nombre }}" data-rut="{{ $proveedor->rut }}" data-direccion="{{ $proveedor->direccion }}" data-telefono="{{ $proveedor->telefono }}" @if($proveedor->id == $ordendecompra->proveedor_id) selected @endif>
@@ -42,19 +42,19 @@
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre</span>
-                    <input type="text" class="form-control" name="nombre" id="nombre" readonly value="{{ $ordendecompra->proveedor->nombre }}" style="background-color: rgb(124, 124, 124);">
+                    <input required type="text" class="form-control" name="nombre" id="nombre" readonly value="{{ $ordendecompra->proveedor->nombre }}" style="background-color: rgb(124, 124, 124);" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Rut</span>
-                    <input type="text" class="form-control" name="rut" id="rut" readonly value="{{ $ordendecompra->proveedor->rut }}" style="background-color: rgb(124, 124, 124);">
+                    <input  required type="text" class="form-control" name="rut" id="rut" readonly value="{{ $ordendecompra->proveedor->rut }}" style="background-color: rgb(124, 124, 124);" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Dirección</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion" readonly value="{{ $ordendecompra->proveedor->direccion }}" style="background-color: rgb(124, 124, 124);">
+                    <input required type="text" class="form-control" name="direccion" id="direccion" readonly value="{{ $ordendecompra->proveedor->direccion }}" style="background-color: rgb(124, 124, 124);" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Teléfono</span>
-                    <input type="text" class="form-control" name="telefono" id="telefono" readonly value="{{ $ordendecompra->proveedor->telefono }}" style="background-color: rgb(124, 124, 124);">
+                    <input required type="text" class="form-control" name="telefono" id="telefono" readonly value="{{ $ordendecompra->proveedor->telefono }}" style="background-color: rgb(124, 124, 124);" required>
                 </div>
             </div>
 
@@ -63,15 +63,15 @@
                 <label for="fechas"><strong>Fechas de la Solicitud</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Fecha de Inicio</span>
-                    <input type="date" class="form-control" name="fsolicitud" id="fsolicitud" value="{{ $ordendecompra->fecha_solicitud }}">
+                    <input required type="date" class="form-control" name="fsolicitud" id="fsolicitud" value="{{ $ordendecompra->fecha_solicitud }}"required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Fecha de Término</span>
-                    <input type="date" class="form-control" name="ftermino" id="ftermino" value="{{ $ordendecompra->fecha_termino }}">
+                    <input required type="date" class="form-control" name="ftermino" id="ftermino" value="{{ $ordendecompra->fecha_termino }}"required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Estado de la orden</span>
-                    <select name="estado" id="estado" class="form-select">
+                    <select required name="estado" id="estado" class="form-select" required>
                         <option value="">Selecciona el estado</option>
                         @if ($ordendecompra)
                             @php
@@ -105,7 +105,7 @@
                 <label for="vendedor"><strong>Datos Vendedor</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre Vendedor</span>
-                    <select name="vendedor_id" id="vendedor_id" class="form-select">
+                    <select required name="vendedor_id" id="vendedor_id" class="form-select">
                         <option value="">Selecciona un vendedor</option>
                         @foreach ($vendedores as $vendedor)
                             <option value="{{ $vendedor->id }}" data-proveedor="{{ $vendedor->proveedor_id }}" data-nombre="{{ $vendedor->nombre }}" data-email="{{ $vendedor->email }}" data-telefono="{{ $vendedor->telefono }}" @if($vendedor->id == $ordendecompra->vendedor_id) selected @endif>
@@ -116,15 +116,15 @@
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre</span>
-                    <input type="text" class="form-control" name="vnombre" id="vnombre" readonly style="background-color: rgb(124, 124, 124);" value="{{ $vendedor->nombre }}">
+                    <input required type="text" class="form-control" name="vnombre" id="vnombre" readonly style="background-color: rgb(124, 124, 124);" value="{{ $vendedor->nombre }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Email</span>
-                    <input type="text" class="form-control" name="vemail" id="vemail" readonly style="background-color: rgb(124, 124, 124);" value="{{ $vendedor->email }}">
+                    <input required type="text" class="form-control" name="vemail" id="vemail" readonly style="background-color: rgb(124, 124, 124);" value="{{ $vendedor->email }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Teléfono</span>
-                    <input type="text" class="form-control" name="tvendedor" id="tvendedor" readonly style="background-color: rgb(124, 124, 124);" value="{{ $vendedor->telefono }}">
+                    <input required type="text" class="form-control" name="tvendedor" id="tvendedor" readonly style="background-color: rgb(124, 124, 124);" value="{{ $vendedor->telefono }}">
                 </div>
             </div>
 
@@ -133,7 +133,7 @@
             <div class="input-group mt-2">
                 <span class="input-group-text">Nombre producto</span>
                 <select name="producto_id" id="producto_id" class="form-select">
-                    <option value="">Selecciona un producto</option>
+                    <option required value="">Selecciona un producto</option>
                     @foreach ($productos as $producto)
                         <option value="{{ $producto->id }}" @if($producto->id == $ordendecompra->producto_id) selected @endif>
                             {{ $producto->nombre_producto }}
@@ -145,19 +145,19 @@
 
             <div class="input-group mt-2">
                 <span class="input-group-text">Cantidad</span>
-                <input type="number" class="form-control" name="cantidad" id="cantidad" value="{{ $ordendecompra->cantidad }}">
+                <input required required type="number" class="form-control" name="cantidad" id="cantidad" value="{{ $ordendecompra->cantidad }}">
             </div>
             <div class="input-group mt-2">
                 <span class="input-group-text">Monto</span>
-                <input type="number" class="form-control" name="monto" id="monto" value="{{ $ordendecompra->monto }}">
+                <input required type="number" class="form-control" name="monto" id="monto" value="{{ $ordendecompra->monto }}">
             </div>
             <div class="input-group mt-2">
                 <span class="input-group-text">Total</span>
-                <input type="number" class="form-control" name="total" id="total" value="{{ $ordendecompra->total }}">
+                <input required type="number" class="form-control" name="total" id="total" value="{{ $ordendecompra->total }}">
             </div>
         </div>
         <div class="d-flex justify-content-end mt-4">
-            <input type="submit" value="Guardar" class="btn btn-primary">
+            <input required type="submit" value="Guardar" class="btn btn-primary">
         </div>
     </form>
 
