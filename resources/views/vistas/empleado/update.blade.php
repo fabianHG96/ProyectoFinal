@@ -25,31 +25,31 @@
                 <label for="names"><strong>Datos de la Persona</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombres</span>
-                    <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $empleado->nombre }}">
+                    <input required type="text" class="form-control" name="nombre" id="nombre" value="{{ $empleado->nombre }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Apellido Paterno</span>
-                    <input type="text" class="form-control" name="apellido_p" id="apellido_p" value="{{ $empleado->apellido_p }}">
+                    <input required type="text" class="form-control" name="apellido_p" id="apellido_p" value="{{ $empleado->apellido_p }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Apellido Materno</span>
-                    <input type="text" class="form-control" name="apellido_m" id="apellido_m" value="{{ $empleado->apellido_m }}">
+                    <input required type="text" class="form-control" name="apellido_m" id="apellido_m" value="{{ $empleado->apellido_m }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">RUT</span>
-                    <input type="text" class="form-control" name="rut" id="rut" value="{{ $empleado->rut }}">
+                    <input required type="text" class="form-control" name="rut" id="rut" value="{{ $empleado->rut }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Email</span>
-                    <input type="text" class="form-control" name="email" id="email" value="{{ $empleado->email }}">
+                    <input required type="text" class="form-control" name="email" id="email" value="{{ $empleado->email }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Telefono</span>
-                    <input type="text" class="form-control" name="telefono" id="telefono" value="{{ $empleado->telefono }}">
+                    <input required type="text" class="form-control" name="telefono" id="telefono" value="{{ $empleado->telefono }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Direccion</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $empleado->direccion }}">
+                    <input required type="text" class="form-control" name="direccion" id="direccion" value="{{ $empleado->direccion }}">
                 </div>
             </div>
 
@@ -57,30 +57,30 @@
                 <label for="patent"><strong>Datos del trabajo</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Fecha de contratacion</span>
-                    <input type="date" class="form-control" name="Fcontratacion" id="Fcontratacion" value="{{ $empleado->Fcontratacion }}">
+                    <input required type="date" class="form-control" name="Fcontratacion" id="Fcontratacion" value="{{ $empleado->Fcontratacion }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Salario</span>
-                    <input type="text" class="form-control" name="salario" id="salario" value="{{ $empleado->salario }}">
+                    <input required type="text" class="form-control" name="salario" id="salario" value="{{ $empleado->salario }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Horario</span>
-                    <input type="text" class="form-control" name="horario" id="horario" value="{{ $empleado->horario }}">
+                    <input required type="text" class="form-control" name="horario" id="horario" value="{{ $empleado->horario }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Estado Laboral</span>
-                    <select id="estado_laboral" name="estado_laboral" class="form-control">
+                    <select required id="estado_laboral" name="estado_laboral" class="form-control">
                         <option value="activo" {{ $empleado->estado_laboral === 'activo' ? 'selected' : '' }}>Activo</option>
                         <option value="inactivo" {{ $empleado->estado_laboral === 'inactivo' ? 'selected' : '' }}>Inactivo</option>
                     </select>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Fecha de Finalizacion</span>
-                    <input type="date" class="form-control" name="Ftermino" id="Ftermino" value="{{ $empleado->Ftermino }}">
+                    <input required type="date" class="form-control" name="Ftermino" id="Ftermino" value="{{ $empleado->Ftermino }}">
                 </div>
                 <div class="input-group mt-2">
                     <label for="cargo_id" class="input-group-text">Seleccionar cargo</label>
-                    <select class="form-select" name="cargo_id" id="cargo_id">
+                    <select required class="form-select" name="cargo_id" id="cargo_id">
                         @foreach($cargos as $cargo)
                             <option value="{{ $cargo->id }}">{{ $cargo->cargo }}</option>
                         @endforeach

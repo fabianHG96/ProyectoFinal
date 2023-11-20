@@ -68,7 +68,6 @@ class OrdenDeCompraController extends Controller
      }
 
 
-
     public function getVendedores($proveedorId)
     {
         $vendedores = Vendedor::where('proveedor_id', $proveedorId)->get();

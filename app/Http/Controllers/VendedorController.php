@@ -22,15 +22,49 @@ class VendedorController extends Controller
     public function createNewVendedor(Request $request)
     {
         $request->validate([
-            'proveedor_id' => 'required',
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'rut' => 'required|unique:vendedor',
-            'direccion' => 'required',
-            'email' => 'required|email|unique:vendedor',
-            'telefono' => 'required',
-            'estado_laboral' => 'required',
+            'proveedor_id' => 'required|exists:proveedor,id', // Asumiendo que proveedor_id debe existir en la tabla 'proveedor'
+            'nombre' => 'required|string|min:2|max:255', // Ajusta la longitud mínima y máxima según tus necesidades
+            'apellido' => 'required|string|min:2|max:255', // Ajusta la longitud mínima y máxima según tus necesidades
+            'rut' => 'required|unique:vendedor|string|min:2|max:20', // Ajusta la longitud mínima y máxima según tus necesidades
+            'direccion' => 'required|string|min:2|max:255', // Ajusta la longitud mínima y máxima según tus necesidades
+            'email' => 'required|email|unique:vendedor|string|max:255', // Ajusta la longitud máxima según tus necesidades
+            'telefono' => 'required|string|min:2|max:20', // Ajusta la longitud mínima y máxima según tus necesidades
+            'estado_laboral' => 'required|string|min:2|max:255', // Ajusta la longitud mínima y máxima según tus necesidades
+        ], [
+            'proveedor_id.required' => 'El campo proveedor_id es obligatorio.',
+            'proveedor_id.exists' => 'El proveedor especificado no existe.',
+            'nombre.required' => 'El campo nombre es obligatorio.',
+            'nombre.string' => 'El valor de nombre debe ser una cadena de texto.',
+            'nombre.min' => 'La longitud mínima para nombre es de 2 caracteres.',
+            'nombre.max' => 'La longitud máxima para nombre es de 255 caracteres.',
+            'apellido.required' => 'El campo apellido es obligatorio.',
+            'apellido.string' => 'El valor de apellido debe ser una cadena de texto.',
+            'apellido.min' => 'La longitud mínima para apellido es de 2 caracteres.',
+            'apellido.max' => 'La longitud máxima para apellido es de 255 caracteres.',
+            'rut.required' => 'El campo rut es obligatorio.',
+            'rut.unique' => 'El rut ya está registrado.',
+            'rut.string' => 'El valor de rut debe ser una cadena de texto.',
+            'rut.min' => 'La longitud mínima para rut es de 2 caracteres.',
+            'rut.max' => 'La longitud máxima para rut es de 20 caracteres.',
+            'direccion.required' => 'El campo direccion es obligatorio.',
+            'direccion.string' => 'El valor de direccion debe ser una cadena de texto.',
+            'direccion.min' => 'La longitud mínima para direccion es de 2 caracteres.',
+            'direccion.max' => 'La longitud máxima para direccion es de 255 caracteres.',
+            'email.required' => 'El campo email es obligatorio.',
+            'email.email' => 'El formato del correo electrónico no es válido.',
+            'email.unique' => 'El correo electrónico ya está registrado.',
+            'email.string' => 'El valor de email debe ser una cadena de texto.',
+            'email.max' => 'La longitud máxima para email es de 255 caracteres.',
+            'telefono.required' => 'El campo telefono es obligatorio.',
+            'telefono.string' => 'El valor de telefono debe ser una cadena de texto.',
+            'telefono.min' => 'La longitud mínima para telefono es de 2 caracteres.',
+            'telefono.max' => 'La longitud máxima para telefono es de 20 caracteres.',
+            'estado_laboral.required' => 'El campo estado_laboral es obligatorio.',
+            'estado_laboral.string' => 'El valor de estado_laboral debe ser una cadena de texto.',
+            'estado_laboral.min' => 'La longitud mínima para estado_laboral es de 2 caracteres.',
+            'estado_laboral.max' => 'La longitud máxima para estado_laboral es de 255 caracteres.',
         ]);
+
 
 
         // Verificar si se seleccionó un proveedor en el formulario

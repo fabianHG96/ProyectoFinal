@@ -156,6 +156,7 @@ Route::group(['prefix'=> 'bodega'],function(){
 //Categoria
 Route::group(['prefix'=> 'categoria'],function(){
     Route::get('/create',[CategoriaController::class,'ShowNewCategoria'])->name('CreateCategoria');
+    Route::post('/create', [CategoriaController::class, 'CreateNewCategoria'])->name('register.Categoria')->middleware('auth');
     Route::get('/categorias/update/{id}', [CategoriaController::class,'showUpdateCategoria'])->name('ShowUpdateCategoria');
     Route::post('/categorias/update/{id}', [CategoriaController::class,'Update'])->name('UpdateCategoria');
     Route::get('/list',[CategoriaController::class,'list'])->name('ListCategoria');

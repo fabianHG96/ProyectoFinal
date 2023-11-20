@@ -27,13 +27,28 @@ class ProductoController extends Controller
 
 public function CreateNewProducto(Request $request)
 {
-    $request->validate([
-        'bodega_id.*' => 'required|exists:bodegas,id',
-        'categoria_id.*' => 'required|exists:categorias,id',
-        'cantidad_stock.*' => 'required',
-        'precio_unitario.*' => 'required',
-        'nombre_producto.*' => 'required',
-    ]);
+        $request->validate([
+            'bodega_id.*' => 'required|exists:bodegas,id',
+            'categoria_id.*' => 'required|exists:categorias,id',
+            'cantidad_stock.*' => 'required|integer|min:0', // Asegura que la cantidad de stock no sea negativa
+            'precio_unitario.*' => 'required|numeric|min:0', // Asegura que el precio unitario no sea negativo
+            'nombre_producto.*' => 'required|string|max:255', // Ajusta la longitud máxima según tus necesidades
+        ], [
+            'bodega_id.*.required' => 'El campo bodega_id es obligatorio.',
+            'bodega_id.*.exists' => 'La bodega especificada no existe.',
+            'categoria_id.*.required' => 'El campo categoria_id es obligatorio.',
+            'categoria_id.*.exists' => 'La categoría especificada no existe.',
+            'cantidad_stock.*.required' => 'El campo cantidad_stock es obligatorio.',
+            'cantidad_stock.*.integer' => 'La cantidad de stock debe ser un número entero.',
+            'cantidad_stock.*.min' => 'La cantidad de stock no puede ser negativa.',
+            'precio_unitario.*.required' => 'El campo precio_unitario es obligatorio.',
+            'precio_unitario.*.numeric' => 'El precio unitario debe ser un valor numérico.',
+            'precio_unitario.*.min' => 'El precio unitario no puede ser negativo.',
+            'nombre_producto.*.required' => 'El campo nombre_producto es obligatorio.',
+            'nombre_producto.*.string' => 'El valor de nombre_producto debe ser una cadena de texto.',
+            'nombre_producto.*.max' => 'La longitud máxima para nombre_producto es de 255 caracteres.',
+        ]);
+
 
     $bodegaIds = $request->bodega_id;
     $categoriaIds = $request->categoria_id;

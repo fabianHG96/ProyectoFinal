@@ -36,7 +36,7 @@
             <tbody id="product-table">
                 <tr>
                     <td>
-                        <select name="bodega_id[]" class="form-select">
+                        <select required name="bodega_id[]" class="form-select">
                             <option value="">Selecciona una bodega</option>
                             @foreach ($bodegas as $bodega)
                                 <option value="{{ $bodega->id }}">{{ $bodega->direccion }}</option>
@@ -44,17 +44,17 @@
                         </select>
                     </td>
                     <td>
-                        <select name="categoria_id[]" class="form-select">
+                        <select required name="categoria_id[]" class="form-select">
                             <option value="">Selecciona una categoría</option>
                             @foreach ($categorias as $categoria)
                                 <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
                             @endforeach
                         </select>
                     </td>
-                    <td><input type="text" class="form-control" name="nombre_producto[]"></td>
-                    <td><input type="number" class="form-control" name="cantidad_stock[]"></td>
-                    <td><input type="number" class="form-control" name="precio_unitario[]"></td>
-                    <td><input type="number" class="form-control" name="total[]" readonly></td>
+                    <td><input required type="text" class="form-control" name="nombre_producto[]"></td>
+                    <td><input required type="number" class="form-control" name="cantidad_stock[]"></td>
+                    <td><input required type="number" class="form-control" name="precio_unitario[]"></td>
+                    <td><input required type="number" class="form-control" name="total[]" readonly></td>
                     <td>
                         <button type="button" class="remove-row">Eliminar</button>
                     </td>

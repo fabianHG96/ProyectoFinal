@@ -22,23 +22,23 @@
                 <label for="names"><strong>Datos del Cliente empresa</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre de la empresa</span>
-                    <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $clienteEmpresa->nombre }}">
+                    <input required type="text" class="form-control" name="nombre" id="nombre" value="{{ $clienteEmpresa->nombre }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">RUT</span>
-                    <input type="text" class="form-control" name="rut" id="rut" value="{{ $clienteEmpresa->rut }}">
+                    <input required type="text" class="form-control" name="rut" id="rut" value="{{ $clienteEmpresa->rut }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Pais</span>
-                    <input type="text" class="form-control" name="pais" id="pais" value="{{ $clienteEmpresa->pais }}">
+                    <input required type="text" class="form-control" name="pais" id="pais" value="{{ $clienteEmpresa->pais }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Region</span>
-                    <input type="text" class="form-control" name="region" id="region" value="{{ $clienteEmpresa->region }}">
+                    <input required type="text" class="form-control" name="region" id="region" value="{{ $clienteEmpresa->region }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Direccion</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $clienteEmpresa->direccion }}">
+                    <input required type="text" class="form-control" name="direccion" id="direccion" value="{{ $clienteEmpresa->direccion }}">
                 </div>
             </div>
 
@@ -46,11 +46,11 @@
                 <label for="patent"><strong>Contacto</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">email</span>
-                    <input type="text" class="form-control" name="email" id="email" value="{{ $clienteEmpresa->email }}">
+                    <input required type="text" class="form-control" name="email" id="email" value="{{ $clienteEmpresa->email }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Telefono</span>
-                    <input type="text" class="form-control" name="telefono" id="telefono" value="{{ $clienteEmpresa->telefono }}">
+                    <input required type="text" class="form-control" name="telefono" id="telefono" value="{{ $clienteEmpresa->telefono }}">
                 </div>
             </div>
         </div>

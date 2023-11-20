@@ -22,19 +22,19 @@
                 <label for="names"><strong>Datos del Proveedor</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre del Proveedor</span>
-                    <input type="text" class="form-control" name="nombre" id="nombre">
+                    <input required type="text" class="form-control" name="nombre" id="nombre">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">RUT</span>
-                    <input type="text" class="form-control" name="rut" id="rut">
+                    <input required type="text" class="form-control" name="rut" id="rut">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Pais</span>
-                    <input type="text" class="form-control" name="pais" id="pais">
+                    <input required type="text" class="form-control" name="pais" id="pais">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Region</span>
-                    <input type="text" class="form-control" name="region" id="region">
+                    <input required type="text" class="form-control" name="region" id="region">
                 </div>
             </div>
 
@@ -42,19 +42,19 @@
                 <label for="patent"><strong>Datos del trabajo</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Dirección</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion" >
+                    <input required type="text" class="form-control" name="direccion" id="direccion" >
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Telefono</span>
-                    <input type="text" class="form-control" name="telefono" id="telefono" >
+                    <input required type="text" class="form-control" name="telefono" id="telefono" >
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Correo Electrónico</span>
-                    <input type="text" class="form-control" name="email" id="email">
+                    <input required type="text" class="form-control" name="email" id="email">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Rubro</span>
-                    <input type="text" class="form-control" name="rubro" id="rubro">
+                    <input required type="text" class="form-control" name="rubro" id="rubro">
                 </div>
         </div>
         <div class="d-flex justify-content-end mt-4">
