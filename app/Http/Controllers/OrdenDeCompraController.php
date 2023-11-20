@@ -26,18 +26,18 @@ class OrdenDeCompraController extends Controller
      function createNewOrden(Request $request)
      {
          $request->validate([
-             'fsolicitud' => 'required|date',
-             'ftermino' => 'required|date',
-             'proveedor_id' => 'required|exists:proveedor,id',
-             'vendedor_id' => 'required|exists:vendedor,id',
-             'empleado_id' => 'required|exists:empleados,id',
-             'producto_id' => 'required|exists:productos,id',
-             'nombre_producto' => 'required|exists:productos,nombre_producto',
-             'nombre_proveedor' => 'required|',
-             'estado' => 'required',
-             'cantidad' => 'required|integer',
-             'monto' => 'required',
-             'total' => 'required',
+            'fsolicitud' => 'required|date',
+            'ftermino' => 'required|date',
+            'proveedor_id' => 'required|exists:proveedor,id',
+            'vendedor_id' => 'required|exists:vendedor,id',
+            'empleado_id' => 'required|exists:empleados,id',
+            'producto_id' => 'required|exists:productos,id',
+            'nombre_producto' => 'required|exists:productos,nombre_producto',
+            'nombre_proveedor' => 'required', // Puedes agregar más reglas de validación según tus necesidades
+            'estado' => 'required',
+            'cantidad' => 'required|integer|min:1', // Asegura que la cantidad sea un entero positivo
+            'monto' => 'required|numeric|min:0', // Asegura que el monto sea un número no negativo
+            'total' => 'required|numeric|min:0',
          ]);
 
          $producto = Producto::find($request->producto_id);
