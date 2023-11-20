@@ -22,27 +22,27 @@
                 <label for="names"><strong>Datos de la Empresa</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre de la empresa</span>
-                    <input type="text" class="form-control" name="nombre" id="nombre">
+                    <input type="text" class="form-control" name="nombre" id="nombre" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">RUT</span>
-                    <input type="text" class="form-control" name="rut" id="rut">
+                    <input type="text" class="form-control" name="rut" id="rut" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Pais</span>
-                    <input type="text" class="form-control" name="pais" id="pais" >
+                    <input type="text" class="form-control" name="pais" id="pais" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Region</span>
-                    <input type="text" class="form-control" name="region" id="region" >
+                    <input type="text" class="form-control" name="region" id="region" required >
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Direccion</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion" >
+                    <input type="text" class="form-control" name="direccion" id="direccion"required >
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Rubro</span>
-                    <input type="text" class="form-control" name="rubro" id="rubro" >
+                    <input type="text" class="form-control" name="rubro" id="rubro" required>
                 </div>
             </div>
 
@@ -50,15 +50,15 @@
                 <label for="patent"><strong>Contacto</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Fecha de la Fundacion</span>
-                    <input type="date" class="form-control" name="Ffundacion" id="Ffundacion">
+                    <input type="date" class="form-control" name="Ffundacion" id="Ffundacion" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">email</span>
-                    <input type="text" class="form-control" name="email" id="email">
+                    <input type="text" class="form-control" name="email" id="email" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Telefono</span>
-                    <input type="text" class="form-control" name="telefono" id="telefono">
+                    <input type="text" class="form-control" name="telefono" id="telefono" required>
                 </div>
         </div>
         <div class="d-flex justify-content-end mt-4">
