@@ -14,6 +14,7 @@ use TCPDF;
 use App\Models\PdfDocument;
 use Illuminate\Support\Facades\Response;
 use App\Models\DetalleFactura;
+use App\Models\OrdenDeCompra;
 use Spatie\PdfToText\Pdf;
 use Smalot\PdfParser\Parser;
 class FlexController extends Controller
@@ -35,18 +36,133 @@ class FlexController extends Controller
         return view('vistas.rFactura.list', ['mostrarfactura' => $factura]);
         }
 
-     function SeguimientoClientes(){
-        $authenticated_user = Auth::user();
-        return view('vistas.sClientes.seguimiento')->with(['user' => $authenticated_user,]);
-     }
-     function SeguimientoProductos(){
-        $authenticated_user = Auth::user();
-        return view('vistas.sProductos.seguimiento')->with(['user' => $authenticated_user,]);
-     }
-     function SeguimientoProveedores(){
-        $authenticated_user = Auth::user();
-        return view('vistas.sProveedores.seguimiento')->with(['user' => $authenticated_user,]);
-     }
+
+        function SeguimientoClientes(Request $request){
+            $authenticatedUser = Auth::user();
+            $tipoConsulta = $request->input('tipo_consulta', 'total_facturas');
+            $fechaInicio = $request->input('fechaInicio');
+            $fechaFin = $request->input('fechaFin');
+
+            $query = DetalleFactura::query();
+
+            // Filtrar por fechas si se proporcionan ambas fechas
+            if (!empty($fechaInicio) && !empty($fechaFin)) {
+                $query->whereBetween('fecha_emision', [$fechaInicio, $fechaFin]);
+            }
+
+            $query->select('rut_cliente', 'nombre_cliente', 'fecha_emision');
+
+            if ($tipoConsulta === 'total_facturas') {
+                $query->selectRaw('count(*) as total');
+            } elseif ($tipoConsulta === 'total_ventas') {
+                $query->selectRaw('sum(total_factura) as total');
+            }
+
+            // No agrupar por la fecha de emisión
+            $resultadosConsulta = $query->groupBy('rut_cliente', 'nombre_cliente')->get();
+
+            return view('vistas.sClientes.seguimiento', compact('resultadosConsulta', 'tipoConsulta', 'fechaInicio', 'fechaFin'))->with(['user' => $authenticatedUser]);
+        }
+
+            function SeguimientoProductos(){
+                $authenticated_user = Auth::user();
+                return view('vistas.sProductos.seguimiento')->with(['user' => $authenticated_user,]);
+            }
+
+
+
+            function SeguimientoProveedores(Request $request){
+                $authenticatedUser = Auth::user();
+            $tipoConsulta = $request->input('tipo_consulta', 'total_pedidos');
+            $fechaInicio = $request->input('fechaInicio');
+            $fechaFin = $request->input('fechaFin');
+
+            $query = OrdenDeCompra::query();
+
+            // Filtrar por fechas si se proporcionan ambas fechas
+            if (!empty($fechaInicio) && !empty($fechaFin)) {
+                $query->whereBetween('fecha_solicitud', [$fechaInicio, $fechaFin]);
+            }
+
+            $query->select('proveedor_id', 'nombre_proveedor', 'fecha_solicitud','fecha_termino');
+
+            if ($tipoConsulta === 'total_pedidos') {
+                $query->selectRaw('count(*) as total');
+            } elseif ($tipoConsulta === 'total_compras') {
+                $query->selectRaw('sum(total) as total');
+            }
+
+            $query->groupBy('proveedor_id', 'nombre_proveedor');
+
+            $resultadosConsulta = $query->get();
+
+            return view('vistas.sProveedores.seguimiento', compact('resultadosConsulta', 'tipoConsulta', 'fechaInicio', 'fechaFin'))->with(['user' => $authenticatedUser]);
+        }
+
+
+        function SeguimientoFinanciero(Request $request) {
+            $authenticatedUser = Auth::user();
+            $filtroAnio = $request->input('filtro_anio', date('Y'));
+            $fechaInicio = $filtroAnio . '-01-01';
+            $fechaFin = $filtroAnio . '-12-31';
+
+            // Obtener ventas (total facturas por mes)
+            $ventas = DetalleFactura::query()
+                ->whereBetween('fecha_emision', [$fechaInicio, $fechaFin])
+                ->select(DB::raw('MONTH(fecha_emision) as mes'), DB::raw('sum(total_factura) as total'))
+                ->groupBy(DB::raw('MONTH(fecha_emision)'))
+                ->orderBy('mes') // Ordenar por mes
+                ->get();
+
+            // Obtener compras (total ordenes de compra por mes)
+            $compras = OrdenDeCompra::query()
+                ->whereBetween('fecha_solicitud', [$fechaInicio, $fechaFin])
+                ->select(DB::raw('MONTH(fecha_solicitud) as mes'), DB::raw('sum(total) as total'))
+                ->groupBy(DB::raw('MONTH(fecha_solicitud)'))
+                ->orderBy('mes') // Ordenar por mes
+                ->get();
+
+            // Combinar resultados por mes
+            $resultadosPorMes = $this->combinarResultadosPorMes($ventas, $compras);
+
+            // Calcular ganancias (ventas - compras) por mes
+            $ganancias = $this->calcularGananciasPorMes($resultadosPorMes);
+
+            return view('vistas.sFinanciero.seguimiento', compact('resultadosPorMes', 'ganancias', 'filtroAnio'))
+                ->with(['user' => $authenticatedUser]);
+        }
+
+        // Función para combinar resultados por mes
+        private function combinarResultadosPorMes($ventas, $compras) {
+            $resultadosPorMes = [];
+
+            foreach ($ventas as $venta) {
+                $mes = $venta->mes;
+                $resultadosPorMes[$mes]['ventas'] = $venta->total;
+                $resultadosPorMes[$mes]['compras'] = 0; // Inicializar compras en 0
+            }
+
+            foreach ($compras as $compra) {
+                $mes = $compra->mes;
+                if (!isset($resultadosPorMes[$mes])) {
+                    $resultadosPorMes[$mes] = ['ventas' => 0]; // Inicializar ventas en 0 si no existe
+                }
+                $resultadosPorMes[$mes]['compras'] = $compra->total;
+            }
+
+            return $resultadosPorMes;
+        }
+
+        // Función para calcular ganancias por mes
+        private function calcularGananciasPorMes($resultadosPorMes) {
+            $ganancias = [];
+
+            foreach ($resultadosPorMes as $mes => $resultados) {
+                $ganancias[$mes] = $resultados['ventas'] - $resultados['compras'];
+            }
+
+            return $ganancias;
+        }
 
      public function listUsers(){
         $users = User::all();
@@ -58,8 +174,16 @@ class FlexController extends Controller
     public function subirFactura(Request $request)
     {
         $request->validate([
-            'nombre_archivo' => 'required',
-            'archivo_pdf' => 'required|mimes:pdf',
+            'nombre_archivo' => 'required|string|max:255', // Ajusta la longitud mínima y máxima según tus necesidades
+            'archivo_pdf' => 'required|mimes:pdf', // Se permite solo PDF y el tamaño máximo es 10 MB (ajusta según tus necesidades)
+        ], [
+            'nombre_archivo.required' => 'El campo nombre_archivo es obligatorio.',
+            'nombre_archivo.string' => 'El valor del nombre_archivo debe ser una cadena de texto.',
+            'nombre_archivo.max' => 'La longitud máxima para el nombre_archivo es de 255 caracteres.',
+            'nombre_archivo.min' => 'La longitud mínima para el nombre_archivo es de 2 caracteres.',
+            'archivo_pdf.required' => 'El campo archivo_pdf es obligatorio.',
+            'archivo_pdf.mimes' => 'El archivo debe ser de tipo PDF.',
+            'archivo_pdf.max' => 'El tamaño máximo del archivo PDF es de 10 MB.',
         ]);
 
         if ($request->hasFile('archivo_pdf')) {

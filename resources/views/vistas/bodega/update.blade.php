@@ -25,26 +25,26 @@
                 <label for="names"><strong>Datos de la bodega</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Pais</span>
-                    <input type="text" class="form-control" name="pais" id="pais" value="{{ $bodega->pais }}">
+                    <input required type="text" class="form-control" name="pais" id="pais" value="{{ $bodega->pais }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Region</span>
-                    <input type="text" class="form-control" name="region" id="region" value="{{ $bodega->region }}">
+                    <input  required type="text" class="form-control" name="region" id="region" value="{{ $bodega->region }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Direccion</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $bodega->direccion }}" >
+                    <input required type="text" class="form-control" name="direccion" id="direccion" value="{{ $bodega->direccion }}" >
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Capacidad</span>
-                    <input type="text" class="form-control" name="capacidad" id="capacidad" value="{{ $bodega->capacidad }}">
+                    <input required type="text" class="form-control" name="capacidad" id="capacidad" value="{{ $bodega->capacidad }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Stock</span>
-                    <input type="text" class="form-control" name="stock" id="stock" value="{{ $bodega->stock }}">
+                    <input required type="text" class="form-control" name="stock" id="stock" value="{{ $bodega->stock }}">
                 </div>
                 <div class="d-flex justify-content-end mt-4">
-                    <input type="submit" value="Guardar Cambios" class="btn btn-primary">
+                    <input required type="submit" value="Guardar Cambios" class="btn btn-primary">
                 </div>
 
     </form>

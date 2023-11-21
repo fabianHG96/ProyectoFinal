@@ -12,7 +12,19 @@
     <script src="http://localhost/ProyectoFinal/public/js/scripts.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- Toastr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+@if(isset($mostrarAlertas) && $mostrarAlertas)
+        <script>
+            toastr.success("¡Atención! Algunos productos tienen un stock por debajo de 10.");
+        </script>
+    @endif
     @stack('css')
+
+
 
 </head>
 
@@ -178,6 +190,9 @@
                                         @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 2 && Auth::user()->cargo_id != 5))
                                             <li><a class="dropdown-item" href="{{ route('Usuarios') }}">Usuarios</a></li>
                                         @endif
+                                        @if (!(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 2 && Auth::user()->cargo_id != 5))
+                                        <li><a class="dropdown-item" href="{{ route('SeguimientoFinanciero') }}">SeguimientoFinanciero</a></li>
+                                        @endif
                                     </ul>
                                 </li>
                             @endif
@@ -238,6 +253,23 @@
         $('#noPermissionsModal').on('hidden.bs.modal', function () {
             cerrarModal();
         });
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@if ("mostrarAlertas")
+    <script>toastr.success("mostrarAlertas");</script>
+@endif
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+toastr.options = {
+    "closeButton": true,
+    "positionClass": "toast-top-right",
+    "timeOut": "10000",
+    "showMethod": "fadeIn",  // Asegúrate de tener esto configurado correctamente
+    // Otras opciones...
+};
+</script>
 </body>
 </html>

@@ -16,17 +16,24 @@ class CategoriaController extends Controller
     public function createNewCategoria(Request $request)
     {
         $request->validate([
-            'categoria' => 'required',
-
+            'categoria' => 'required|string|max:255|min:255|unique:categorias', // Asegura que la categoría sea única
+        ], [
+            'categoria.required' => 'El campo categoría es obligatorio.',
+            'categoria.string' => 'El valor de la categoría debe ser una cadena de texto.',
+            'categoria.max' => 'La longitud máxima permitida para la categoría es de 255 caracteres.',
+            'categoria.min' => 'La longitud minima permitida para la categoría es de 3 caracteres.',
+            'categoria.unique' => 'Ya existe una categoría con este nombre.', // Asegura que la categoría sea única
         ]);
 
         Categoria::create([
             'categoria' => $request->categoria,
-
         ]);
 
-        return redirect()->route('ListCategoria')->with('success', 'Categoria creada exitosamente');
+        return redirect()->route('ListCategoria')->with('success', 'Categoría creada exitosamente');
     }
+
+
+
 
 
     public function showUpdateCategoria($id)
@@ -54,7 +61,7 @@ class CategoriaController extends Controller
         $categoria = Categoria::find($id);
 
         if (!$categoria) {
-            return redirect()->route('ListCtaegoria')->with('error', 'Categoria no encontrada');
+            return redirect()->route('ListCategoria')->with('error', 'Categoria no encontrada');
         }
 
         // Actualizar los atributos de la Categoria con los valores del formulario

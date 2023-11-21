@@ -39,7 +39,7 @@
                <td>{{ $bodega->direccion }}</td>
                <td>{{ $bodega->capacidad }}</td>
                <td>{{ $bodega->stock }}</td>
-               <td>
+               <td hidden>
 
                 <form action="{{ route('eliminarBodega', $bodega->id) }}" method="POST">
                     @csrf

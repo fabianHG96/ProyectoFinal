@@ -23,27 +23,27 @@
                 <label for="names"><strong>Datos de la bodega</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Pais</span>
-                    <input type="text" class="form-control" name="pais" id="pais">
+                    <input type="text" class="form-control" name="pais" id="pais" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Region</span>
-                    <input type="text" class="form-control" name="region" id="region">
+                    <input type="text" class="form-control" name="region" id="region" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Direccion</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion">
+                    <input type="text" class="form-control" name="direccion" id="direccion" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Capacidad</span>
-                    <input type="text" class="form-control" name="capacidad" id="capacidad">
+                    <input type="text" class="form-control" name="capacidad" id="capacidad" required>
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Stock</span>
-                    <input type="text" class="form-control" name="stock" id="stock">
+                    <input type="text" class="form-control" name="stock" id="stock" required>
                 </div>
             </div>
             <div class="d-flex justify-content-end mt-4">
-                <input type="submit" value="Guardar" class="btn btn-primary">
+                <input type="submit" value="Guardar" class="btn btn-primary" required>
             </div>
         </div>
     </form>

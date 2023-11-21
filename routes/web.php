@@ -80,6 +80,9 @@ Route::get('/seguimiento/clientes',[FlexController::class,'SeguimientoClientes']
 //Seguimiento financiero productos
 Route::get('/seguimiento/productos',[FlexController::class,'SeguimientoProductos'])->name('SeguimientoProductos');
 
+//Seguimiento financiero financiero
+Route::get('/seguimiento/financiero',[FlexController::class,'SeguimientoFinanciero'])->name('SeguimientoFinanciero');
+
 //Seguimiento financiero proveedores
 Route::get('/seguimiento/proveedores',[FlexController::class,'SeguimientoProveedores'])->name('SeguimientoProveedores');
 
@@ -153,6 +156,7 @@ Route::group(['prefix'=> 'bodega'],function(){
 //Categoria
 Route::group(['prefix'=> 'categoria'],function(){
     Route::get('/create',[CategoriaController::class,'ShowNewCategoria'])->name('CreateCategoria');
+    Route::post('/create', [CategoriaController::class, 'CreateNewCategoria'])->name('register.Categoria')->middleware('auth');
     Route::get('/categorias/update/{id}', [CategoriaController::class,'showUpdateCategoria'])->name('ShowUpdateCategoria');
     Route::post('/categorias/update/{id}', [CategoriaController::class,'Update'])->name('UpdateCategoria');
     Route::get('/list',[CategoriaController::class,'list'])->name('ListCategoria');

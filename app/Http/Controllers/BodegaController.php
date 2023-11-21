@@ -20,13 +20,30 @@ class BodegaController extends Controller
     {
         $request->validate([
             'empresa_id' => 'required|exists:empresas,id',
-            'pais' => 'required',
-            'region' => 'required',
-            'direccion' => 'required',
-            'capacidad' => 'required',
-            'stock' => 'required',
+            'pais' => 'required|string|min:2',
+            'region' => 'required|string|min:2',
+            'direccion' => 'required|string|min:2',
+            'capacidad' => 'required|integer|min:1',
+            'stock' => 'required|integer|min:1',
+        ], [
+            'empresa_id.required' => 'El campo empresa_id es obligatorio.',
+            'empresa_id.exists' => 'La empresa especificada no existe.',
+            'pais.required' => 'El campo país es obligatorio.',
+            'pais.string' => 'El valor del país debe ser una cadena de texto.',
+            'pais.min' => 'La longitud mínima para el país es de 2 caracteres.',
+            'region.required' => 'El campo región es obligatorio.',
+            'region.string' => 'El valor de la región debe ser una cadena de texto.',
+            'region.min' => 'La longitud mínima para la región es de 2 caracteres.',
+            'direccion.required' => 'El campo dirección es obligatorio.',
+            'direccion.string' => 'El valor de la dirección debe ser una cadena de texto.',
+            'direccion.min' => 'La longitud mínima para la dirección es de 2 caracteres.',
+            'capacidad.required' => 'El campo capacidad es obligatorio.',
+            'capacidad.integer' => 'La capacidad debe ser un número entero.',
+            'capacidad.min' => 'La capacidad debe ser al menos 1.',
+            'stock.required' => 'El campo stock es obligatorio.',
+            'stock.integer' => 'El stock debe ser un número entero.',
+            'stock.min' => 'El stock debe ser al menos 1.',
         ]);
-
         Bodega::create([
             'empresa_id' => $request->empresa_id,
             'pais' => $request->pais,

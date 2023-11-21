@@ -22,7 +22,8 @@ class OrdenDeCompra extends Model
         'cantidad',
         'monto',
         'total',
-        //'estado',
+        'nombre_proveedor',
+
     ];
 
 

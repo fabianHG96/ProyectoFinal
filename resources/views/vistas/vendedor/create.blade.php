@@ -21,7 +21,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="proveedor_id">Proveedor</label>
-                        <select name="proveedor_id" class="form-control">
+                        <select required name="proveedor_id" class="form-control">
                             <option value="">Seleccionar un proveedor</option>
                             @foreach ($proveedores as $proveedor)
                                 <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
@@ -31,31 +31,31 @@
                     <label for="names"><strong>Datos del Vendedor</strong></label>
                     <div class="input-group mt-2">
                         <span class="input-group-text">Nombres</span>
-                        <input type="text" class="form-control" name="nombre" id="nombre">
+                        <input required type="text" class="form-control" name="nombre" id="nombre">
                     </div>
                     <div class="input-group mt-2">
                         <span class="input-group-text">Apellido</span>
-                        <input type="text" class="form-control" name="apellido" id="apellido">
+                        <input required type="text" class="form-control" name="apellido" id="apellido">
                     </div>
                     <div class="input-group mt-2">
                         <span class="input-group-text">RUT</span>
-                        <input type="text" class="form-control" name="rut" id="rut">
+                        <input required type="text" class="form-control" name="rut" id="rut">
                     </div>
                     <div class="input-group mt-2">
                         <span class="input-group-text">Email</span>
-                        <input type="text" class="form-control" name="email" id="email">
+                        <input required type="text" class="form-control" name="email" id="email">
                     </div>
                     <div class="input-group mt-2">
                         <span class="input-group-text">Direccion</span>
-                        <input type="text" class="form-control" name="direccion" id="direccion">
+                        <input required type="text" class="form-control" name="direccion" id="direccion">
                     </div>
                     <div class="input-group mt-2">
                         <span class="input-group-text">Telefono</span>
-                        <input type="text" class="form-control" name="telefono" id="telefono">
+                        <input required type="text" class="form-control" name="telefono" id="telefono">
                     </div>
                     <div class="input-group mt-2">
                         <span class="input-group-text">Estado Laboral</span>
-                        <select id="estado_laboral" name="estado_laboral" class="form-control">
+                        <select required id="estado_laboral" name="estado_laboral" class="form-control" >
                             <option value="inactivo">Pendiente</option>slot
                             <option value="activo">Activo</option>slot
                             <option value="inactivo">Inactivo</option>slot

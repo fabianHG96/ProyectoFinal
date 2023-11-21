@@ -24,19 +24,19 @@
                 <label for="names"><strong>Datos del Proveedor</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Nombre del Proveedor</span>
-                    <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $proveedor->nombre }}">
+                    <input required type="text" class="form-control" name="nombre" id="nombre" value="{{ $proveedor->nombre }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">RUT</span>
-                    <input type="text" class="form-control" name="rut" id="rut" value="{{ $proveedor->rut }}">
+                    <input required type="text" class="form-control" name="rut" id="rut" value="{{ $proveedor->rut }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">País</span>
-                    <input type="text" class="form-control" name="pais" id="pais" value="{{ $proveedor->pais }}">
+                    <input required type="text" class="form-control" name="pais" id="pais" value="{{ $proveedor->pais }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Región</span>
-                    <input type="text" class="form-control" name="region" id="region" value="{{ $proveedor->region }}">
+                    <input required type="text" class="form-control" name="region" id="region" value="{{ $proveedor->region }}">
                 </div>
             </div>
 
@@ -44,19 +44,19 @@
                 <label for="patent"><strong>Datos del trabajo</strong></label>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Dirección</span>
-                    <input type="text" class="form-control" name="direccion" id="direccion" value="{{ $proveedor->direccion }}">
+                    <input required type="text" class="form-control" name="direccion" id="direccion" value="{{ $proveedor->direccion }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Número de Contacto</span>
-                    <input type="text" class="form-control" name="telefono" id="telefono" value="{{ $proveedor->telefono }}">
+                    <input required type="text" class="form-control" name="telefono" id="telefono" value="{{ $proveedor->telefono }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Correo Electrónico</span>
-                    <input type="text" class="form-control" name="email" id="email" value="{{ $proveedor->email }}">
+                    <input required type="text" class="form-control" name="email" id="email" value="{{ $proveedor->email }}">
                 </div>
                 <div class="input-group mt-2">
                     <span class="input-group-text">Rubro</span>
-                    <input type="text" class="form-control" name="rubro" id="rubro" value="{{ $proveedor->rubro }}">
+                    <input required type="text" class="form-control" name="rubro" id="rubro" value="{{ $proveedor->rubro }}">
                 </div>
         </div>
         <div class="d-flex justify-content-end mt-4">
