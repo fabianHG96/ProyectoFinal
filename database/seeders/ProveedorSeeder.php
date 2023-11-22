@@ -35,6 +35,17 @@ class ProveedorSeeder extends Seeder
             'rubro' => 'Rubro 2',
         ]);
 
+        Proveedor::create([
+            'nombre' => 'Flexloko',
+            'rut' => '98765432-9',
+            'pais' => 'Chile',
+            'region' => 'Región Y',
+            'direccion' => 'Avenida Proveedor 456',
+            'telefono' => '+56 9 9876 5434',
+            'email' => 'Flexloko@example.com',
+            'rubro' => 'Rubro 5',
+        ]);
+
 
 
     }

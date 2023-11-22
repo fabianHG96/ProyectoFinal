@@ -9,90 +9,121 @@
         });
     </script>
 @endif
+
     <div class="container">
         <section>
             <div class="header-and-button d-flex justify-content-between align-items-center">
                 <h1 class="header">Detalles de la Orden de Compra</h1>
             </div>
+            @if (!session('pdf'))
             <div class="mt-3">
                 <a class="btn btn-primary" href="{{ route('ListOrdenDeCompra') }}">Volver a la lista</a>
             </div>
+        @endif
             <hr />
         </section>
         <form method="POST" action="{{ route('UpdateOrdenDeCompra', ['id' => $ordendecompra->id]) }}">
             @csrf
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <h2>{{ $ordendecompra->proveedor->nombre }}</h2>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Orden de compra N° {{ $ordendecompra->id }}</h2>
 
-                    <div class="details">
-                        <p><strong>Proveedor:</strong> {{ $ordendecompra->proveedor->nombre }}</p>
-                        <p><strong>RUT del Proveedor:</strong> {{ $ordendecompra->proveedor->rut }}</p>
-                        <p><strong>Dirección del Proveedor:</strong> {{ $ordendecompra->proveedor->direccion }}</p>
-                        <p><strong>Teléfono del Proveedor:</strong> {{ $ordendecompra->proveedor->telefono }}</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="patent"><strong>Fecha de Solicitud</strong></label>
-
-                    <div class="details">
-                        <p><strong>Fecha de Solicitud:</strong> {{ $ordendecompra->fecha_solicitud }}</p>
-                        <p><strong>Fecha de Término:</strong> {{ $ordendecompra->fecha_termino }}</p>
-                        <p><strong>Estado de la Orden:</strong> {{ ucfirst(str_replace('_', ' ', $ordendecompra->estado)) }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <label for="vendedor"><strong>Datos del Vendedor</strong></label>
-
-                    <div class="details">
-                        <p><strong>Nombre del Vendedor:</strong> {{ $ordendecompra->vendedor->nombre }}</p>
-                        <p><strong>Email del Vendedor:</strong> {{ $ordendecompra->vendedor->email }}</p>
-                        <p><strong>Teléfono del Vendedor:</strong> {{ $ordendecompra->vendedor->telefono }}</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="producto"><strong>Detalles del Producto</strong></label>
-
-                    <style>
-                        table {
-                            width: 100%;
-                        }
-                        th, td {
-                            padding: 15px;
-                            text-align: left;
-                        }
-                    </style>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nombre del Producto</th>
-                                <th>Cantidad</th>
-                                <th>Monto</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($ordendecompra->productos as $producto)
+                        <table class="table table-striped">
+                            <tbody>
                                 <tr>
-                                    <td>{{ $producto->pivot->nombre_producto }}</td>
-                                    <td>{{ $producto->pivot->cantidad }}</td>
-                                    <td>{{ $producto->pivot->monto }}</td>
-                                    <td>{{ $producto->pivot->total }}</td>
+                                    <th scope="row">Proveedor:</th>
+                                    <td>{{ $ordendecompra->proveedor->nombre }}</td>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <th scope="row">RUT:</th>
+                                    <td>{{ $ordendecompra->proveedor->rut }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Dirección del Proveedor:</th>
+                                    <td>{{ $ordendecompra->proveedor->direccion }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Teléfono del Proveedor:</th>
+                                    <td>{{ $ordendecompra->proveedor->telefono }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                        <!-- Fecha de Solicitud and Datos del Vendedor Section -->
+                        <div class="col-md-6">
+                            <h4>Fechas</h4>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Fecha de Solicitud:</th>
+                                        <td>{{ $ordendecompra->fecha_solicitud }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Fecha de Término:</th>
+                                        <td>{{ $ordendecompra->fecha_termino }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Estado de la Orden:</th>
+                                        <td>{{ ucfirst(str_replace('_', ' ', $ordendecompra->estado)) }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                            <div class="col-md-6">
+                            <h4>Datos del Vendedor</h4>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Nombre del Vendedor:</th>
+                                        <td>{{ $ordendecompra->vendedor->nombre }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Email del Vendedor:</th>
+                                        <td>{{ $ordendecompra->vendedor->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Teléfono del Vendedor:</th>
+                                        <td>{{ $ordendecompra->vendedor->telefono }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
 
 
+                        <H4>Detalle de productos</H4>
 
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre del Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>$Monto</th>
+                                    <th>$Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($ordendecompra->productos as $producto)
+                                    <tr>
+                                        <td>{{ $producto->pivot->nombre_producto }}</td>
+                                        <td>{{ $producto->pivot->cantidad }}</td>
+                                        <td>{{ number_format($producto->pivot->monto, 0, '.', ',') }}</td>
+                                        <td>{{ number_format($producto->pivot->total, 0, '.', ',') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
         </form>
+        <a href="{{ route('DescargarOrdenDeCompra', ['id' => $ordendecompra->id]) }}" class="btn btn-primary">Descargar</a>
+
     </div>
+
     @if($errors->any())
         <div class="alert alert-danger mt-4">
             <ul>
