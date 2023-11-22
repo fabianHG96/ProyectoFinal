@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class OrdenDeCompraController extends Controller
 {
+
     function ShowNewOrden(){
         $proveedores = Proveedor::all();
         $vendedores = Vendedor::all(); // Inicialmente, la lista de vendedores estará vacía
@@ -21,7 +24,19 @@ class OrdenDeCompraController extends Controller
         return View('vistas.ordendecompra.create', compact('vendedores', 'proveedores', 'empleados', 'productos'));
 
      }
+     public function descargar($id) {
+        // Establecer una variable de sesión para indicar que estamos generando un PDF
+        session(['pdf' => true]);
 
+        $ordendecompra = OrdenDeCompra::findOrFail($id);
+
+        $pdf = FacadePdf::loadView('vistas.ordendecompra.details', compact('ordendecompra'));
+
+        // Eliminar la variable de sesión después de generar el PDF
+        session()->forget('pdf');
+
+        return $pdf->download('ordendecompra'.$id.'.pdf');
+    }
 
      function createNewOrden(Request $request)
      {
