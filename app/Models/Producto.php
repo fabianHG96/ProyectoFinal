@@ -29,4 +29,8 @@ class Producto extends Model
     public function categoria() {
         return $this->belongsTo(Categoria::class, 'categoria_id');
     }
+    public function ordenesDeCompra() {
+        return $this->belongsToMany(OrdenDeCompra::class, 'orden_producto')
+                    ->withPivot('nombre_producto', 'cantidad', 'monto', 'total');
+    }
 }

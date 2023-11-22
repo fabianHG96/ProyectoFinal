@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('proveedor_id');
             $table->unsignedBigInteger('vendedor_id');
             $table->unsignedBigInteger('empleado_id');
-            $table->unsignedBigInteger('producto_id');
             $table->string('nombre_producto');
             $table->string('estado')->default('activo');
             $table->integer('cantidad');
@@ -28,7 +27,7 @@ return new class extends Migration
             $table->foreign('proveedor_id')->references('id')->on('proveedor');
             $table->foreign('vendedor_id')->references('id')->on('vendedor');
             $table->foreign('empleado_id')->references('id')->on('empleados');
-            $table->foreign('producto_id')->references('id')->on('productos');
+
             $table->timestamps();
         });
     }

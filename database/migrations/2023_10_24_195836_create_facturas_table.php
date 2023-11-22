@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_archivo')->unique();
+            $table->string('nombre_archivo');
             $table->string('ruta_archivo');
-            $table->string('n_factura')->nullable();
-            $table->string('identificador_unico')->nullable();
+            $table->string('n_factura');
+            $table->string('identificador_unico');
             $table->timestamps();
         });
     }
