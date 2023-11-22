@@ -123,12 +123,12 @@
             </tr>
         </thead>
         <tbody>
-
+            @for ($i = 0; $i < 5; $i++)
                 <tr>
                     <td>
                         <div class="input-group">
                             <span class="input-group-text">Nombre producto</span>
-                            <select name="producto_id" class="form-select producto-select" required>
+                            <select name="productos[{{ $i }}][producto_id]" class="form-select producto-select" required>
                                 <option value="">Selecciona un producto</option>
                                 @foreach ($productos as $producto)
                                     <option value="{{ $producto->id }}"
@@ -139,33 +139,35 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <input type="hidden" class="form-control nombre-producto" name="nombre_producto" readonly style="background-color: rgb(225, 225, 225);">
+                            <input type="hidden" class="form-control nombre-producto" name="productos[{{ $i }}][nombre_producto]" readonly style="background-color: rgb(225, 225, 225);">
                         </div>
                     </td>
                     <td>
                         <div class="input-group">
                             <span class="input-group-text">Cantidad</span>
-                            <input type="number" class="form-control cantidad-input" name="cantidad" required>
+                            <input type="number" class="form-control cantidad-input" name="productos[{{ $i }}][cantidad]" required>
                         </div>
                     </td>
                     <td>
                         <div class="input-group">
                             <span class="input-group-text">Monto</span>
-                            <input type="number" class="form-control monto-input" name="monto" readonly style="background-color: rgb(124, 124, 124);" required>
+                            <input type="number" class="form-control monto-input" name="productos[{{ $i }}][monto]" readonly style="background-color: rgb(124, 124, 124);" required>
                         </div>
                     </td>
                     <td>
                         <div class="input-group">
                             <span class="input-group-text">Total</span>
-                            <input type="number" class="form-control total-input" name="total" readonly style="background-color: rgb(124, 124, 124);" required>
+                            <input type="number" class="form-control total-input" name="productos[{{ $i }}][total]" readonly style="background-color: rgb(124, 124, 124);" required>
                         </div>
                     </td>
                     <td></td> <!-- Columna vacía para espacio -->
                     <td></td> <!-- Columna vacía para espacio -->
                 </tr>
-
+            @endfor
         </tbody>
     </table>
+
+
 <div class="d-flex justify-content-end mt-4">
     <input type="submit" value="Guardar" class="btn btn-primary">
 </div>
@@ -203,24 +205,32 @@
 
         <script>
             $(document).ready(function () {
-                $('.producto-select').change(function () {
-                    var selectedProduct = $(this).find(':selected');
-                    var precioUnitario = selectedProduct.data('precio_unitario');
+                $('.producto-select').change(function() {
+        var selectedOption = $(this).find('option:selected');
+        var precio = selectedOption.data('precio_unitario');
+        var nombre = selectedOption.data('nombre_producto');
+        var row = $(this).closest('tr');
 
-                    var currentRow = $(this).closest('tr');
-                    currentRow.find('.nombre-producto').val(selectedProduct.data('nombre_producto'));
-                    currentRow.find('.monto-input').val(precioUnitario);
-                    currentRow.find('.cantidad-input').trigger('input'); // Forzar el cálculo del total cuando cambia el monto
+        row.find('.nombre-producto').val(nombre);
+        row.find('.monto-input').val(precio);
+
+        calculateTotal(row);
+    });
+
+    $('.cantidad-input').change(function() {
+        var row = $(this).closest('tr');
+        calculateTotal(row);
+    });
+
+    function calculateTotal(row) {
+        var cantidad = row.find('.cantidad-input').val();
+        var monto = row.find('.monto-input').val();
+        var total = cantidad * monto;
+
+        row.find('.total-input').val(total);
+    }
                 });
 
-                $('.cantidad-input').on('input', function () {
-                    var currentRow = $(this).closest('tr');
-                    var cantidad = parseFloat($(this).val()) || 0;
-                    var monto = parseFloat(currentRow.find('.monto-input').val()) || 0;
-                    var total = cantidad * monto;
-                    currentRow.find('.total-input').val(total.toFixed(2));
-                });
-            });
         </script>
     <script>
             document.getElementById('proveedor_id').addEventListener('change', function () {
@@ -253,6 +263,8 @@
         }
     });
         </script>
+
+
         </html>
 
     <script src="js/scripts.js"></script>

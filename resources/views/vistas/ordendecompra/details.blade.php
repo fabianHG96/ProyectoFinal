@@ -55,12 +55,40 @@
                 <div class="col-md-6">
                     <label for="producto"><strong>Detalles del Producto</strong></label>
 
-                    <div class="details">
-                        <p><strong>Nombre del Producto:</strong> {{ $ordendecompra->nombre_producto }}</p>
-                        <p><strong>Cantidad:</strong> {{ $ordendecompra->cantidad }}</p>
-                        <p><strong>Monto:</strong> {{ $ordendecompra->monto }}</p>
-                        <p><strong>Total:</strong> {{ $ordendecompra->total }}</p>
-                    </div>
+                    <style>
+                        table {
+                            width: 100%;
+                        }
+                        th, td {
+                            padding: 15px;
+                            text-align: left;
+                        }
+                    </style>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre del Producto</th>
+                                <th>Cantidad</th>
+                                <th>Monto</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($ordendecompra->productos as $producto)
+                                <tr>
+                                    <td>{{ $producto->pivot->nombre_producto }}</td>
+                                    <td>{{ $producto->pivot->cantidad }}</td>
+                                    <td>{{ $producto->pivot->monto }}</td>
+                                    <td>{{ $producto->pivot->total }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+
+
+
                 </div>
             </div>
         </form>
