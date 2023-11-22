@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_archivo')->unique();
             $table->string('ruta_archivo');
+            $table->string('n_factura')->nullable();
+            $table->string('identificador_unico')->nullable();
             $table->timestamps();
         });
     }

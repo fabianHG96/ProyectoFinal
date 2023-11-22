@@ -18,6 +18,7 @@ class DetalleFactura extends Model
         'nombre_cliente',
         'rut_cliente',
         'fecha_emision',
+        'n_factura',
         'monto_neto',
         'iva',
         'total_factura',
