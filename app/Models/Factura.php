@@ -12,7 +12,9 @@ class Factura extends Model
 
     protected $fillable = [
         'nombre_archivo',
-        'ruta_archivo', // Añade este campo si deseas almacenar el contenido binario del archivo PDF
+        'ruta_archivo',
+        'n_factura',
+        'identificador_unico'
     ];
 
     public function detalleFacturas()

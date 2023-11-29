@@ -16,13 +16,13 @@ class OrdenDeCompra extends Model
         'proveedor_id',
         'vendedor_id',
         'empleado_id',
-        'producto_id',
         'nombre_producto',
         'estado',
         'cantidad',
         'monto',
         'total',
         'nombre_proveedor',
+
 
     ];
 
@@ -40,7 +40,8 @@ class OrdenDeCompra extends Model
         return $this->belongsTo(Empleado::class, 'empleado_id');
     }
 
-    public function producto() {
-        return $this->belongsTo(Producto::class, 'producto_id');
+    public function productos() {
+        return $this->belongsToMany(Producto::class, 'orden_producto')
+                    ->withPivot('nombre_producto', 'cantidad', 'monto', 'total');
     }
 }

@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class OrdenDeCompraController extends Controller
 {
+
     function ShowNewOrden(){
         $proveedores = Proveedor::all();
         $vendedores = Vendedor::all(); // Inicialmente, la lista de vendedores estará vacía
@@ -21,7 +24,19 @@ class OrdenDeCompraController extends Controller
         return View('vistas.ordendecompra.create', compact('vendedores', 'proveedores', 'empleados', 'productos'));
 
      }
+     public function descargar($id) {
+        // Establecer una variable de sesión para indicar que estamos generando un PDF
+        session(['pdf' => true]);
 
+        $ordendecompra = OrdenDeCompra::findOrFail($id);
+
+        $pdf = FacadePdf::loadView('vistas.ordendecompra.details', compact('ordendecompra'));
+
+        // Eliminar la variable de sesión después de generar el PDF
+        session()->forget('pdf');
+
+        return $pdf->download('ordendecompra'.$id.'.pdf');
+    }
 
      function createNewOrden(Request $request)
      {
@@ -31,41 +46,50 @@ class OrdenDeCompraController extends Controller
             'proveedor_id' => 'required|exists:proveedor,id',
             'vendedor_id' => 'required|exists:vendedor,id',
             'empleado_id' => 'required|exists:empleados,id',
-            'producto_id' => 'required|exists:productos,id',
-            'nombre_producto' => 'required|exists:productos,nombre_producto',
-            'nombre_proveedor' => 'required', // Puedes agregar más reglas de validación según tus necesidades
             'estado' => 'required',
-            'cantidad' => 'required|integer|min:1', // Asegura que la cantidad sea un entero positivo
-            'monto' => 'required|numeric|min:0', // Asegura que el monto sea un número no negativo
-            'total' => 'required|numeric|min:0',
-         ]);
+            'nombre_proveedor' => 'required',
+            'productos.*.producto_id' => 'required|exists:productos,id',
+            'productos.*.nombre_producto' => 'required',
+            'productos.*.cantidad' => 'required|integer|min:1',
+            'productos.*.monto' => 'required|numeric|min:0',
+            'productos.*.total' => 'required|numeric|min:0',
 
-         $producto = Producto::find($request->producto_id);
+         ]);
+         $productos = $request->input('productos');
+         foreach ($productos as $productoData) {
+            $producto = Producto::find($productoData['producto_id']);
+
+
 
          // Crea la orden de compra
-         OrdenDeCompra::create([
-             'fecha_solicitud' => $request->fsolicitud,
-             'fecha_termino' => $request->ftermino,
-             'proveedor_id' => $request->proveedor_id,
-             'vendedor_id' => $request->vendedor_id,
-             'empleado_id' => $request->empleado_id,
-             'producto_id' => $request->producto_id,
-             'nombre_proveedor' => $request->nombre_proveedor,
-             'nombre_producto' => $request->nombre_producto,
-             'estado' => $request->estado,
-             'cantidad' => $request->cantidad,
-             'monto' => $request->monto,
-             'total' => $request->total,
+         $order = OrdenDeCompra::create([
+            'fecha_solicitud' => $request->fsolicitud,
+            'fecha_termino' => $request->ftermino,
+            'proveedor_id' => $request->proveedor_id,
+            'vendedor_id' => $request->vendedor_id,
+            'empleado_id' => $request->empleado_id,
+            'nombre_proveedor' => $request->nombre_proveedor,
+            'estado' => $request->estado,
+        ]);
 
+        foreach ($productos as $productoData) {
+            $producto = Producto::find($productoData['producto_id']);
 
-         ]);
+            $order->productos()->attach($producto->id, [
+                'nombre_producto' => $productoData['nombre_producto'],
+                'cantidad' => $productoData['cantidad'],
+                'monto' => $productoData['monto'],
+                'total' => $productoData['total'],
+            ]);
 
-         // Actualiza el stock del producto
-         $producto->cantidad_stock += $request->cantidad;
-         $producto->save();
+            // Actualiza el stock del producto
+            $producto->cantidad_stock += $productoData['cantidad'];
+            $producto->save();
+        }
 
          return redirect()->route('ListOrdenDeCompra')->with('success', 'Orden De Compra creado exitosamente');
-     }
+         }
+        }
 
 
     public function getVendedores($proveedorId)
@@ -77,30 +101,29 @@ class OrdenDeCompraController extends Controller
         $ordendecompra = OrdenDeCompra::all();
         return View('vistas.ordendecompra.list', ['mostrarordenes' => $ordendecompra]);
      }
-     public function Details($id)
-     {
-         $ordendecompra = OrdenDeCompra::find($id);
 
-         if (!$ordendecompra) {
-             return redirect()->route('ListOrdenDeCompra')->with('error', 'Orden de Compra no encontrada');
-         }
+        public function Details($id)
+    {
+        $ordendecompra = OrdenDeCompra::with('productos')->find($id);
 
-         // Asegúrate de tener los datos necesarios en las variables $empleados, $proveedores, $vendedores y $productos antes de pasarlos a la vista.
-         $proveedores = Proveedor::all();
-         $vendedores = Vendedor::all(); // Inicialmente, la lista de vendedores estará vacía
-         $empleados = Empleado::all();
-         $productos = Producto::all();
+        if (!$ordendecompra) {
+            return redirect()->route('ListOrdenDeCompra')->with('error', 'Orden de Compra no encontrada');
+        }
 
-         return view('vistas.ordendecompra.details', [
-             'ordendecompra' => $ordendecompra,
+        // Asegúrate de tener los datos necesarios en las variables $empleados, $proveedores, $vendedores y $productos antes de pasarlos a la vista.
+        $proveedores = Proveedor::all();
+        $vendedores = Vendedor::all(); // Inicialmente, la lista de vendedores estará vacía
+        $empleados = Empleado::all();
+        $productos = Producto::all();
 
-             'proveedores' => $proveedores,
-             'vendedores' => $vendedores,
-             'empleados' => $empleados,
-             'productos' => $productos,
-         ]);
-     }
-
+        return view('vistas.ordendecompra.details', [
+            'ordendecompra' => $ordendecompra,
+            'proveedores' => $proveedores,
+            'vendedores' => $vendedores,
+            'empleados' => $empleados,
+            'productos' => $productos,
+        ]);
+    }
 
      public function delete($id) {
         $ordendecompra = OrdenDeCompra::find($id);

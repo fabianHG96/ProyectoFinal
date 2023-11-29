@@ -28,7 +28,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Archivo PDF</th>
+                <th>Factura PDF</th>
+                <th>Numero Factura</th>
                 <th>Descargar</th>
                 <th>Ver PDF</th>
             </tr>
@@ -41,12 +42,15 @@
                         {{ $factura->nombre_archivo }}
                     </td>
                     <td>
-                        <a href="{{ route('descargar.pdf', ['id' => $factura->id]) }}" class="btn btn-primary">
+                        {{ $factura->n_factura }}
+                    </td>
+                    <td>
+                        <a href="{{ route('descargar.pdf', ['id' => $factura->id]) }}" class="btn btn-primary" >
                             Descargar
                         </a>
                     </td>
                     <td>
-                        <a href="javascript:void(0);" onclick="window.open('{{ route('leer.pdf', ['id' => $factura->id]) }}', 'NombreDeLaVentana', 'width=800, height=600');" class="btn btn-info">
+                        <a  href="{{ route('leer.pdf', ['id' => $factura->id]) }}" class="btn btn-info" target="_blank">
                             Ver PDF
                         </a>
 

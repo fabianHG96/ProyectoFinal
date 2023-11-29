@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Producto extends Model
 {
+    use SoftDeletes;
     use HasFactory;
     protected $table = 'productos';
 
@@ -26,5 +28,9 @@ class Producto extends Model
 
     public function categoria() {
         return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
+    public function ordenesDeCompra() {
+        return $this->belongsToMany(OrdenDeCompra::class, 'orden_producto')
+                    ->withPivot('nombre_producto', 'cantidad', 'monto', 'total');
     }
 }

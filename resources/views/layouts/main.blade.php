@@ -39,51 +39,7 @@
         </script>
     @endif
 <!-- Agrega este botón donde quieras en tu vista -->
-<button id="mostrarAlertas" class="btn btn-primary">Mostrar Alertas</button>
 
-<!-- Modal -->
-<div class="modal fade" id="alertasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Notificaciones</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                @if(auth()->check())
-                    @php
-                        $productosConStockBajo = \App\Models\Producto::where('cantidad_stock', '<', 10)->count();
-                    @endphp
-
-                    @if($productosConStockBajo > 0)
-                        <div class="alert alert-warning">
-                            <p class="mb-0">¡Atención! Algunos productos tienen un stock por debajo de 10.</p>
-                        </div>
-                    @else
-                        <div class="alert alert-info">
-                            <p class="mb-0">No hay productos con stock por debajo de 10.</p>
-                        </div>
-                    @endif
-                @else
-                    <div class="alert alert-info mb-0">
-                        <p class="mb-0">No hay notificaciones.</p>
-                    </div>
-                @endif
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    document.getElementById('mostrarAlertas').addEventListener('click', function() {
-        $('#alertasModal').modal('show'); // Mostrar la ventana modal
-    });
-</script>
 
 <label for="nombres"><strong>IntegralFlex</strong></label>
 <!-- Botón y estructura -->

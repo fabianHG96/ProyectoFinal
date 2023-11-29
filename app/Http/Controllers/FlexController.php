@@ -33,6 +33,7 @@ class FlexController extends Controller
 
         public function listFactura(){
         $factura = Factura::all();
+
         return view('vistas.rFactura.list', ['mostrarfactura' => $factura]);
         }
 
@@ -190,9 +191,21 @@ class FlexController extends Controller
             $archivo = $request->file('archivo_pdf');
 
             try {
+                $identificadorUnico = uniqid();
+
                 // Agregar un identificador único al nombre del archivo
-                $nombreArchivo = $request->input('nombre_archivo') . '_' . uniqid();
+                $nombreArchivo = $request->input('nombre_archivo');
+                $nombreOriginal = $request->input('nombre_archivo');
+                $extension = $archivo->getClientOriginalExtension();
                 $rutaArchivo = 'archivos/' . $nombreArchivo . '.' . $archivo->getClientOriginalExtension();
+
+                // Verificar si el archivo ya existe
+                $contador = 1;
+                while (file_exists(public_path($rutaArchivo))) {
+                    $nombreArchivo = $nombreOriginal . '(' . $contador . ')';
+                    $rutaArchivo = 'archivos/' . $nombreArchivo . '.' . $extension;
+                    $contador++;
+                }
 
                 $archivo->move(public_path('archivos'), $rutaArchivo);
 
@@ -200,6 +213,7 @@ class FlexController extends Controller
                 $factura = new Factura();
                 $factura->nombre_archivo = $nombreArchivo;
                 $factura->ruta_archivo = $rutaArchivo;
+                $factura->identificador_unico = $identificadorUnico;
                 $factura->save();
 
                 // Instantiate the Parser class
@@ -217,6 +231,17 @@ class FlexController extends Controller
                 preg_match('/R\.U\.T\.: (.+?)\R/', $contenidoFactura, $matches);
                 $rutCliente = isset($matches[1]) ? trim($matches[1]) : '';
 
+                preg_match('/FACTURA ELECTRONICA Nº(\d+)/', $contenidoFactura, $matches);
+                $numeroFactura = isset($matches[1]) ? trim($matches[1]) : '';
+
+                // Validar que se haya encontrado el número de factura
+                if (empty($numeroFactura)) {
+                    // Manejar el caso en el que no se puede encontrar el número de factura
+                    return back()->with('error', 'No se pudo encontrar el número de factura en el archivo PDF.');
+                }
+                $factura->n_factura = $numeroFactura;
+
+                $factura->save();
               // Expresión regular para extraer la fecha
               preg_match('/Fecha Emision: (\d+) de (\w+) del (\d+)/', $contenidoFactura, $matches);
               $dia = isset($matches[1]) ? trim($matches[1]) : '';
@@ -305,7 +330,7 @@ class FlexController extends Controller
         $rutaArchivo = public_path('archivos/' . $nombreArchivo . '.pdf');
 
         if (file_exists($rutaArchivo)) {
-            return response()->file($rutaArchivo, ['Content-Type' => 'application/pdf']);
+            return response()->download($rutaArchivo, $nombreArchivo . '.pdf');
         }
 
         return back()->with('error', 'No se encontró el archivo PDF para descargar.');
@@ -323,6 +348,7 @@ class FlexController extends Controller
         $rutaArchivo = public_path('archivos/' . $nombreArchivo . '.pdf');
 
         if (file_exists($rutaArchivo)) {
+            // Use the updated name when reading the file
             return response()->file($rutaArchivo, ['Content-Type' => 'application/pdf']);
         }
 

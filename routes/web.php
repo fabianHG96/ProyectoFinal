@@ -60,6 +60,7 @@ Route::group(['prefix'=> 'ordendecompra'],function(){
     Route::get('/details/{id}',[OrdenDeCompraController::class,'Details'])->name('DetailsOrdenDeCompra');
     Route::delete('/deleteOrdenDeCompra/{id}', [OrdenDeCompraController::class, 'delete'])->name('EliminarOrdenDeCompra');
     Route::get('/obtener-vendedores/{proveedorId}', [OrdenDeCompraController::class,'getVendedores']);
+    Route::get('/descargar/{id}', [OrdenDeCompraController::class, 'descargar'])->name('DescargarOrdenDeCompra');
 });
 
 

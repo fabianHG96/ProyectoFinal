@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Notifications\StockNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class ProductoController extends Controller
 {
+    use SoftDeletes;
+
+
     public function ShowNewProducto()
 {
     $bodegas = Bodega::all();
@@ -157,7 +161,8 @@ public function descargarDetalles($id)
     return $pdf->download('detalles_producto.pdf');
 }
 
- public function delete($id) {
+public function delete($id)
+{
     $producto = Producto::find($id);
 
     if (!$producto) {
@@ -166,7 +171,7 @@ public function descargarDetalles($id)
 
     // Usar DB::transaction para asegurarse de que la operación sea exitosa
     DB::transaction(function () use ($producto) {
-        // Eliminar la empresa de forma suave
+        // "Soft delete" del producto
         $producto->delete();
     });
 
