@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('proveedor_id');
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('rut')->unique();
+            $table->string('rut');
             $table->string('direccion');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('telefono');
             $table->string('estado_laboral');
             $table->foreign('proveedor_id')->references('id')->on('proveedor')->onDelete('cascade');

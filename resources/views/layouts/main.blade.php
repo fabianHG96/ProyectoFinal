@@ -183,7 +183,7 @@
                                             <li><a class="dropdown-item" href="{{ route('SeguimientoClientes') }}">SeguimientoClientes</a></li>
                                             <li><a class="dropdown-item" href="{{ route('SeguimientoProveedores') }}">SeguimientoProveedores</a></li>
                                         @endif
-                                        <li><a class="dropdown-item" href="{{ route('SeguimientoProductos') }}">SeguimientoProductos</a></li>
+                                        <li><a hidden class="dropdown-item" href="{{ route('SeguimientoProductos') }}">SeguimientoProductos</a></li>
                                         @if (@(Auth::user()->cargo_id != 1 && Auth::user()->cargo_id != 3 && Auth::user()->cargo_id != 5))
                                             <li><a class="dropdown-item" href="{{ route('listFactura') }}">RespaldoFacturas</a></li>
                                         @endif

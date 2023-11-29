@@ -16,7 +16,7 @@ class OrdenDeCompraSeeder extends Seeder
         OrdenDeCompra::create([
         'fecha_solicitud' => '2022-01-15',
         'fecha_termino' => '2022-01-15',
-        'nombre_proveedor'=> 'Flexloko',
+        'nombre_proveedor'=> 'Comercial Hidrotek Limitada',
         'proveedor_id' => '2',
         'vendedor_id' => '1',
         'empleado_id' => '1',
@@ -25,7 +25,7 @@ class OrdenDeCompraSeeder extends Seeder
         'cantidad' => '10',
         'monto' => '20000',
         'total' => '200000',
-        //'estado' => 'Completado',
+
         ]);
     }
 }

@@ -21,5 +21,69 @@ class ProductoSeeder extends Seeder
             'precio_unitario' => 20000,  // Precio unitario del producto
             'nombre_producto' => 'Placa Metálica',  // Nombre del producto
         ]);
+
+        Producto::create([
+            'bodega_id' => '1',
+            'categoria_id' => '1',
+            'total' => 550000,
+            'cantidad_stock' => 100,
+            'precio_unitario' => 40000,
+            'nombre_producto' => 'Tuerca',
+        ]);
+
+        Producto::create([
+            'bodega_id' => '1',
+            'categoria_id' => '1',
+            'total' => 1000000,
+            'cantidad_stock' => 5,
+            'precio_unitario' => 50000,
+            'nombre_producto' => 'Arandela',
+        ]);
+
+        Producto::create([
+            'bodega_id' => '1',
+            'categoria_id' => '1',
+            'total' => 20000,
+            'cantidad_stock' => 45,
+            'precio_unitario' => 10,
+            'nombre_producto' => 'Clavo',
+        ]);
+
+        Producto::create([
+            'bodega_id' => '1',
+            'categoria_id' => '1',
+            'total' => 200000,
+            'cantidad_stock' => 10,
+            'precio_unitario' => 20000,
+            'nombre_producto' => 'Destornillador',
+        ]);
+
+        Producto::create([
+            'bodega_id' => '1',
+            'categoria_id' => '1',
+            'total' => 150000,
+            'cantidad_stock' => 15,
+            'precio_unitario' => 10000,
+            'nombre_producto' => 'Martillo',
+        ]);
+
+        Producto::create([
+            'bodega_id' => '1',
+            'categoria_id' => '1',
+            'total' => 300000,
+            'cantidad_stock' => 20,
+            'precio_unitario' => 15000,
+            'nombre_producto' => 'Sierra',
+        ]);
+
+        Producto::create([
+            'bodega_id' => '1',
+            'categoria_id' => '1',
+            'total' => 250000,
+            'cantidad_stock' => 25,
+            'precio_unitario' => 10000,
+            'nombre_producto' => 'Llave Inglesa',
+        ]);
+
     }
 }

@@ -14,37 +14,38 @@ class EmpresaSeeder extends Seeder
     public function run(): void
     {
         Empresa::create([
-            'nombre' => 'Empresa1',
+            'nombre' => 'HidraulicaSur',
             'rut' => '12345678-8',
-            'pais' => 'País1',
-            'region' => 'Región1',
-            'direccion' => 'Dirección1',
-            'rubro' => 'Rubro1',
+            'pais' => 'Chile',
+            'region' => 'Región del Biobío',
+            'direccion' => 'Calle Los Ríos 123',
+            'rubro' => 'Hidráulica',
             'Ffundacion' => '2022-01-01',
-            'email' => 'empresa1@example.com',
+            'email' => 'contacto@hidraulicasur.cl',
             'telefono' => '123456789',
         ]);
+
         Empresa::create([
-            'nombre' => 'Empresa2',
+            'nombre' => 'AquaIngenieria',
             'rut' => '98765432-1',
-            'pais' => 'País2',
-            'region' => 'Región2',
-            'direccion' => 'Dirección2',
-            'rubro' => 'Rubro2',
+            'pais' => 'Chile',
+            'region' => 'Región Metropolitana',
+            'direccion' => 'Avenida del Agua 456',
+            'rubro' => 'Ingeniería Hidráulica',
             'Ffundacion' => '2022-02-15',
-            'email' => 'empresa2@example.com',
+            'email' => 'info@aquaingenieria.cl',
             'telefono' => '987654321',
         ]);
 
         Empresa::create([
-            'nombre' => 'Empresa3',
+            'nombre' => 'FlujoTec',
             'rut' => '54321987-6',
-            'pais' => 'País3',
-            'region' => 'Región3',
-            'direccion' => 'Dirección3',
-            'rubro' => 'Rubro3',
+            'pais' => 'Chile',
+            'region' => 'Región de Valparaíso',
+            'direccion' => 'Pasaje Los Canales 789',
+            'rubro' => 'Tecnología Hidráulica',
             'Ffundacion' => '2022-03-20',
-            'email' => 'empresa3@example.com',
+            'email' => 'soporte@flujotec.cl',
             'telefono' => '543219876',
         ]);
 
